@@ -19,7 +19,7 @@
 
   <!-- Custom Stylesheet -->
   <link rel="stylesheet" href="styles.css">
-  
+
   <style>
     /* Regional filter button styling */
     .btn-filter {
@@ -36,12 +36,15 @@
       transition: var(--transition-fast);
       cursor: pointer;
     }
-    .btn-filter:hover, .btn-filter.active {
+
+    .btn-filter:hover,
+    .btn-filter.active {
       background-color: var(--accent-gold);
       border-color: var(--accent-gold);
       color: var(--primary-dark);
       box-shadow: 0 4px 15px rgba(253, 183, 36, 0.2);
     }
+
     .branch-col {
       transition: opacity 0.4s ease, transform 0.4s ease;
     }
@@ -107,7 +110,7 @@
               <a class="nav-link" href="about.html">About Us</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="index.html#products">Products</a>
+              <a class="nav-link" href="products.html">Products</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="index.html#services">Services</a>
@@ -144,93 +147,6 @@
     </div>
   </section>
 
-  <!-- International Presence Section -->
-  <section class="section-padding bg-white pb-0">
-    <div class="container">
-      <div class="presence-world-wrap mb-5" data-aos="fade-up">
-        <div class="row g-5 align-items-center presence-content-box text-start">
-          <div class="col-md-12">
-            <h2 class="presence-title mb-3 text-white">Our Global Presence</h2>
-            <p class="text-white-80 mb-0" style="font-size: 1.05rem; line-height: 1.7;">
-              We collaborate with premier global manufacturers and maintain active operations across strategic international corridors, ensuring a high-performance, seamless supply chain.
-            </p>
-          </div>
-          <div class="col-lg-5">
-            <div class="presence-list">
-              <div class="presence-item" data-hub="italy">
-                <div class="presence-dot"></div>
-                <div class="presence-item-text">
-                  <h3>ITALY</h3>
-                  <span class="presence-coords">41.8719° N, 12.5674° E</span>
-                </div>
-              </div>
-              <div class="presence-item" data-hub="ksa">
-                <div class="presence-dot"></div>
-                <div class="presence-item-text">
-                  <h3>SAUDI ARABIA (KSA)</h3>
-                  <span class="presence-coords">23.8859° N, 45.0792° E</span>
-                </div>
-              </div>
-              <div class="presence-item" data-hub="uae">
-                <div class="presence-dot"></div>
-                <div class="presence-item-text">
-                  <h3>UNITED ARAB EMIRATES (UAE)</h3>
-                  <span class="presence-coords">23.4241° N, 53.8478° E</span>
-                </div>
-              </div>
-              <div class="presence-item" data-hub="china">
-                <div class="presence-dot"></div>
-                <div class="presence-item-text">
-                  <h3>CHINA</h3>
-                  <span class="presence-coords">35.8617° N, 104.1954° E</span>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-7">
-            <div class="presence-map-container">
-              <div class="map-grid-overlay"></div>
-              <img src="https://images.unsplash.com/photo-1524661135-423995f22d0b?auto=format&fit=crop&w=1200&q=80"
-                class="presence-map-img" alt="World Map">
-
-              <!-- Hotspots -->
-              <div class="map-hotspot pin-italy" data-hub="italy">
-                <span class="pulse-ring ring-1"></span>
-                <span class="pulse-ring ring-2"></span>
-                <span class="pulse-ring ring-3"></span>
-                <div class="hotspot-dot"></div>
-                <div class="hotspot-tooltip">Italy Hub</div>
-              </div>
-
-              <div class="map-hotspot pin-ksa" data-hub="ksa">
-                <span class="pulse-ring ring-1"></span>
-                <span class="pulse-ring ring-2"></span>
-                <span class="pulse-ring ring-3"></span>
-                <div class="hotspot-dot"></div>
-                <div class="hotspot-tooltip">KSA Hub</div>
-              </div>
-
-              <div class="map-hotspot pin-uae" data-hub="uae">
-                <span class="pulse-ring ring-1"></span>
-                <span class="pulse-ring ring-2"></span>
-                <span class="pulse-ring ring-3"></span>
-                <div class="hotspot-dot"></div>
-                <div class="hotspot-tooltip">UAE Hub</div>
-              </div>
-
-              <div class="map-hotspot pin-china" data-hub="china">
-                <span class="pulse-ring ring-1"></span>
-                <span class="pulse-ring ring-2"></span>
-                <span class="pulse-ring ring-3"></span>
-                <div class="hotspot-dot"></div>
-                <div class="hotspot-tooltip">China Hub</div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
 
   <!-- Local Branches Section with Dynamic Filters -->
   <section class="section-padding bg-light-section">
@@ -238,7 +154,9 @@
       <div class="text-center mb-5" data-aos="fade-up">
         <span class="section-tag">National Offices</span>
         <h2 class="section-title-large">Our Saudi Arabian Branches</h2>
-        <div style="width: 80px; height: 4px; background-color: var(--accent-gold); margin: 15px auto 25px; border-radius: 2px;"></div>
+        <div
+          style="width: 80px; height: 4px; background-color: var(--accent-gold); margin: 15px auto 25px; border-radius: 2px;">
+        </div>
       </div>
 
       <!-- Regional Filter Buttons -->
@@ -386,6 +304,94 @@
 
     </div>
   </section>
+  <!-- International Presence Section -->
+  <section class="section-padding bg-white pb-0">
+    <div class="container">
+      <div class="presence-world-wrap mb-5" data-aos="fade-up">
+        <div class="row g-5 align-items-center presence-content-box text-start">
+          <div class="col-md-12">
+            <h2 class="presence-title mb-3 text-white">Our Global Presence</h2>
+            <p class="text-white-80 mb-0" style="font-size: 1.05rem; line-height: 1.7;">
+              We collaborate with premier global manufacturers and maintain active operations across strategic
+              international corridors, ensuring a high-performance, seamless supply chain.
+            </p>
+          </div>
+          <div class="col-lg-5">
+            <div class="presence-list">
+              <div class="presence-item" data-hub="italy">
+                <div class="presence-dot"></div>
+                <div class="presence-item-text">
+                  <h3>ITALY</h3>
+                  <span class="presence-coords">41.8719° N, 12.5674° E</span>
+                </div>
+              </div>
+              <div class="presence-item" data-hub="ksa">
+                <div class="presence-dot"></div>
+                <div class="presence-item-text">
+                  <h3>SAUDI ARABIA (KSA)</h3>
+                  <span class="presence-coords">23.8859° N, 45.0792° E</span>
+                </div>
+              </div>
+              <div class="presence-item" data-hub="uae">
+                <div class="presence-dot"></div>
+                <div class="presence-item-text">
+                  <h3>UNITED ARAB EMIRATES (UAE)</h3>
+                  <span class="presence-coords">23.4241° N, 53.8478° E</span>
+                </div>
+              </div>
+              <div class="presence-item" data-hub="china">
+                <div class="presence-dot"></div>
+                <div class="presence-item-text">
+                  <h3>CHINA</h3>
+                  <span class="presence-coords">35.8617° N, 104.1954° E</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-7">
+            <div class="presence-map-container">
+              <div class="map-grid-overlay"></div>
+              <img src="https://images.unsplash.com/photo-1524661135-423995f22d0b?auto=format&fit=crop&w=1200&q=80"
+                class="presence-map-img" alt="World Map">
+
+              <!-- Hotspots -->
+              <div class="map-hotspot pin-italy" data-hub="italy">
+                <span class="pulse-ring ring-1"></span>
+                <span class="pulse-ring ring-2"></span>
+                <span class="pulse-ring ring-3"></span>
+                <div class="hotspot-dot"></div>
+                <div class="hotspot-tooltip">Italy Hub</div>
+              </div>
+
+              <div class="map-hotspot pin-ksa" data-hub="ksa">
+                <span class="pulse-ring ring-1"></span>
+                <span class="pulse-ring ring-2"></span>
+                <span class="pulse-ring ring-3"></span>
+                <div class="hotspot-dot"></div>
+                <div class="hotspot-tooltip">KSA Hub</div>
+              </div>
+
+              <div class="map-hotspot pin-uae" data-hub="uae">
+                <span class="pulse-ring ring-1"></span>
+                <span class="pulse-ring ring-2"></span>
+                <span class="pulse-ring ring-3"></span>
+                <div class="hotspot-dot"></div>
+                <div class="hotspot-tooltip">UAE Hub</div>
+              </div>
+
+              <div class="map-hotspot pin-china" data-hub="china">
+                <span class="pulse-ring ring-1"></span>
+                <span class="pulse-ring ring-2"></span>
+                <span class="pulse-ring ring-3"></span>
+                <div class="hotspot-dot"></div>
+                <div class="hotspot-tooltip">China Hub</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
   <!-- Footer -->
   <footer class="site-footer">
@@ -397,7 +403,8 @@
           <a class="d-flex align-items-center mb-4 text-white" href="index.html">
             <img src="assets/images/logo-light.png" alt="Al Hazmi International Logo" class="logo-img">
           </a>
-          <p class="mb-4">Delivering industrial bakery machines, packaging lines, refrigeration, and material racking storage solution systems globally for 20+ years.</p>
+          <p class="mb-4">Delivering industrial bakery machines, packaging lines, refrigeration, and material racking
+            storage solution systems globally for 20+ years.</p>
           <div class="footer-social-icons">
             <a href="#"><i class="fab fa-facebook-f"></i></a>
             <a href="#"><i class="fab fa-twitter"></i></a>
@@ -412,7 +419,7 @@
           <ul class="footer-links">
             <li><a href="index.html#home"><i class="fas fa-chevron-right fs-10"></i> Home</a></li>
             <li><a href="about.html"><i class="fas fa-chevron-right fs-10"></i> About Us</a></li>
-            <li><a href="index.html#products"><i class="fas fa-chevron-right fs-10"></i> Products</a></li>
+            <li><a href="products.html"><i class="fas fa-chevron-right fs-10"></i> Products</a></li>
             <li><a href="index.html#services"><i class="fas fa-chevron-right fs-10"></i> Services</a></li>
             <li><a href="locations.html"><i class="fas fa-chevron-right fs-10"></i> Locations</a></li>
             <li><a href="contact.html"><i class="fas fa-chevron-right fs-10"></i> Contact Us</a></li>

@@ -80,7 +80,7 @@
               <a class="nav-link" href="about.html">About Us</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="index.html#products">Products</a>
+              <a class="nav-link" href="products.html">Products</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="index.html#services">Services</a>
@@ -229,7 +229,7 @@
                 <div class="col-md-6">
                   <div class="custom-form-group">
                     <label class="custom-form-label">Equipment Category *</label>
-                    <select class="custom-form-control" required style="padding-top: 12px;">
+                    <select id="contact-category" class="custom-form-control" required style="padding-top: 12px;">
                       <option value="" disabled selected>Select Category</option>
                       <option value="bakery">Bakery Equipment</option>
                       <option value="pastry">Pastry Equipment</option>
@@ -266,7 +266,7 @@
                 <div class="col-12">
                   <div class="custom-form-group">
                     <label class="custom-form-label">Message Details</label>
-                    <textarea class="custom-form-control" placeholder="Write your requirements here..." style="min-height: 120px;"></textarea>
+                    <textarea id="contact-message" class="custom-form-control" placeholder="Write your requirements here..." style="min-height: 120px;"></textarea>
                   </div>
                 </div>
 
@@ -332,7 +332,7 @@
           <ul class="footer-links">
             <li><a href="index.html#home"><i class="fas fa-chevron-right fs-10"></i> Home</a></li>
             <li><a href="about.html"><i class="fas fa-chevron-right fs-10"></i> About Us</a></li>
-            <li><a href="index.html#products"><i class="fas fa-chevron-right fs-10"></i> Products</a></li>
+            <li><a href="products.html"><i class="fas fa-chevron-right fs-10"></i> Products</a></li>
             <li><a href="index.html#services"><i class="fas fa-chevron-right fs-10"></i> Services</a></li>
             <li><a href="locations.html"><i class="fas fa-chevron-right fs-10"></i> Locations</a></li>
             <li><a href="contact.html"><i class="fas fa-chevron-right fs-10"></i> Contact Us</a></li>
@@ -389,6 +389,25 @@
         preloader.style.opacity = '0';
         preloader.style.visibility = 'hidden';
       }, 500);
+
+      // Auto-fill form from URL query parameters
+      const urlParams = new URLSearchParams(window.location.search);
+      const categoryParam = urlParams.get('category');
+      const productParam = urlParams.get('product');
+
+      if (categoryParam) {
+        const categorySelect = document.getElementById('contact-category');
+        if (categorySelect) {
+          categorySelect.value = categoryParam;
+        }
+      }
+
+      if (productParam) {
+        const messageTextarea = document.getElementById('contact-message');
+        if (messageTextarea) {
+          messageTextarea.value = `Hello Al Hazmi team, I am interested in getting a quote and technical specifications for the following equipment: ${productParam}. Please contact me with more details.`;
+        }
+      }
     });
 
     // Handle Scroll Effects (Navbar shrinking, Scroll Progress)

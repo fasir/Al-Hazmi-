@@ -289,7 +289,7 @@
 
       <!-- Unified Responsive Interactive Timeline -->
       <div class="timeline-vertical-wrapper" data-aos="fade-up" data-aos-duration="1200">
-        
+
         <!-- Timeline axis line (progress colored via JS) -->
         <div class="timeline-axis-line">
           <div class="timeline-axis-progress"></div>
@@ -427,7 +427,7 @@
 
         </div>
 
-    </div>
+      </div>
   </section>
 
   <!-- Footer -->
@@ -544,26 +544,26 @@
       const timelineWrapper = document.querySelector('.timeline-vertical-wrapper');
       const progressLine = document.querySelector('.timeline-axis-progress');
       const timelineItems = document.querySelectorAll('.timeline-item');
-      
+
       if (!timelineWrapper || !progressLine) return;
-      
+
       const wrapperRect = timelineWrapper.getBoundingClientRect();
       const windowHeight = window.innerHeight;
-      
+
       // Calculate active progress based on scroll position relative to center of screen
       const triggerPoint = windowHeight * 0.65; // trigger height: 65% from top
       const wrapperTop = wrapperRect.top;
       const wrapperHeight = wrapperRect.height;
-      
+
       // Calculate progress percentage
       let progressPct = 0;
       if (wrapperTop < triggerPoint) {
         const scrolledDistance = triggerPoint - wrapperTop;
         progressPct = Math.min(scrolledDistance / wrapperHeight, 1);
       }
-      
+
       progressLine.style.height = (progressPct * 100) + '%';
-      
+
       // Activate items as they cross the trigger point
       timelineItems.forEach(item => {
         const itemRect = item.getBoundingClientRect();

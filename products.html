@@ -121,31 +121,15 @@
   <section class="section-padding bg-light-alt-section">
     <div class="container">
 
-      <!-- Catalog Top Actions: Search and Filters -->
+      <!-- Catalog Top Actions: Search -->
       <div class="row mb-5 justify-content-center">
-        <div class="col-lg-10">
-          <div class="catalog-filter-box p-4 rounded-4 shadow-sm bg-white" data-aos="fade-up">
-            <div class="row g-4 align-items-center">
-              
-              <!-- Search Bar -->
-              <div class="col-md-5">
-                <div class="search-input-group">
-                  <i class="fas fa-search search-icon"></i>
-                  <input type="text" id="catalog-search" class="form-control filter-search-input" 
-                    placeholder="Search equipment or brand (e.g. Ovens, Pomati)...">
-                </div>
-              </div>
-
-              <!-- Brand Quick Filter -->
-              <div class="col-md-7">
-                <div class="d-flex align-items-center gap-2 flex-wrap">
-                  <span class="filter-label"><i class="fas fa-tags me-1"></i> Brand:</span>
-                  <div id="brand-filters-wrap" class="d-flex gap-1 flex-wrap">
-                    <!-- Brand badges loaded dynamically -->
-                  </div>
-                </div>
-              </div>
-
+        <div class="col-lg-7">
+          <div class="catalog-filter-box p-2 rounded-5 shadow-sm bg-white" data-aos="fade-up">
+            <div class="search-input-group">
+              <i class="fas fa-search search-icon"></i>
+              <input type="text" id="catalog-search" class="form-control filter-search-input"
+                placeholder="Search equipment or brand (e.g. Ovens, Pomati)...">
+              <button class="search-btn btn" type="button"><i class="fas fa-arrow-right"></i></button>
             </div>
           </div>
         </div>
@@ -153,20 +137,23 @@
 
       <!-- Main Layout with Category Sidebar & Cards -->
       <div class="row g-4">
-        
+
         <!-- Sidebar Navigation (Desktop) / Dropdown Toggle (Mobile) -->
         <div class="col-lg-3">
-          <div class="category-sidebar sticky-lg-top p-4 bg-white rounded-4 shadow-sm text-start" style="top: 120px; z-index: 10;" data-aos="fade-right">
+          <div class="category-sidebar \ p-4 bg-white rounded-4 shadow-sm text-start" style="top: 120px; z-index: 10;"
+            data-aos="fade-right">
             <h4 class="sidebar-title mb-4">Categories</h4>
             <div class="nav flex-column nav-pills category-nav-list" id="category-tabs" role="tablist">
               <!-- All -->
               <div class="category-group w-100">
-                <button class="nav-link active w-100" data-category="all" type="button"><i class="fas fa-th-large me-2"></i>All Equipment</button>
+                <button class="nav-link active w-100" data-category="all" type="button"><i
+                    class="fas fa-th-large me-2"></i>All Equipment</button>
               </div>
-              
+
               <!-- Bakery -->
               <div class="category-group w-100">
-                <button class="nav-link w-100 d-flex justify-content-between align-items-center" data-category="bakery" type="button">
+                <button class="nav-link w-100 d-flex justify-content-between align-items-center" data-category="bakery"
+                  type="button">
                   <span><i class="fas fa-bread-slice me-2"></i>Bakery Equipment</span>
                   <i class="fas fa-chevron-down fs-11 menu-chevron"></i>
                 </button>
@@ -174,63 +161,84 @@
                   <button class="sub-link" data-subcategory="Ovens" type="button">Ovens</button>
                   <button class="sub-link" data-subcategory="Spiral Mixers" type="button">Spiral Mixers</button>
                   <button class="sub-link" data-subcategory="Fork Mixers" type="button">Fork Mixers</button>
-                  <button class="sub-link" data-subcategory="Dividers & Rounders" type="button">Dividers & Rounders</button>
-                  <button class="sub-link" data-subcategory="Other Machinery" type="button">Other Bakery Machines</button>
+                  <button class="sub-link" data-subcategory="Dividers & Rounders" type="button">Dividers &
+                    Rounders</button>
+                  <button class="sub-link" data-subcategory="Other Machinery" type="button">Other Bakery
+                    Machines</button>
                 </div>
               </div>
-              
+
               <!-- Pastry -->
               <div class="category-group w-100">
-                <button class="nav-link w-100 d-flex justify-content-between align-items-center" data-category="pastry" type="button">
+                <button class="nav-link w-100 d-flex justify-content-between align-items-center" data-category="pastry"
+                  type="button">
                   <span><i class="fas fa-cookie-bite me-2"></i>Pastry Equipment</span>
                   <i class="fas fa-chevron-down fs-11 menu-chevron"></i>
                 </button>
                 <div class="subcategory-list d-none" id="sub-pastry">
                   <button class="sub-link" data-subcategory="Sheeters" type="button">Sheeters</button>
                   <button class="sub-link" data-subcategory="Planetary Mixers" type="button">Planetary Mixers</button>
-                  <button class="sub-link" data-subcategory="Cookies & Depositors" type="button">Cookies & Depositors</button>
+                  <button class="sub-link" data-subcategory="Cookies & Depositors" type="button">Cookies &
+                    Depositors</button>
                 </div>
               </div>
-              
+
               <!-- Chocolate -->
               <div class="category-group w-100">
-                <button class="nav-link w-100 d-flex justify-content-between align-items-center" data-category="chocolate" type="button">
+                <button class="nav-link w-100 d-flex justify-content-between align-items-center"
+                  data-category="chocolate" type="button">
                   <span><i class="fas fa-candy-cane me-2"></i>Chocolate Machines</span>
                   <i class="fas fa-chevron-down fs-11 menu-chevron"></i>
                 </button>
                 <div class="subcategory-list d-none" id="sub-chocolate">
-                  <button class="sub-link" data-subcategory="Tempering & Melting" type="button">Tempering & Melting</button>
-                  <button class="sub-link" data-subcategory="One Shot Depositors" type="button">One Shot Depositors</button>
+                  <button class="sub-link" data-subcategory="Tempering & Melting" type="button">Tempering &
+                    Melting</button>
+                  <button class="sub-link" data-subcategory="One Shot Depositors" type="button">One Shot
+                    Depositors</button>
                 </div>
               </div>
-              
+
               <!-- Production -->
               <div class="category-group w-100">
-                <button class="nav-link w-100 d-flex justify-content-between align-items-center" data-category="production" type="button">
+                <button class="nav-link w-100 d-flex justify-content-between align-items-center"
+                  data-category="production" type="button">
                   <span><i class="fas fa-industry me-2"></i>Production Lines</span>
                   <i class="fas fa-chevron-down fs-11 menu-chevron"></i>
                 </button>
                 <div class="subcategory-list d-none" id="sub-production">
-                  <button class="sub-link" data-subcategory="Stuffed Pastry Lines" type="button">Stuffed Pastry Lines</button>
+                  <button class="sub-link" data-subcategory="Stuffed Pastry Lines" type="button">Stuffed Pastry
+                    Lines</button>
                   <button class="sub-link" data-subcategory="Bread Bun Lines" type="button">Bread Bun Lines</button>
-                  <button class="sub-link" data-subcategory="Pita & Flatbread Lines" type="button">Pita & Flatbread Lines</button>
+                  <button class="sub-link" data-subcategory="Pita & Flatbread Lines" type="button">Pita & Flatbread
+                    Lines</button>
                   <button class="sub-link" data-subcategory="Chocolate Lines" type="button">Chocolate Lines</button>
                 </div>
               </div>
-              
+
               <!-- Packaging -->
               <div class="category-group w-100">
-                <button class="nav-link w-100 d-flex justify-content-between align-items-center" data-category="packaging" type="button">
+                <button class="nav-link w-100 d-flex justify-content-between align-items-center"
+                  data-category="packaging" type="button">
                   <span><i class="fas fa-box-open me-2"></i>Packaging Solutions</span>
                   <i class="fas fa-chevron-down fs-11 menu-chevron"></i>
                 </button>
                 <div class="subcategory-list d-none" id="sub-packaging">
-                  <button class="sub-link" data-subcategory="Flow Wrap Machines" type="button">Flow Wrap Machines</button>
-                  <button class="sub-link" data-subcategory="Shrink Wrap Machines" type="button">Shrink Wrap Machines</button>
+                  <button class="sub-link" data-subcategory="Flow Wrap Machines" type="button">Flow Wrap
+                    Machines</button>
+                  <button class="sub-link" data-subcategory="Shrink Wrap Machines" type="button">Shrink Wrap
+                    Machines</button>
                   <button class="sub-link" data-subcategory="Chamber Packaging" type="button">Chamber Packaging</button>
                   <button class="sub-link" data-subcategory="Vacuum Packing" type="button">Vacuum Packing</button>
                   <button class="sub-link" data-subcategory="Vertical Wrapping" type="button">Vertical Wrapping</button>
                 </div>
+              </div>
+            </div>
+
+            <!-- Brand Filter Section -->
+            <div class="brand-filter-section mt-4 pt-4">
+              <h4 class="sidebar-title mb-3">Brands</h4>
+              <div class="nav flex-column nav-pills brand-nav-list" id="brand-filters-wrap">
+                <!-- Brand buttons loaded dynamically -->
               </div>
             </div>
           </div>
@@ -238,12 +246,13 @@
 
         <!-- Product Cards Grid -->
         <div class="col-lg-9 text-start">
-          
+
           <!-- Category Active Tag / Info -->
           <div class="d-flex justify-content-between align-items-center mb-4 flex-wrap gap-2" data-aos="fade-down">
             <div>
               <h3 id="active-category-title" class="fw-bold mb-0">All Equipment</h3>
-              <p id="active-category-subtitle" class="text-muted mb-0">Browse through our complete catalog of industrial food machines.</p>
+              <p id="active-category-subtitle" class="text-muted mb-0">Browse through our complete catalog of industrial
+                food machines.</p>
             </div>
             <div class="text-end">
               <span id="results-count" class="badge bg-dark rounded-pill px-3 py-2">0 Products Found</span>
@@ -1052,13 +1061,13 @@
     let searchText = "";
 
     // DOM Elements
-    const productGrid = document.getElementById('product-grid');
-    const searchInput = document.getElementById('catalog-search');
-    const brandFiltersWrap = document.getElementById('brand-filters-wrap');
-    const categoryTabs = document.querySelectorAll('#category-tabs .nav-link');
-    const activeCategoryTitle = document.getElementById('active-category-title');
-    const activeCategorySubtitle = document.getElementById('active-category-subtitle');
-    const resultsCount = document.getElementById('results-count');
+    let productGrid;
+    let searchInput;
+    let brandFiltersWrap;
+    let categoryTabs;
+    let activeCategoryTitle;
+    let activeCategorySubtitle;
+    let resultsCount;
 
     // Page Category Meta Data
     const categoryMeta = {
@@ -1119,6 +1128,15 @@
 
     // Initialize Page
     document.addEventListener('DOMContentLoaded', () => {
+      // Initialize DOM Elements
+      productGrid = document.getElementById('product-grid');
+      searchInput = document.getElementById('catalog-search');
+      brandFiltersWrap = document.getElementById('brand-filters-wrap');
+      categoryTabs = document.querySelectorAll('#category-tabs .nav-link');
+      activeCategoryTitle = document.getElementById('active-category-title');
+      activeCategorySubtitle = document.getElementById('active-category-subtitle');
+      resultsCount = document.getElementById('results-count');
+
       // Hide Preloader smoothly
       const preloader = document.getElementById('preloader');
       setTimeout(() => {
@@ -1177,7 +1195,7 @@
             parentList.querySelectorAll('.sub-link').forEach(l => l.classList.remove('active'));
           }
           link.classList.add('active');
-          
+
           activeSubcategory = link.getAttribute('data-subcategory');
           activeBrand = "all"; // Reset brand filter on subcategory switch
           buildBrandFilters();
@@ -1197,15 +1215,17 @@
       const uniqueBrands = ["all", ...new Set(activeProducts.map(p => p.brand))];
 
       brandFiltersWrap.innerHTML = "";
-      
+
       uniqueBrands.forEach(brand => {
         const btn = document.createElement('button');
         btn.type = "button";
-        btn.className = `btn btn-sm btn-brand-badge ${activeBrand === brand ? 'active' : ''}`;
-        btn.textContent = brand === "all" ? "All Brands" : brand;
-        
+        btn.className = `nav-link w-100 text-start brand-link ${activeBrand === brand ? 'active' : ''}`;
+
+        const icon = brand === "all" ? '<i class="fas fa-tags me-2"></i>' : '<i class="fas fa-tag me-2"></i>';
+        btn.innerHTML = `${icon}${brand === "all" ? "All Brands" : brand}`;
+
         btn.addEventListener('click', () => {
-          document.querySelectorAll('.btn-brand-badge').forEach(b => b.classList.remove('active'));
+          document.querySelectorAll('.brand-link').forEach(b => b.classList.remove('active'));
           btn.classList.add('active');
           activeBrand = brand;
           renderCatalog();
@@ -1222,10 +1242,10 @@
         const matchesCategory = activeCategory === "all" || product.category === activeCategory;
         const matchesSubcategory = activeSubcategory === "all" || product.subcategory === activeSubcategory;
         const matchesBrand = activeBrand === "all" || product.brand === activeBrand;
-        const matchesSearch = product.name.toLowerCase().includes(searchText) || 
-                              product.brand.toLowerCase().includes(searchText) || 
-                              product.subcategory.toLowerCase().includes(searchText) ||
-                              product.desc.toLowerCase().includes(searchText);
+        const matchesSearch = product.name.toLowerCase().includes(searchText) ||
+          product.brand.toLowerCase().includes(searchText) ||
+          product.subcategory.toLowerCase().includes(searchText) ||
+          product.desc.toLowerCase().includes(searchText);
         return matchesCategory && matchesSubcategory && matchesBrand && matchesSearch;
       });
 
@@ -1262,10 +1282,9 @@
                 <span class="catalog-card-brand">${product.brand}</span>
               </div>
               <h4 class="catalog-card-title">${product.name}</h4>
-              <p class="catalog-card-desc text-muted mb-4">${product.desc}</p>
               
               <div class="mt-auto">
-                <a href="${product.link}" target="_blank" rel="noopener noreferrer" class="btn btn-gold-catalog w-100 text-center">
+                <a href="product-detail.html?product=${encodeURIComponent(product.brand + ' ' + product.name)}" class="btn btn-gold-catalog w-100 text-center">
                   View Details <i class="fas fa-arrow-right ms-1 fs-11"></i>
                 </a>
               </div>
@@ -1280,7 +1299,7 @@
     window.addEventListener('scroll', () => {
       const scrollY = window.scrollY;
       const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-      
+
       if (scrollY > 60) {
         document.body.classList.add('navbar-scrolled');
       } else {

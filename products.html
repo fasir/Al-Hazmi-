@@ -83,7 +83,7 @@
               <a class="nav-link active" href="products.html">Products</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="index.html#services">Services</a>
+              <a class="nav-link" href="services.html">Services</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="locations.html">Locations</a>
@@ -159,12 +159,79 @@
           <div class="category-sidebar sticky-lg-top p-4 bg-white rounded-4 shadow-sm text-start" style="top: 120px; z-index: 10;" data-aos="fade-right">
             <h4 class="sidebar-title mb-4">Categories</h4>
             <div class="nav flex-column nav-pills category-nav-list" id="category-tabs" role="tablist">
-              <button class="nav-link active" data-category="all" type="button"><i class="fas fa-th-large me-2"></i>All Equipment</button>
-              <button class="nav-link" data-category="bakery" type="button"><i class="fas fa-bread-slice me-2"></i>Bakery Equipment</button>
-              <button class="nav-link" data-category="pastry" type="button"><i class="fas fa-cookie-bite me-2"></i>Pastry Equipment</button>
-              <button class="nav-link" data-category="chocolate" type="button"><i class="fas fa-candy-cane me-2"></i>Chocolate Machines</button>
-              <button class="nav-link" data-category="production" type="button"><i class="fas fa-industry me-2"></i>Production Lines</button>
-              <button class="nav-link" data-category="packaging" type="button"><i class="fas fa-box-open me-2"></i>Packaging Solutions</button>
+              <!-- All -->
+              <div class="category-group w-100">
+                <button class="nav-link active w-100" data-category="all" type="button"><i class="fas fa-th-large me-2"></i>All Equipment</button>
+              </div>
+              
+              <!-- Bakery -->
+              <div class="category-group w-100">
+                <button class="nav-link w-100 d-flex justify-content-between align-items-center" data-category="bakery" type="button">
+                  <span><i class="fas fa-bread-slice me-2"></i>Bakery Equipment</span>
+                  <i class="fas fa-chevron-down fs-11 menu-chevron"></i>
+                </button>
+                <div class="subcategory-list d-none" id="sub-bakery">
+                  <button class="sub-link" data-subcategory="Ovens" type="button">Ovens</button>
+                  <button class="sub-link" data-subcategory="Spiral Mixers" type="button">Spiral Mixers</button>
+                  <button class="sub-link" data-subcategory="Fork Mixers" type="button">Fork Mixers</button>
+                  <button class="sub-link" data-subcategory="Dividers & Rounders" type="button">Dividers & Rounders</button>
+                  <button class="sub-link" data-subcategory="Other Machinery" type="button">Other Bakery Machines</button>
+                </div>
+              </div>
+              
+              <!-- Pastry -->
+              <div class="category-group w-100">
+                <button class="nav-link w-100 d-flex justify-content-between align-items-center" data-category="pastry" type="button">
+                  <span><i class="fas fa-cookie-bite me-2"></i>Pastry Equipment</span>
+                  <i class="fas fa-chevron-down fs-11 menu-chevron"></i>
+                </button>
+                <div class="subcategory-list d-none" id="sub-pastry">
+                  <button class="sub-link" data-subcategory="Sheeters" type="button">Sheeters</button>
+                  <button class="sub-link" data-subcategory="Planetary Mixers" type="button">Planetary Mixers</button>
+                  <button class="sub-link" data-subcategory="Cookies & Depositors" type="button">Cookies & Depositors</button>
+                </div>
+              </div>
+              
+              <!-- Chocolate -->
+              <div class="category-group w-100">
+                <button class="nav-link w-100 d-flex justify-content-between align-items-center" data-category="chocolate" type="button">
+                  <span><i class="fas fa-candy-cane me-2"></i>Chocolate Machines</span>
+                  <i class="fas fa-chevron-down fs-11 menu-chevron"></i>
+                </button>
+                <div class="subcategory-list d-none" id="sub-chocolate">
+                  <button class="sub-link" data-subcategory="Tempering & Melting" type="button">Tempering & Melting</button>
+                  <button class="sub-link" data-subcategory="One Shot Depositors" type="button">One Shot Depositors</button>
+                </div>
+              </div>
+              
+              <!-- Production -->
+              <div class="category-group w-100">
+                <button class="nav-link w-100 d-flex justify-content-between align-items-center" data-category="production" type="button">
+                  <span><i class="fas fa-industry me-2"></i>Production Lines</span>
+                  <i class="fas fa-chevron-down fs-11 menu-chevron"></i>
+                </button>
+                <div class="subcategory-list d-none" id="sub-production">
+                  <button class="sub-link" data-subcategory="Stuffed Pastry Lines" type="button">Stuffed Pastry Lines</button>
+                  <button class="sub-link" data-subcategory="Bread Bun Lines" type="button">Bread Bun Lines</button>
+                  <button class="sub-link" data-subcategory="Pita & Flatbread Lines" type="button">Pita & Flatbread Lines</button>
+                  <button class="sub-link" data-subcategory="Chocolate Lines" type="button">Chocolate Lines</button>
+                </div>
+              </div>
+              
+              <!-- Packaging -->
+              <div class="category-group w-100">
+                <button class="nav-link w-100 d-flex justify-content-between align-items-center" data-category="packaging" type="button">
+                  <span><i class="fas fa-box-open me-2"></i>Packaging Solutions</span>
+                  <i class="fas fa-chevron-down fs-11 menu-chevron"></i>
+                </button>
+                <div class="subcategory-list d-none" id="sub-packaging">
+                  <button class="sub-link" data-subcategory="Flow Wrap Machines" type="button">Flow Wrap Machines</button>
+                  <button class="sub-link" data-subcategory="Shrink Wrap Machines" type="button">Shrink Wrap Machines</button>
+                  <button class="sub-link" data-subcategory="Chamber Packaging" type="button">Chamber Packaging</button>
+                  <button class="sub-link" data-subcategory="Vacuum Packing" type="button">Vacuum Packing</button>
+                  <button class="sub-link" data-subcategory="Vertical Wrapping" type="button">Vertical Wrapping</button>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -222,7 +289,7 @@
             <li><a href="index.html#home"><i class="fas fa-chevron-right fs-10"></i> Home</a></li>
             <li><a href="about.html"><i class="fas fa-chevron-right fs-10"></i> About Us</a></li>
             <li><a href="products.html"><i class="fas fa-chevron-right fs-10"></i> Products</a></li>
-            <li><a href="index.html#services"><i class="fas fa-chevron-right fs-10"></i> Services</a></li>
+            <li><a href="services.html"><i class="fas fa-chevron-right fs-10"></i> Services</a></li>
             <li><a href="locations.html"><i class="fas fa-chevron-right fs-10"></i> Locations</a></li>
             <li><a href="contact.html"><i class="fas fa-chevron-right fs-10"></i> Contact Us</a></li>
           </ul>
@@ -980,6 +1047,7 @@
 
     // Global filters state
     let activeCategory = "all";
+    let activeSubcategory = "all";
     let activeBrand = "all";
     let searchText = "";
 
@@ -1020,6 +1088,35 @@
       }
     };
 
+    // Helper function to select category and expand its subcategories
+    function selectCategory(category) {
+      activeCategory = category;
+      activeSubcategory = "all";
+      activeBrand = "all";
+
+      // Hide all subcategory lists
+      document.querySelectorAll('.subcategory-list').forEach(list => {
+        list.classList.add('d-none');
+      });
+
+      // Deactivate all subcategory links
+      document.querySelectorAll('.sub-link').forEach(link => {
+        link.classList.remove('active');
+      });
+
+      // Show specific subcategory list if active
+      if (category !== 'all') {
+        const subList = document.getElementById(`sub-${category}`);
+        if (subList) {
+          subList.classList.remove('d-none');
+        }
+      }
+
+      // Re-evaluate filters and render
+      buildBrandFilters();
+      renderCatalog();
+    }
+
     // Initialize Page
     document.addEventListener('DOMContentLoaded', () => {
       // Hide Preloader smoothly
@@ -1041,6 +1138,7 @@
             tab.classList.remove('active');
           }
         });
+        selectCategory(catParam);
       }
 
       // Initialize AOS
@@ -1065,18 +1163,37 @@
         tab.addEventListener('click', (e) => {
           categoryTabs.forEach(t => t.classList.remove('active'));
           tab.classList.add('active');
-          activeCategory = tab.getAttribute('data-category');
-          activeBrand = "all"; // Reset brand filter on category switch
+          const category = tab.getAttribute('data-category');
+          selectCategory(category);
+        });
+      });
+
+      // Listen to subcategory link clicks
+      const subLinks = document.querySelectorAll('.sub-link');
+      subLinks.forEach(link => {
+        link.addEventListener('click', (e) => {
+          const parentList = link.closest('.subcategory-list');
+          if (parentList) {
+            parentList.querySelectorAll('.sub-link').forEach(l => l.classList.remove('active'));
+          }
+          link.classList.add('active');
+          
+          activeSubcategory = link.getAttribute('data-subcategory');
+          activeBrand = "all"; // Reset brand filter on subcategory switch
           buildBrandFilters();
           renderCatalog();
         });
       });
     });
 
-    // Build brand tags filter list dynamically based on active category
+    // Build brand tags filter list dynamically based on active category & subcategory
     function buildBrandFilters() {
-      // Find all unique brands in the active category
-      const activeProducts = productCatalog.filter(p => activeCategory === "all" || p.category === activeCategory);
+      // Find all unique brands in the active category & subcategory
+      const activeProducts = productCatalog.filter(p => {
+        const matchesCategory = activeCategory === "all" || p.category === activeCategory;
+        const matchesSubcategory = activeSubcategory === "all" || p.subcategory === activeSubcategory;
+        return matchesCategory && matchesSubcategory;
+      });
       const uniqueBrands = ["all", ...new Set(activeProducts.map(p => p.brand))];
 
       brandFiltersWrap.innerHTML = "";
@@ -1103,12 +1220,13 @@
 
       const filteredProducts = productCatalog.filter(product => {
         const matchesCategory = activeCategory === "all" || product.category === activeCategory;
+        const matchesSubcategory = activeSubcategory === "all" || product.subcategory === activeSubcategory;
         const matchesBrand = activeBrand === "all" || product.brand === activeBrand;
         const matchesSearch = product.name.toLowerCase().includes(searchText) || 
                               product.brand.toLowerCase().includes(searchText) || 
                               product.subcategory.toLowerCase().includes(searchText) ||
                               product.desc.toLowerCase().includes(searchText);
-        return matchesCategory && matchesBrand && matchesSearch;
+        return matchesCategory && matchesSubcategory && matchesBrand && matchesSearch;
       });
 
       // Update text titles

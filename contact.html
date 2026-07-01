@@ -83,7 +83,7 @@
               <a class="nav-link" href="products.html">Products</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="index.html#services">Services</a>
+              <a class="nav-link" href="services.html">Services</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="locations.html">Locations</a>
@@ -333,7 +333,7 @@
             <li><a href="index.html#home"><i class="fas fa-chevron-right fs-10"></i> Home</a></li>
             <li><a href="about.html"><i class="fas fa-chevron-right fs-10"></i> About Us</a></li>
             <li><a href="products.html"><i class="fas fa-chevron-right fs-10"></i> Products</a></li>
-            <li><a href="index.html#services"><i class="fas fa-chevron-right fs-10"></i> Services</a></li>
+            <li><a href="services.html"><i class="fas fa-chevron-right fs-10"></i> Services</a></li>
             <li><a href="locations.html"><i class="fas fa-chevron-right fs-10"></i> Locations</a></li>
             <li><a href="contact.html"><i class="fas fa-chevron-right fs-10"></i> Contact Us</a></li>
           </ul>
@@ -394,6 +394,7 @@
       const urlParams = new URLSearchParams(window.location.search);
       const categoryParam = urlParams.get('category');
       const productParam = urlParams.get('product');
+      const serviceParam = urlParams.get('service');
 
       if (categoryParam) {
         const categorySelect = document.getElementById('contact-category');
@@ -406,6 +407,13 @@
         const messageTextarea = document.getElementById('contact-message');
         if (messageTextarea) {
           messageTextarea.value = `Hello Al Hazmi team, I am interested in getting a quote and technical specifications for the following equipment: ${productParam}. Please contact me with more details.`;
+        }
+      }
+
+      if (serviceParam) {
+        const messageTextarea = document.getElementById('contact-message');
+        if (messageTextarea) {
+          messageTextarea.value = `Hello Al Hazmi team, I am interested in inquiring about your "${serviceParam}" services. Please provide me with details on your commercial consulting, system layouts, and service options for this sector.`;
         }
       }
     });

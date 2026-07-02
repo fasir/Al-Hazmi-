@@ -1,0 +1,1100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Machine Finder | Al Hazmi International</title>
+  <meta name="description"
+    content="Find the right machine for your bakery, pastry, or chocolate products with our interactive machine finder.">
+
+  <!-- Bootstrap 5.3 CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Font Awesome 6.4.0 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <!-- AOS (Animate On Scroll) CSS -->
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+  <!-- Custom Stylesheet -->
+  <link rel="stylesheet" href="styles.css">
+
+  <style>
+    :root {
+      --white: #ffffff;
+      --orange: var(--accent-gold);
+      --orange-deep: #D99B1C;
+      --orange-dim: rgba(253, 183, 36, 0.15);
+      --charcoal: var(--text-color);
+      --charcoal-deep: var(--primary-dark);
+      --light-gray: var(--bg-light-alt);
+      --line: var(--border-color);
+      --line-strong: rgba(98, 98, 98, 0.22);
+      --radius-lg: 20px;
+      --radius-md: 16px;
+      --radius-sm: 10px;
+      --ease: cubic-bezier(.22, 1, .36, 1);
+    }
+
+    .mf-section {
+      font-family: var(--font-body);
+      background: var(--light-gray);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .border-dashed {
+      border-top: 1px dashed var(--line-strong) !important;
+    }
+
+    /* blueprint grid backdrop — signature texture */
+    .mf-blueprint {
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(var(--line) 1px, transparent 1px),
+        linear-gradient(90deg, var(--line) 1px, transparent 1px);
+      background-size: 56px 56px;
+      -webkit-mask-image: radial-gradient(ellipse 90% 70% at 65% 20%, #000 10%, transparent 75%);
+      mask-image: radial-gradient(ellipse 90% 70% at 65% 20%, #000 10%, transparent 75%);
+      opacity: .35;
+      pointer-events: none;
+    }
+
+    .mf-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      font-family: var(--font-headings);
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--orange-deep);
+    }
+
+    .mf-eyebrow::before {
+      content: "";
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--orange);
+      box-shadow: 0 0 0 4px var(--orange-dim);
+    }
+
+    /* ---------- Search card ---------- */
+    .mf-search-card {
+      background: rgba(255, 255, 255, 0.7) !important;
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      border: 1px solid rgba(255, 255, 255, 0.8) !important;
+      border-radius: var(--radius-lg) !important;
+      box-shadow: 0 20px 45px -18px rgba(21, 22, 24, 0.12) !important;
+    }
+
+    .hover-lift {
+      transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+    }
+    .hover-lift:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 6px 15px rgba(21, 22, 24, 0.06);
+      border-color: rgba(253, 183, 36, 0.25) !important;
+    }
+
+    .mf-find-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 9px;
+      background: var(--charcoal-deep);
+      color: var(--white);
+      border: 2px solid var(--charcoal-deep);
+      font-family: var(--font-headings);
+      font-weight: 700;
+      font-size: 15.5px;
+      padding: 14px 20px;
+      border-radius: 12px;
+      cursor: pointer;
+      box-shadow: 3px 3px 0px rgba(98, 98, 98, 0.4);
+      transition: var(--transition-elastic);
+    }
+
+    .mf-find-btn:hover {
+      background: var(--orange);
+      border-color: var(--orange);
+      color: var(--charcoal-deep);
+      box-shadow: 4px 4px 0px var(--charcoal-deep);
+      transform: translateY(-2px);
+    }
+
+    .mf-find-btn:active {
+      transform: translateY(0);
+    }
+
+
+
+    /* ---------- Product grid ---------- */
+    .mf-card {
+      position: relative;
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      aspect-ratio: 1/1.08;
+      cursor: pointer;
+      border: 1px solid var(--line);
+      background: var(--charcoal-deep);
+      box-shadow: 0 8px 20px -12px rgba(21, 22, 24, 0.15);
+      transition: transform .32s var(--ease), box-shadow .32s var(--ease), border-color .32s var(--ease);
+      -webkit-tap-highlight-color: transparent;
+      display: block;
+      width: 100%;
+      padding: 0;
+    }
+
+    .mf-card img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform .5s var(--ease);
+    }
+
+    .mf-card::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(21, 22, 24, 0) 35%, rgba(21, 22, 24, 0.86) 100%);
+      transition: opacity .3s var(--ease);
+      z-index: 1;
+    }
+
+    .mf-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 22px 34px -16px rgba(21, 22, 24, 0.35);
+      border-color: rgba(253, 183, 36, 0.6);
+    }
+
+    .mf-card:hover img {
+      transform: scale(1.08);
+    }
+
+    .mf-card-code {
+      position: absolute;
+      top: 12px;
+      left: 12px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10.5px;
+      font-weight: 600;
+      letter-spacing: .05em;
+      color: rgba(255, 255, 255, 0.85);
+      background: rgba(21, 22, 24, 0.5);
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
+      padding: 4px 8px;
+      border-radius: 6px;
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      z-index: 2;
+    }
+
+    .mf-card-check {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      background: var(--orange);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transform: scale(.5);
+      transition: opacity .25s var(--ease), transform .25s var(--ease);
+      z-index: 2;
+    }
+
+    .mf-card-name {
+      position: absolute;
+      left: 14px;
+      right: 14px;
+      bottom: 13px;
+      z-index: 2;
+      color: var(--white);
+      font-family: var(--font-headings);
+      font-weight: 700;
+      font-size: 15px;
+      letter-spacing: .01em;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .mf-card-name i {
+      opacity: 0;
+      transform: translateX(-4px);
+      transition: opacity .25s var(--ease), transform .25s var(--ease);
+      flex-shrink: 0;
+      color: var(--orange);
+    }
+
+    .mf-card:hover .mf-card-name i {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    .mf-card.is-active {
+      border-color: var(--orange);
+      box-shadow: 0 0 0 3px var(--orange-dim), 0 22px 34px -16px rgba(21, 22, 24, 0.35);
+    }
+
+    .mf-card.is-active .mf-card-check {
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    /* ---------- Recommendation panel ---------- */
+    .mf-panel-wrap {
+      margin-top: 64px;
+      max-height: 0;
+      opacity: 0;
+      overflow: hidden;
+      transition: max-height .55s var(--ease), opacity .5s var(--ease);
+    }
+
+    .mf-panel-wrap.open {
+      max-height: 1200px;
+      opacity: 1;
+    }
+
+    .mf-panel {
+      position: relative;
+      border-radius: 24px;
+      color: var(--white);
+      overflow: hidden;
+    }
+
+    .mf-panel::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(255, 255, 255, .03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, .03) 1px, transparent 1px);
+      background-size: 44px 44px;
+      -webkit-mask-image: radial-gradient(ellipse 70% 100% at 100% 0%, #000, transparent 70%);
+      mask-image: radial-gradient(ellipse 70% 100% at 100% 0%, #000, transparent 70%);
+      pointer-events: none;
+    }
+
+    .mf-inquiry-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      background: var(--orange);
+      color: var(--charcoal-deep) !important;
+      border: none;
+      font-family: var(--font-headings);
+      font-weight: 700;
+      font-size: 14.5px;
+      padding: 13px 20px;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: var(--transition-elastic);
+      white-space: nowrap;
+    }
+
+    .mf-inquiry-btn:hover {
+      background: var(--white);
+      color: var(--charcoal-deep) !important;
+      transform: translateY(-2px);
+    }
+
+    .mf-machines {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 16px;
+      position: relative;
+    }
+
+    .mf-machine-card {
+      background: rgba(255, 255, 255, .04);
+      border: 1px solid rgba(255, 255, 255, .1);
+      border-radius: 16px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: transform .3s var(--ease), border-color .3s var(--ease), background .3s var(--ease);
+    }
+
+    .mf-machine-card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(253, 183, 36, 0.45);
+      background: rgba(255, 255, 255, .07);
+    }
+
+    .mf-machine-img {
+      width: 100%;
+      aspect-ratio: 4/3;
+      object-fit: cover;
+      display: block;
+      filter: saturate(0.95) brightness(.97);
+    }
+
+    .mf-machine-body {
+      padding: 16px 16px 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      flex: 1;
+    }
+
+    .mf-machine-name {
+      font-family: var(--font-headings);
+      font-weight: 700;
+      font-size: 15px;
+      line-height: 1.3;
+      margin: 0;
+    }
+
+    .mf-machine-desc {
+      font-size: 12.5px;
+      line-height: 1.5;
+      color: rgba(255, 255, 255, .6);
+      margin: 0;
+      flex: 1;
+    }
+
+    .mf-machine-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: .03em;
+      text-transform: uppercase;
+      color: var(--orange);
+      text-decoration: none;
+      margin-top: 4px;
+      transition: gap .2s var(--ease);
+    }
+
+    .mf-machine-link:hover {
+      gap: 10px;
+      color: var(--white);
+    }
+
+    /* ---------- Responsive ---------- */
+    @media (max-width: 1200px) {
+      .mf-machines {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    @media (max-width: 768px) {
+      .mf-machines {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 480px) {
+      .mf-machines {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* Accessibility focus indicators */
+    .mf-card:focus-visible,
+    .mf-find-btn:focus-visible,
+    .mf-mic-btn:focus-visible,
+    .mf-inquiry-btn:focus-visible,
+    .mf-machine-link:focus-visible,
+    .mf-search-card input:focus-visible {
+      outline: 2px solid var(--orange);
+      outline-offset: 3px;
+    }
+  </style>
+</head>
+
+<body data-bs-spy="scroll" data-bs-target="#navbar" data-bs-offset="100">
+
+  <!-- Scroll Progress Indicator -->
+  <div id="scroll-progress"></div>
+
+  <!-- Page Preloader -->
+  <div id="preloader">
+    <div class="spinner-box">
+      <div class="spinner"></div>
+      <div class="preloader-logo">AL HAZMI</div>
+    </div>
+  </div>
+
+  <!-- Dual-Row Header and Navbar -->
+  <header class="fixed-top">
+    <!-- Top Contact Bar -->
+    <div class="navbar-top-row d-flex align-items-center">
+      <div class="container d-flex justify-content-between align-items-center">
+        <div class="d-flex gap-4">
+          <a href="tel:+966123456789" class="contact-link"><i class="fas fa-phone-alt me-2"></i>+966 12 345 6789</a>
+          <a href="mailto:info@alhazmi.com" class="contact-link"><i
+              class="fas fa-envelope me-2"></i>info@alhazmi.com</a>
+        </div>
+        <div class="d-flex align-items-center gap-4">
+          <a href="#" class="contact-link"><i class="fas fa-download me-2"></i>Catalogue</a>
+          <!-- Language Dropdown -->
+          <div class="dropdown">
+            <a class="contact-link dropdown-toggle lang-switch" href="#" role="button" id="langDropdown"
+              data-bs-toggle="dropdown" aria-expanded="false">
+              <i class="fas fa-globe me-2"></i>EN
+            </a>
+            <ul class="dropdown-menu dropdown-menu-end lang-menu shadow-sm" aria-labelledby="langDropdown">
+              <li><a class="dropdown-item fw-bold" href="#">English (EN)</a></li>
+              <li><a class="dropdown-item" href="#">العربية (AR)</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Main Navigation Bar -->
+    <nav id="navbar" class="navbar navbar-expand-lg main-navbar">
+      <div class="container">
+        <a class="navbar-brand d-flex align-items-center" href="index.html">
+          <img src="assets/images/logo-light.png" alt="Al Hazmi International Logo" class="logo-img">
+        </a>
+        <button class="navbar-toggler border-0 shadow-none" type="button" data-bs-toggle="collapse"
+          data-bs-target="#mainNav" aria-controls="mainNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="mainNav">
+          <ul class="navbar-nav mx-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="index.html#home">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="about.html">About Us</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" href="products.html">Products</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="services.html">Services</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="locations.html">Locations</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="contact.html">Contact</a>
+            </li>
+          </ul>
+          <div>
+            <a href="#" class="btn btn-header-cta" data-bs-toggle="modal" data-bs-target="#quoteModal">Get a Quote</a>
+          </div>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <!-- Inner Page Hero Section -->
+  <section class="about-hero-section">
+    <div class="hero-overlay-gradient"></div>
+    <div class="container about-hero-container">
+      <div class="row">
+        <div class="col-12 text-center" data-aos="fade-up" data-aos-duration="1000">
+          <h1 class="about-hero-title">Machine Finder</h1>
+          <div class="about-breadcrumbs d-flex justify-content-center align-items-center gap-2">
+            <a href="index.html">Home</a>
+            <i class="fas fa-chevron-right text-white-50 fs-12"></i>
+            <a href="products.html" class="text-white-50">Products</a>
+            <i class="fas fa-chevron-right text-white-50 fs-12"></i>
+            <span class="text-white-50">Machine Finder</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Finder Section -->
+  <section class="mf-section section-padding bg-light-section position-relative overflow-hidden"
+    aria-labelledby="mf-heading">
+    <div class="mf-blueprint" aria-hidden="true"></div>
+    <div class="container position-relative">
+      <div class="row g-5 align-items-start">
+
+        <!-- LEFT COLUMN (Search & Text) -->
+        <div class="col-lg-5 text-start" data-aos="fade-right" data-aos-duration="1000">
+          <span class="mf-eyebrow text-uppercase text-gold mb-3 d-inline-flex align-items-center gap-2">
+            Product-Based Machine Finder
+          </span>
+          <h2 id="mf-heading" class="section-title-large text-dark fw-bold mb-3">
+            Find the Right Machine<br>for <span class="text-gold">Your Product</span>
+          </h2>
+          <p class="text-muted mb-4 fs-6" style="line-height: 1.8;">
+            Select the food product you want to manufacture, and we'll recommend the most suitable bakery and food
+            processing equipment for your production needs.
+          </p>
+
+          <div class="position-relative">
+            <div class="mf-search-card p-3 rounded-4 shadow-sm bg-white border">
+              <div class="input-group mb-2 rounded-3 overflow-hidden border bg-white align-items-center"
+                style="border-color: var(--line) !important;">
+                <span class="input-group-text bg-transparent border-0 pe-1 ps-3 text-muted">
+                  <i class="fas fa-search"></i>
+                </span>
+                <input id="mf-search-input" type="text" class="form-control border-0 py-3 shadow-none bg-transparent"
+                  placeholder="Search by product (Bread, Cake, Cookies...)" aria-label="Search by product"
+                  style="font-family: var(--font-body); font-size: 14.5px;">
+              </div>
+              <button class="mf-find-btn w-100" id="mf-find-btn" type="button">
+                Find Machines <i class="fas fa-arrow-right ms-2"></i>
+              </button>
+            </div>
+          </div>
+
+          <!-- Trust line (Enhanced) -->
+          <div class="row g-3 mt-4 pt-4 border-top" style="border-top: 1px dashed rgba(0,0,0,0.12) !important;">
+            <!-- Categories -->
+            <div class="col-4">
+              <div class="p-3 rounded-3 text-center h-100 transition-all hover-lift" style="background: rgba(253, 183, 36, 0.04); border: 1px solid rgba(253, 183, 36, 0.08);">
+                <div class="text-gold mb-1" style="font-size: 1.1rem;"><i class="fas fa-cubes"></i></div>
+                <div class="fw-bold fs-3 text-dark font-headings mb-1" style="line-height: 1;">30+</div>
+                <div class="text-uppercase fw-bold text-muted" style="font-size: 10px; letter-spacing: 0.8px; line-height: 1.2;">Categories</div>
+              </div>
+            </div>
+            <!-- Lines -->
+            <div class="col-4">
+              <div class="p-3 rounded-3 text-center h-100 transition-all hover-lift" style="background: rgba(253, 183, 36, 0.04); border: 1px solid rgba(253, 183, 36, 0.08);">
+                <div class="text-gold mb-1" style="font-size: 1.1rem;"><i class="fas fa-project-diagram"></i></div>
+                <div class="fw-bold fs-3 text-dark font-headings mb-1" style="line-height: 1;">12</div>
+                <div class="text-uppercase fw-bold text-muted" style="font-size: 10px; letter-spacing: 0.8px; line-height: 1.2;">Product Lines</div>
+              </div>
+            </div>
+            <!-- Builds -->
+            <div class="col-4">
+              <div class="p-3 rounded-3 text-center h-100 transition-all hover-lift" style="background: rgba(253, 183, 36, 0.04); border: 1px solid rgba(253, 183, 36, 0.08);">
+                <div class="text-gold mb-1" style="font-size: 1.1rem;"><i class="fas fa-industry"></i></div>
+                <div class="fw-bold fs-3 text-dark font-headings mb-1" style="line-height: 1;">B2B</div>
+                <div class="text-uppercase fw-bold text-muted" style="font-size: 10px; letter-spacing: 0.8px; line-height: 1.2;">Industrial builds</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- RIGHT COLUMN (Products Grid) -->
+        <div class="col-lg-7" data-aos="fade-left" data-aos-duration="1000">
+          <div class="row g-3" id="mf-products" role="listbox" aria-label="Select a food product">
+            <!-- Dynamically populated -->
+          </div>
+        </div>
+
+      </div>
+
+      <!-- RECOMMENDATION PANEL -->
+      <div class="mf-panel-wrap mt-5" id="mf-panel-wrap">
+        <div class="mf-panel p-4 p-md-5 rounded-4 shadow" style="background: var(--primary-dark);">
+          <div
+            class="d-flex align-items-end justify-content-between gap-3 flex-wrap mb-4 border-bottom border-secondary pb-3">
+            <div>
+              <span class="text-gold font-monospace small text-uppercase d-block mb-1" id="mf-panel-code">REC.01 —
+                MACHINE SET</span>
+              <h3 class="fw-bold text-white mb-0 font-headings">Recommended Machines for <span class="text-gold"
+                  id="mf-panel-product">Bread</span></h3>
+            </div>
+            <a class="mf-inquiry-btn text-decoration-none" href="contact.html">
+              Submit Inquiry <i class="fas fa-paper-plane ms-2"></i>
+            </a>
+          </div>
+          <div class="mf-machines" id="mf-machines">
+            <!-- Dynamically populated -->
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="row g-5">
+
+        <!-- Col 1: About & Info -->
+        <div class="col-lg-4 text-start">
+          <a class="d-flex align-items-center mb-4 text-white" href="index.html">
+            <img src="assets/images/logo-light.png" alt="Al Hazmi International Logo" class="logo-img">
+          </a>
+          <p class="mb-4">Delivering industrial bakery machines, packaging lines, refrigeration, and material racking
+            storage solution systems globally for 20+ years.</p>
+          <div class="footer-social-icons">
+            <a href="#"><i class="fab fa-facebook-f"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+          </div>
+        </div>
+
+        <!-- Col 2: Quick Links -->
+        <div class="col-lg-4 text-start">
+          <h4 class="footer-widget-title">Quick Links</h4>
+          <ul class="footer-links">
+            <li><a href="index.html#home"><i class="fas fa-chevron-right fs-10"></i> Home</a></li>
+            <li><a href="about.html"><i class="fas fa-chevron-right fs-10"></i> About Us</a></li>
+            <li><a href="products.html"><i class="fas fa-chevron-right fs-10"></i> Products</a></li>
+            <li><a href="services.html"><i class="fas fa-chevron-right fs-10"></i> Services</a></li>
+            <li><a href="blog.html"><i class="fas fa-chevron-right fs-10"></i> Blog</a></li>
+            <li><a href="locations.html"><i class="fas fa-chevron-right fs-10"></i> Locations</a></li>
+            <li><a href="contact.html"><i class="fas fa-chevron-right fs-10"></i> Contact Us</a></li>
+          </ul>
+        </div>
+
+        <!-- Col 3: Contact Info -->
+        <div class="col-lg-4 text-start">
+          <h4 class="footer-widget-title">Contact Information</h4>
+          <ul class="footer-contact-info">
+            <li><i class="fas fa-map-marker-alt"></i> Head Office: Prince Sultan St, Al aziziya, Jeddah, KSA</li>
+            <li><i class="fas fa-phone-alt"></i> +966 12 345 6789</li>
+            <li><i class="fas fa-envelope"></i> info@alhazmi.com</li>
+          </ul>
+        </div>
+
+      </div>
+
+      <!-- Footer Bottom -->
+      <div class="footer-bottom text-center">
+        <div class="d-flex justify-content-center align-items-center flex-wrap gap-3">
+          <p class="mb-0">&copy; 2026 Al Hazmi International. All Rights Reserved.</p>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Floating Action Button (FAB) -->
+  <div class="fab-container" id="mainFabContainer">
+    <div class="fab-options">
+      <!-- Profile/Catalog Download Link -->
+      <a href="#" class="fab-btn fab-btn-download" title="Download Profile" download>
+        <i class="fas fa-file-download"></i>
+      </a>
+      <!-- WhatsApp Floating Action -->
+      <a href="https://wa.me/966123456789" class="fab-btn fab-btn-whatsapp" target="_blank" rel="noopener noreferrer" title="Chat on WhatsApp">
+        <i class="fab fa-whatsapp"></i>
+      </a>
+    </div>
+    <!-- Main FAB Trigger -->
+    <button class="fab-trigger" id="fabTriggerBtn" aria-label="Toggle Actions">
+      <i class="fas fa-plus"></i>
+    </button>
+  </div>
+
+  <!-- Floating Action Button Toggle Script -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const fabContainer = document.getElementById('mainFabContainer');
+      const fabTrigger = document.getElementById('fabTriggerBtn');
+      if (fabTrigger && fabContainer) {
+        fabTrigger.addEventListener('click', (e) => {
+          e.stopPropagation();
+          fabContainer.classList.toggle('active');
+        });
+        document.addEventListener('click', (e) => {
+          if (!fabContainer.contains(e.target)) {
+            fabContainer.classList.remove('active');
+          }
+        });
+      }
+    });
+  </script>
+
+  <!-- JS Scripts -->
+  <!-- Bootstrap Bundle 5.3 JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+  <!-- AOS Animation JS -->
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+  <script>
+    (function () {
+      const products = [
+        { id: "bread", name: "Bread", code: "PRD.01", img: "https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=600&q=80" },
+        { id: "cakes", name: "Cakes", code: "PRD.02", img: "https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&w=600&q=80" },
+        { id: "cookies", name: "Cookies", code: "PRD.03", img: "https://images.unsplash.com/photo-1499636136210-6f4ee915583e?auto=format&fit=crop&w=600&q=80" },
+        { id: "pizza", name: "Pizza", code: "PRD.04", img: "https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&w=600&q=80" },
+        { id: "croissant", name: "Croissant", code: "PRD.05", img: "https://images.unsplash.com/photo-1555507036-ab1f4038808a?auto=format&fit=crop&w=600&q=80" },
+        { id: "donuts", name: "Donuts", code: "PRD.06", img: "https://images.unsplash.com/photo-1551024601-bec78aea704b?auto=format&fit=crop&w=600&q=80" },
+        { id: "muffins", name: "Muffins", code: "PRD.07", img: "https://images.unsplash.com/photo-1607958996333-41aef7caefaa?auto=format&fit=crop&w=600&q=80" },
+        { id: "pastries", name: "Pastries", code: "PRD.08", img: "https://images.unsplash.com/photo-1608686207856-001b95cf60ca?auto=format&fit=crop&w=600&q=80" },
+        { id: "biscuits", name: "Biscuits", code: "PRD.09", img: "https://images.unsplash.com/photo-1558961313-7f8a9e527d6c?auto=format&fit=crop&w=600&q=80" },
+        { id: "buns", name: "Buns", code: "PRD.10", img: "https://images.unsplash.com/photo-1549931319-a545dcf3bc73?auto=format&fit=crop&w=600&q=80" },
+        { id: "chocolates", name: "Chocolates", code: "PRD.11", img: "https://images.unsplash.com/photo-1511381939415-e44015466834?auto=format&fit=crop&w=600&q=80" },
+        { id: "snacks", name: "Snacks", code: "PRD.12", img: "https://images.unsplash.com/photo-1599490659273-e3a72a621675?auto=format&fit=crop&w=600&q=80" },
+      ];
+
+      const categoryMapping = {
+        bread: "bakery",
+        cakes: "pastry",
+        cookies: "pastry",
+        pizza: "bakery",
+        croissant: "pastry",
+        donuts: "pastry",
+        muffins: "pastry",
+        pastries: "pastry",
+        biscuits: "pastry",
+        buns: "bakery",
+        chocolates: "chocolate",
+        snacks: "production"
+      };
+
+      const machineData = {
+        bread: [
+          { name: "Spiral Mixer", desc: "High-torque dough mixing for consistent gluten development at scale.", img: "https://images.unsplash.com/photo-1578683010236-d716f9a3f461?auto=format&fit=crop&w=400&q=80" },
+          { name: "Dough Divider", desc: "Precision-cuts dough into uniform, weight-accurate portions.", img: "https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?auto=format&fit=crop&w=400&q=80" },
+          { name: "Dough Rounder", desc: "Shapes divided dough into smooth rounds ahead of proofing.", img: "https://images.unsplash.com/photo-1590794056226-79ef3a8147e1?auto=format&fit=crop&w=400&q=80" },
+          { name: "Proofer Cabinet", desc: "Controlled humidity and temperature for reliable fermentation.", img: "https://images.unsplash.com/photo-1548907040-4d42b52125e0?auto=format&fit=crop&w=400&q=80" },
+          { name: "Rotary Rack Oven", desc: "Even, all-around baking for high-volume bread production.", img: "https://images.unsplash.com/photo-1616401784845-180882ba9ba8?auto=format&fit=crop&w=400&q=80" },
+        ],
+        cakes: [
+          { name: "Planetary Mixer", desc: "Multi-speed mixing for batters, creams and fine fillings.", img: "https://images.unsplash.com/photo-1578683010236-d716f9a3f461?auto=format&fit=crop&w=400&q=80" },
+          { name: "Batter Depositor", desc: "Dispenses accurate batter volumes into trays or moulds.", img: "https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?auto=format&fit=crop&w=400&q=80" },
+          { name: "Cake Deck Oven", desc: "Stable, even heat for consistent crumb and rise.", img: "https://images.unsplash.com/photo-1616401784845-180882ba9ba8?auto=format&fit=crop&w=400&q=80" },
+          { name: "Cooling Tunnel", desc: "Rapid, hygienic cooling before decoration or packing.", img: "https://images.unsplash.com/photo-1590794056226-79ef3a8147e1?auto=format&fit=crop&w=400&q=80" },
+        ],
+        cookies: [
+          { name: "Rotary Moulder", desc: "Forms detailed, uniform cookie shapes at high speed.", img: "https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?auto=format&fit=crop&w=400&q=80" },
+          { name: "Wire-Cut Machine", desc: "Extrudes and cuts soft doughs into precise pieces.", img: "https://images.unsplash.com/photo-1590794056226-79ef3a8147e1?auto=format&fit=crop&w=400&q=80" },
+          { name: "Tunnel Oven", desc: "Continuous baking line built for large cookie batches.", img: "https://images.unsplash.com/photo-1616401784845-180882ba9ba8?auto=format&fit=crop&w=400&q=80" },
+          { name: "Cooling Conveyor", desc: "Even airflow cooling to lock in texture and snap.", img: "https://images.unsplash.com/photo-1548907040-4d42b52125e0?auto=format&fit=crop&w=400&q=80" },
+        ],
+        pizza: [
+          { name: "Dough Sheeter", desc: "Rolls dough to a consistent, even base thickness.", img: "https://images.unsplash.com/photo-1590794056226-79ef3a8147e1?auto=format&fit=crop&w=400&q=80" },
+          { name: "Pizza Press", desc: "Forms round pizza bases in a single quick cycle.", img: "https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?auto=format&fit=crop&w=400&q=80" },
+          { name: "Topping Line", desc: "Automated sauce and topping distribution for consistency.", img: "https://images.unsplash.com/photo-1548907040-4d42b52125e0?auto=format&fit=crop&w=400&q=80" },
+          { name: "Stone Deck Oven", desc: "High, radiant heat for authentic crust and char.", img: "https://images.unsplash.com/photo-1616401784845-180882ba9ba8?auto=format&fit=crop&w=400&q=80" },
+        ],
+        croissant: [
+          { name: "Dough Sheeter", desc: "Rolls dough to precise thickness for lamination.", img: "https://images.unsplash.com/photo-1590794056226-79ef3a8147e1?auto=format&fit=crop&w=400&q=80" },
+          { name: "Laminator", desc: "Folds butter and dough into even, flaky layers.", img: "https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?auto=format&fit=crop&w=400&q=80" },
+          { name: "Proofer Cabinet", desc: "Gentle, controlled proofing to preserve layered structure.", img: "https://images.unsplash.com/photo-1548907040-4d42b52125e0?auto=format&fit=crop&w=400&q=80" },
+          { name: "Deck Oven", desc: "Even top-and-bottom heat for a golden, crisp finish.", img: "https://images.unsplash.com/photo-1616401784845-180882ba9ba8?auto=format&fit=crop&w=400&q=80" },
+        ],
+        donuts: [
+          { name: "Donut Depositor", desc: "Rings out consistent donut shapes ready for frying.", img: "https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?auto=format&fit=crop&w=400&q=80" },
+          { name: "Fryer Line", desc: "Continuous frying with controlled oil temperature.", img: "https://images.unsplash.com/photo-1590794056226-79ef3a8147e1?auto=format&fit=crop&w=400&q=80" },
+          { name: "Glazing Machine", desc: "Applies an even glaze or sugar coat automatically.", img: "https://images.unsplash.com/photo-1548907040-4d42b52125e0?auto=format&fit=crop&w=400&q=80" },
+          { name: "Cooling Conveyor", desc: "Sets glaze and cools product before packing.", img: "https://images.unsplash.com/photo-1616401784845-180882ba9ba8?auto=format&fit=crop&w=400&q=80" },
+        ],
+        muffins: [
+          { name: "Planetary Mixer", desc: "Smooth, consistent batter mixing at any batch size.", img: "https://images.unsplash.com/photo-1578683010236-d716f9a3f461?auto=format&fit=crop&w=400&q=80" },
+          { name: "Batter Depositor", desc: "Portions batter evenly into muffin trays.", img: "https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?auto=format&fit=crop&w=400&q=80" },
+          { name: "Tray Deck Oven", desc: "Even bake and rise across every tray position.", img: "https://images.unsplash.com/photo-1616401784845-180882ba9ba8?auto=format&fit=crop&w=400&q=80" },
+        ],
+        pastries: [
+          { name: "Dough Sheeter", desc: "Even sheeting for laminated and short pastry bases.", img: "https://images.unsplash.com/photo-1590794056226-79ef3a8147e1?auto=format&fit=crop&w=400&q=80" },
+          { name: "Laminator", desc: "Builds fine, consistent butter-dough layers.", img: "https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?auto=format&fit=crop&w=400&q=80" },
+          { name: "Filling Machine", desc: "Injects or deposits fillings with portion accuracy.", img: "https://images.unsplash.com/photo-1548907040-4d42b52125e0?auto=format&fit=crop&w=400&q=80" },
+          { name: "Deck Oven", desc: "Precise heat zones for delicate, flaky results.", img: "https://images.unsplash.com/photo-1616401784845-180882ba9ba8?auto=format&fit=crop&w=400&q=80" },
+        ],
+        biscuits: [
+          { name: "Rotary Moulder", desc: "Stamps detailed biscuit shapes with fast changeovers.", img: "https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?auto=format&fit=crop&w=400&q=80" },
+          { name: "Wire-Cut Machine", desc: "Cuts soft, chunky doughs into uniform pieces.", img: "https://images.unsplash.com/photo-1590794056226-79ef3a8147e1?auto=format&fit=crop&w=400&q=80" },
+          { name: "Tunnel Oven", desc: "Continuous, high-throughput baking line.", img: "https://images.unsplash.com/photo-1616401784845-180882ba9ba8?auto=format&fit=crop&w=400&q=80" },
+        ],
+        buns: [
+          { name: "Divider Rounder", desc: "Divides and rounds dough into equal bun portions.", img: "https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?auto=format&fit=crop&w=400&q=80" },
+          { name: "Proofer Cabinet", desc: "Controlled proofing for soft, even bun rise.", img: "https://images.unsplash.com/photo-1548907040-4d42b52125e0?auto=format&fit=crop&w=400&q=80" },
+          { name: "Bun Oven", desc: "Even, gentle bake for a soft crumb and crust.", img: "https://images.unsplash.com/photo-1616401784845-180882ba9ba8?auto=format&fit=crop&w=400&q=80" },
+        ],
+        chocolates: [
+          { name: "Tempering Machine", desc: "Stabilises cocoa butter for glossy, snap-ready chocolate.", img: "https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?auto=format&fit=crop&w=400&q=80" },
+          { name: "Enrobing Line", desc: "Coats centres in an even chocolate shell.", img: "https://images.unsplash.com/photo-1590794056226-79ef3a8147e1?auto=format&fit=crop&w=400&q=80" },
+          { name: "Moulding Line", desc: "Fills and sets moulded chocolate pieces at speed.", img: "https://images.unsplash.com/photo-1548907040-4d42b52125e0?auto=format&fit=crop&w=400&q=80" },
+          { name: "Cooling Tunnel", desc: "Sets chocolate with a controlled cooling curve.", img: "https://images.unsplash.com/photo-1616401784845-180882ba9ba8?auto=format&fit=crop&w=400&q=80" },
+        ],
+        snacks: [
+          { name: "Extruder", desc: "Shapes snack dough or mash into continuous forms.", img: "https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?auto=format&fit=crop&w=400&q=80" },
+          { name: "Fryer Line", desc: "Continuous frying with consistent oil control.", img: "https://images.unsplash.com/photo-1590794056226-79ef3a8147e1?auto=format&fit=crop&w=400&q=80" },
+          { name: "Seasoning Drum", desc: "Tumbles product for even seasoning coverage.", img: "https://images.unsplash.com/photo-1548907040-4d42b52125e0?auto=format&fit=crop&w=400&q=80" },
+          { name: "Packaging Line", desc: "Weighs, fills and seals product for dispatch.", img: "https://images.unsplash.com/photo-1616401784845-180882ba9ba8?auto=format&fit=crop&w=400&q=80" },
+        ],
+      };
+
+      const grid = document.getElementById('mf-products');
+      const panelWrap = document.getElementById('mf-panel-wrap');
+      const panelProduct = document.getElementById('mf-panel-product');
+      const panelCode = document.getElementById('mf-panel-code');
+      const machinesEl = document.getElementById('mf-machines');
+      const searchInput = document.getElementById('mf-search-input');
+      const findBtn = document.getElementById('mf-find-btn');
+
+      function renderProducts() {
+        grid.innerHTML = products.map(p => {
+          let fallbackImg = 'assets/images/about_industrial.png';
+          const cat = categoryMapping[p.id] || 'all';
+          if (cat === 'bakery') fallbackImg = 'assets/images/bakery.png';
+          else if (cat === 'pastry') fallbackImg = 'assets/images/pastry.png';
+          else if (cat === 'chocolate') fallbackImg = 'assets/images/chocolate.png';
+
+          return `
+            <div class="col-6 col-sm-4 col-md-3" data-aos="zoom-in" data-aos-delay="50">
+              <button class="mf-card" type="button" role="option" aria-selected="false" data-id="${p.id}">
+                <img src="${p.img}" alt="${p.name}" loading="lazy" onerror="this.onerror=null; this.src='${fallbackImg}';">
+                <span class="mf-card-code">${p.code}</span>
+                <span class="mf-card-check" aria-hidden="true">
+                  <i class="fas fa-check text-dark" style="font-size: 11px;"></i>
+                </span>
+                <span class="mf-card-name">
+                  ${p.name}
+                  <i class="fas fa-arrow-right"></i>
+                </span>
+              </button>
+            </div>
+          `;
+        }).join('');
+        grid.querySelectorAll('.mf-card').forEach(card => {
+          card.addEventListener('click', () => selectProduct(card.dataset.id, true));
+        });
+      }
+
+      function renderMachines(id) {
+        const list = machineData[id] || [];
+        const targetCat = categoryMapping[id] || "all";
+        let fallbackImg = 'assets/images/about_industrial.png';
+        if (targetCat === 'bakery') fallbackImg = 'assets/images/bakery.png';
+        else if (targetCat === 'pastry') fallbackImg = 'assets/images/pastry.png';
+        else if (targetCat === 'chocolate') fallbackImg = 'assets/images/chocolate.png';
+
+        machinesEl.innerHTML = list.map(m => `
+          <div class="mf-machine-card">
+            <img class="mf-machine-img" src="${m.img}" alt="${m.name}" loading="lazy" onerror="this.onerror=null; this.src='${fallbackImg}';">
+            <div class="mf-machine-body text-start">
+              <h4 class="mf-machine-name">${m.name}</h4>
+              <p class="mf-machine-desc">${m.desc}</p>
+              <a class="mf-machine-link" href="products.html?category=${targetCat}">
+                View In Catalog
+                <i class="fas fa-arrow-right ms-1"></i>
+              </a>
+            </div>
+          </div>
+        `).join('');
+      }
+
+      function selectProduct(id, scrollToPanel) {
+        const p = products.find(x => x.id === id);
+        if (!p) return;
+        grid.querySelectorAll('.mf-card').forEach(c => {
+          const active = c.dataset.id === id;
+          c.classList.toggle('is-active', active);
+          c.setAttribute('aria-selected', active ? 'true' : 'false');
+        });
+        panelProduct.textContent = p.name;
+        panelCode.textContent = `REC.${p.code.split('.')[1]} — MACHINE SET`;
+        renderMachines(id);
+        panelWrap.classList.add('open');
+        if (scrollToPanel) {
+          setTimeout(() => panelWrap.scrollIntoView({ behavior: 'smooth', block: 'nearest' }), 120);
+        }
+      }
+
+      function handleSearch() {
+        const q = searchInput.value.trim().toLowerCase();
+        if (!q) { panelWrap.scrollIntoView({ behavior: 'smooth', block: 'nearest' }); return; }
+        const match = products.find(p => p.name.toLowerCase().includes(q) || p.id.includes(q));
+        if (match) {
+          selectProduct(match.id, true);
+        } else {
+          panelProduct.textContent = "your product";
+          machinesEl.innerHTML = `<div style="grid-column:1/-1; padding:20px 4px; color:rgba(255,255,255,.65); font-size:14px;">No exact match found — our team can still help. Try a category on the right, or submit an inquiry and we'll recommend machinery directly.</div>`;
+          panelWrap.classList.add('open');
+          setTimeout(() => panelWrap.scrollIntoView({ behavior: 'smooth', block: 'nearest' }), 120);
+        }
+      }
+
+      findBtn.addEventListener('click', handleSearch);
+      searchInput.addEventListener('keydown', e => { if (e.key === 'Enter') handleSearch(); });
+
+      renderProducts();
+      selectProduct('bread', false);
+
+      document.addEventListener('DOMContentLoaded', () => {
+        const preloader = document.getElementById('preloader');
+        if (preloader) {
+          setTimeout(() => {
+            preloader.style.opacity = '0';
+            preloader.style.visibility = 'hidden';
+          }, 500);
+        }
+
+        if (window.AOS) {
+          AOS.init({
+            duration: 900,
+            once: true,
+            offset: 80,
+            easing: 'ease-out-cubic'
+          });
+        }
+      });
+
+      window.addEventListener('scroll', () => {
+        const scrollY = window.scrollY;
+        const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+
+        if (scrollY > 60) {
+          document.body.classList.add('navbar-scrolled');
+        } else {
+          document.body.classList.remove('navbar-scrolled');
+        }
+
+        const scrollPct = docHeight > 0 ? (scrollY / docHeight) * 100 : 0;
+        const progressEl = document.getElementById('scroll-progress');
+        if (progressEl) {
+          progressEl.style.width = scrollPct + '%';
+        }
+      });
+
+      // Handle Quote Modal Submit
+      document.addEventListener('DOMContentLoaded', () => {
+        const form = document.getElementById('modalQuoteForm');
+        const successMsg = document.getElementById('modalSuccessMsg');
+
+        if (form) {
+          form.addEventListener('submit', (e) => {
+            e.preventDefault();
+
+            if (!form.checkValidity()) {
+              e.stopPropagation();
+              form.classList.add('was-validated');
+              return;
+            }
+
+            form.classList.add('d-none');
+            successMsg.classList.remove('d-none');
+
+            const modalEl = document.getElementById('quoteModal');
+            modalEl.addEventListener('hidden.bs.modal', () => {
+              form.reset();
+              form.classList.remove('was-validated');
+              form.classList.remove('d-none');
+              successMsg.classList.add('d-none');
+            }, { once: true });
+          });
+        }
+      });
+    })();
+  </script>
+
+  <!-- Get a Quote Modal -->
+  <div class="modal fade" id="quoteModal" tabindex="-1" aria-labelledby="quoteModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+      <div class="modal-content border-0 rounded-4 overflow-hidden shadow-lg bg-dark text-white">
+        <div class="modal-header border-bottom border-secondary p-4" style="background: #1c1d1f;">
+          <div class="d-flex align-items-center gap-3">
+            <div class="bg-gold p-2 rounded-3 text-dark d-flex align-items-center justify-content-center"
+              style="width: 40px; height: 40px; background-color: var(--accent-gold);">
+              <i class="fas fa-file-invoice-dollar fs-5"></i>
+            </div>
+            <div>
+              <h5 class="modal-title fw-bold font-headings text-white mb-0" id="quoteModalLabel">Request a Custom Quote
+              </h5>
+              <p class="text-white-50 mb-0 small">Tell us about your production requirements</p>
+            </div>
+          </div>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body p-4 p-md-5" style="background: #151618;">
+          <form id="modalQuoteForm" novalidate>
+            <div class="row g-4">
+              <!-- Full Name -->
+              <div class="col-md-6 text-start">
+                <label for="modalName" class="form-label small fw-semibold text-white-50 text-uppercase"
+                  style="letter-spacing: 0.5px;">Full Name *</label>
+                <div class="input-group">
+                  <span class="input-group-text"><i class="fas fa-user"></i></span>
+                  <input type="text" class="form-control" id="modalName" placeholder="John Doe" required>
+                </div>
+              </div>
+              <!-- Business Email -->
+              <div class="col-md-6 text-start">
+                <label for="modalEmail" class="form-label small fw-semibold text-white-50 text-uppercase"
+                  style="letter-spacing: 0.5px;">Business Email *</label>
+                <div class="input-group">
+                  <span class="input-group-text"><i class="fas fa-envelope"></i></span>
+                  <input type="email" class="form-control" id="modalEmail" placeholder="name@company.com" required>
+                </div>
+              </div>
+              <!-- Phone -->
+              <div class="col-md-6 text-start">
+                <label for="modalPhone" class="form-label small fw-semibold text-white-50 text-uppercase"
+                  style="letter-spacing: 0.5px;">Phone Number *</label>
+                <div class="input-group">
+                  <span class="input-group-text"><i class="fas fa-phone-alt"></i></span>
+                  <input type="tel" class="form-control" id="modalPhone" placeholder="+966 50 000 0000" required>
+                </div>
+              </div>
+              <!-- Company Name -->
+              <div class="col-md-6 text-start">
+                <label for="modalCompany" class="form-label small fw-semibold text-white-50 text-uppercase"
+                  style="letter-spacing: 0.5px;">Company Name</label>
+                <div class="input-group">
+                  <span class="input-group-text"><i class="fas fa-building"></i></span>
+                  <input type="text" class="form-control" id="modalCompany" placeholder="Al Hazmi Co.">
+                </div>
+              </div>
+              <!-- Product Category -->
+              <div class="col-md-12 text-start">
+                <label for="modalCategory" class="form-label small fw-semibold text-white-50 text-uppercase"
+                  style="letter-spacing: 0.5px;">Interest Category *</label>
+                <div class="input-group">
+                  <span class="input-group-text"><i class="fas fa-th-large"></i></span>
+                  <select class="form-select" id="modalCategory" required>
+                    <option value="" disabled selected>Select category...</option>
+                    <option value="bakery">Bakery Equipment</option>
+                    <option value="pastry">Pastry Equipment</option>
+                    <option value="chocolate">Chocolate Machines</option>
+                    <option value="production">Production Lines</option>
+                    <option value="packaging">Packaging Solutions</option>
+                    <option value="racking">Industrial Racking Solutions</option>
+                    <option value="other">Other Machinery</option>
+                  </select>
+                </div>
+              </div>
+              <!-- Message -->
+              <div class="col-md-12 text-start">
+                <label for="modalMessage" class="form-label small fw-semibold text-white-50 text-uppercase"
+                  style="letter-spacing: 0.5px;">Production Requirements / Message</label>
+                <textarea class="form-control" id="modalMessage" rows="4"
+                  placeholder="Please describe the machine capacity, target products, and electrical specs..."></textarea>
+              </div>
+            </div>
+            <!-- Submit Button -->
+            <div class="mt-4 pt-2 text-end">
+              <button type="button"
+                class="btn btn-outline-secondary px-4 py-2 me-2 rounded-pill font-headings text-white-50 border-secondary"
+                data-bs-dismiss="modal">Cancel</button>
+              <button type="submit" class="btn btn-header-cta px-4 py-2">Submit Request <i
+                  class="fas fa-paper-plane ms-2"></i></button>
+            </div>
+          </form>
+          <!-- Success Message -->
+          <div id="modalSuccessMsg" class="d-none py-5 text-center">
+            <div class="mb-4">
+              <span class="bg-gold rounded-circle d-inline-flex align-items-center justify-content-center"
+                style="width: 80px; height: 80px; box-shadow: 0 0 0 10px rgba(253, 183, 36, 0.15); background-color: var(--accent-gold);">
+                <i class="fas fa-check text-dark fs-1"></i>
+              </span>
+            </div>
+            <h3 class="fw-bold font-headings text-white mb-2">Quote Request Received!</h3>
+            <p class="text-white-50 mx-auto" style="max-width: 480px; line-height: 1.6;">
+              Thank you for requesting a quote. Our engineering sales team will review your requirements and get in
+              touch with a customized proposal within 24 hours.
+            </p>
+            <button type="button"
+              class="btn btn-outline-secondary px-4 py-2 mt-4 rounded-pill font-headings text-white-50 border-secondary"
+              data-bs-dismiss="modal">Close Window</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>

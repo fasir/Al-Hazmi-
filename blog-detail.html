@@ -1,0 +1,803 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Article Detail | Al Hazmi International</title>
+  <meta name="description"
+    content="Read the latest food machinery insights, automation trends, packaging updates, and maintenance guidelines from Al Hazmi International.">
+
+  <!-- Bootstrap 5.3 CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Font Awesome 6.4.0 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <!-- AOS (Animate On Scroll) CSS -->
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+  <!-- Custom Stylesheet -->
+  <link rel="stylesheet" href="styles.css">
+
+  <style>
+    .blog-detail-section {
+      padding: 80px 0;
+    }
+
+    .article-meta {
+      display: flex;
+      gap: 20px;
+      align-items: center;
+      font-size: 14px;
+      color: rgba(21, 22, 24, 0.6);
+      margin-bottom: 25px;
+      flex-wrap: wrap;
+    }
+
+    .article-meta span {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .article-category {
+      background: var(--accent-gold);
+      color: var(--primary-dark);
+      font-size: 11px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      padding: 4px 10px;
+      border-radius: 50px;
+      display: inline-block;
+    }
+
+    .article-featured-img {
+      width: 100%;
+      border-radius: var(--radius-lg);
+      margin-bottom: 40px;
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.05);
+      object-fit: cover;
+      aspect-ratio: 16/9;
+      max-height: 500px;
+    }
+
+    .article-content {
+      font-size: 16px;
+      line-height: 1.8;
+      color: rgba(21, 22, 24, 0.85);
+    }
+
+    .article-content h2,
+    .article-content h3 {
+      font-family: var(--font-headings);
+      font-weight: 800;
+      color: var(--primary-dark);
+      margin-top: 35px;
+      margin-bottom: 15px;
+    }
+
+    .article-content p {
+      margin-bottom: 25px;
+    }
+
+    .article-content blockquote {
+      border-left: 4px solid var(--accent-gold);
+      background-color: var(--bg-light-alt);
+      padding: 20px 30px;
+      font-style: italic;
+      font-size: 17px;
+      color: var(--primary-dark);
+      border-radius: 0 8px 8px 0;
+      margin: 30px 0;
+    }
+
+    .article-content ul,
+    .article-content ol {
+      margin-bottom: 25px;
+      padding-left: 20px;
+    }
+
+    .article-content li {
+      margin-bottom: 10px;
+    }
+
+    .sidebar-widget {
+      background: var(--white);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-lg);
+      padding: 30px;
+      margin-bottom: 30px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.01);
+    }
+
+    .sidebar-widget-title {
+      font-family: var(--font-headings);
+      font-weight: 800;
+      font-size: 18px;
+      color: var(--primary-dark);
+      margin-bottom: 20px;
+      padding-bottom: 10px;
+      border-bottom: 2px solid var(--border-color);
+      text-align: left;
+    }
+
+    .recent-post-item {
+      display: flex;
+      gap: 15px;
+      margin-bottom: 20px;
+      align-items: flex-start;
+      text-decoration: none;
+    }
+
+    .recent-post-item:last-child {
+      margin-bottom: 0;
+    }
+
+    .recent-post-img {
+      width: 70px;
+      height: 70px;
+      border-radius: 8px;
+      object-fit: cover;
+      flex-shrink: 0;
+      background: #eee;
+    }
+
+    .recent-post-info {
+      text-align: left;
+    }
+
+    .recent-post-info h4 {
+      font-family: var(--font-headings);
+      font-size: 14px;
+      font-weight: 700;
+      line-height: 1.4;
+      color: var(--primary-dark);
+      margin-bottom: 5px;
+      transition: color 0.2s ease;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    .recent-post-item:hover h4 {
+      color: var(--accent-gold);
+    }
+
+    .recent-post-date {
+      font-size: 11.5px;
+      color: rgba(21, 22, 24, 0.5);
+    }
+
+    .sidebar-cta-widget {
+      background: var(--primary-dark);
+      color: var(--white);
+      border-radius: var(--radius-lg);
+      padding: 40px 30px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      z-index: 1;
+    }
+
+    .sidebar-cta-widget::after {
+      content: '';
+      position: absolute;
+      top: -50px;
+      right: -50px;
+      width: 150px;
+      height: 150px;
+      background: radial-gradient(circle, rgba(253, 183, 36, 0.15) 0%, rgba(253, 183, 36, 0) 70%);
+      border-radius: 50%;
+      z-index: -1;
+    }
+
+    .sidebar-cta-title {
+      font-family: var(--font-headings);
+      font-weight: 800;
+      font-size: 22px;
+      margin-bottom: 15px;
+      color: var(--white);
+    }
+
+    .sidebar-cta-desc {
+      font-size: 14px;
+      color: rgba(255, 255, 255, 0.7);
+      margin-bottom: 25px;
+      line-height: 1.6;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Scroll Progress Indicator -->
+  <div id="scroll-progress"></div>
+
+  <!-- Page Preloader -->
+  <div id="preloader">
+    <div class="spinner-box">
+      <div class="spinner"></div>
+      <div class="preloader-logo">AL HAZMI</div>
+    </div>
+  </div>
+
+  <!-- Dual-Row Header and Navbar -->
+  <header class="fixed-top">
+    <!-- Top Contact Bar -->
+    <div class="navbar-top-row d-flex align-items-center">
+      <div class="container d-flex justify-content-between align-items-center">
+        <div class="d-flex gap-4">
+          <a href="tel:+966123456789" class="contact-link"><i class="fas fa-phone-alt me-2"></i>+966 12 345 6789</a>
+          <a href="mailto:info@alhazmi.com" class="contact-link"><i
+              class="fas fa-envelope me-2"></i>info@alhazmi.com</a>
+        </div>
+        <div class="d-flex align-items-center gap-4">
+          <a href="#" class="contact-link"><i class="fas fa-download me-2"></i>Catalogue</a>
+          <!-- Language Dropdown -->
+          <div class="dropdown">
+            <a class="contact-link dropdown-toggle lang-switch" href="#" role="button" id="langDropdown"
+              data-bs-toggle="dropdown" aria-expanded="false">
+              <i class="fas fa-globe me-2"></i>EN
+            </a>
+            <ul class="dropdown-menu dropdown-menu-end lang-menu shadow-sm" aria-labelledby="langDropdown">
+              <li><a class="dropdown-item fw-bold" href="#">English (EN)</a></li>
+              <li><a class="dropdown-item" href="#">العربية (AR)</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Main Navigation Bar -->
+    <nav id="navbar" class="navbar navbar-expand-lg main-navbar">
+      <div class="container">
+        <a class="navbar-brand d-flex align-items-center" href="index.html">
+          <img src="assets/images/logo-light.png" alt="Al Hazmi International Logo" class="logo-img">
+        </a>
+        <button class="navbar-toggler border-0 shadow-none" type="button" data-bs-toggle="collapse"
+          data-bs-target="#mainNav" aria-controls="mainNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="mainNav">
+          <ul class="navbar-nav mx-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="index.html#home">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="about.html">About Us</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="products.html">Products</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="services.html">Services</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="locations.html">Locations</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="contact.html">Contact</a>
+            </li>
+          </ul>
+          <div>
+            <a href="#" class="btn btn-header-cta" data-bs-toggle="modal" data-bs-target="#quoteModal">Get a Quote</a>
+          </div>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <!-- Inner Page Hero Section -->
+  <section class="about-hero-section">
+    <div class="hero-overlay-gradient"></div>
+    <div class="container about-hero-container text-start" data-aos="fade-up">
+      <!-- Breadcrumbs -->
+      <nav aria-label="breadcrumb" class="mb-3">
+        <ol class="breadcrumb mb-0" style="background: transparent; padding: 0;">
+          <li class="breadcrumb-item"><a href="index.html" class="text-white-50 text-decoration-none">Home</a></li>
+          <li class="breadcrumb-item"><a href="blog.html" class="text-white-50 text-decoration-none">Blog</a></li>
+          <li class="breadcrumb-item active text-white" aria-current="page" id="crumb-title">Article</li>
+        </ol>
+      </nav>
+      <h1 class="about-hero-title mb-0" id="header-title">Article Insights</h1>
+    </div>
+  </section>
+
+  <!-- Blog Detail Section -->
+  <section class="blog-detail-section bg-light-section">
+    <div class="container">
+      <div class="row g-5">
+
+        <!-- LEFT: Article content -->
+        <div class="col-lg-8 text-start" data-aos="fade-up">
+          <div class="bg-white p-4 p-md-5 rounded-4 shadow-sm border">
+
+            <div class="article-meta">
+              <span class="article-category" id="meta-category">Technology</span>
+              <span id="meta-date"><i class="far fa-calendar-alt"></i>June 28, 2026</span>
+              <span><i class="far fa-user"></i>By Al Hazmi Engineering</span>
+            </div>
+
+            <h2 class="fw-bold font-headings text-dark mb-4" id="main-title"
+              style="font-size: clamp(1.8rem, 4vw, 2.5rem); line-height: 1.3;">Article Title Loading...</h2>
+
+            <img id="featured-image" src="" alt="Featured Article Image" class="article-featured-img img-fluid">
+
+            <div class="article-content" id="article-body">
+              <!-- Dynamically populated body -->
+            </div>
+
+          </div>
+        </div>
+
+        <!-- RIGHT: Sidebar widgets -->
+        <div class="col-lg-4 text-start" data-aos="fade-up" data-aos-delay="100">
+
+          <!-- Widget: Recent Posts -->
+          <div class="sidebar-widget">
+            <h3 class="sidebar-widget-title">Recent Articles</h3>
+            <div id="recent-posts-list">
+              <!-- Dynamically populated recent articles list -->
+            </div>
+          </div>
+
+          -
+
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="row g-5">
+        <!-- Col 1 -->
+        <div class="col-lg-4 text-start">
+          <a class="d-flex align-items-center mb-4 text-white" href="index.html">
+            <img src="assets/images/logo-light.png" alt="Al Hazmi International Logo" class="logo-img">
+          </a>
+          <p class="mb-4">Delivering industrial bakery machines, packaging lines, refrigeration, and material racking
+            storage solution systems globally for 20+ years.</p>
+          <div class="footer-social-icons">
+            <a href="#"><i class="fab fa-facebook-f"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+          </div>
+        </div>
+        <!-- Col 2 -->
+        <div class="col-lg-4 text-start">
+          <h4 class="footer-widget-title">Quick Links</h4>
+          <ul class="footer-links">
+            <li><a href="index.html#home"><i class="fas fa-chevron-right fs-10"></i> Home</a></li>
+            <li><a href="about.html"><i class="fas fa-chevron-right fs-10"></i> About Us</a></li>
+            <li><a href="products.html"><i class="fas fa-chevron-right fs-10"></i> Products</a></li>
+            <li><a href="services.html"><i class="fas fa-chevron-right fs-10"></i> Services</a></li>
+            <li><a href="blog.html"><i class="fas fa-chevron-right fs-10"></i> Blog</a></li>
+            <li><a href="locations.html"><i class="fas fa-chevron-right fs-10"></i> Locations</a></li>
+            <li><a href="contact.html"><i class="fas fa-chevron-right fs-10"></i> Contact Us</a></li>
+          </ul>
+        </div>
+        <!-- Col 3 -->
+        <div class="col-lg-4 text-start">
+          <h4 class="footer-widget-title">Contact Information</h4>
+          <ul class="footer-contact-info">
+            <li><i class="fas fa-map-marker-alt"></i> Head Office: Prince Sultan St, Al aziziya, Jeddah, KSA</li>
+            <li><i class="fas fa-phone-alt"></i> +966 12 345 6789</li>
+            <li><i class="fas fa-envelope"></i> info@alhazmi.com</li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom text-center">
+        <p class="mb-0">&copy; 2026 Al Hazmi International. All Rights Reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Floating Action Button (FAB) -->
+  <div class="fab-container" id="mainFabContainer">
+    <div class="fab-options">
+      <!-- Profile/Catalog Download Link -->
+      <a href="#" class="fab-btn fab-btn-download" title="Download Profile" download>
+        <i class="fas fa-file-download"></i>
+      </a>
+      <!-- WhatsApp Floating Action -->
+      <a href="https://wa.me/966123456789" class="fab-btn fab-btn-whatsapp" target="_blank" rel="noopener noreferrer" title="Chat on WhatsApp">
+        <i class="fab fa-whatsapp"></i>
+      </a>
+    </div>
+    <!-- Main FAB Trigger -->
+    <button class="fab-trigger" id="fabTriggerBtn" aria-label="Toggle Actions">
+      <i class="fas fa-plus"></i>
+    </button>
+  </div>
+
+  <!-- Floating Action Button Toggle Script -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const fabContainer = document.getElementById('mainFabContainer');
+      const fabTrigger = document.getElementById('fabTriggerBtn');
+      if (fabTrigger && fabContainer) {
+        fabTrigger.addEventListener('click', (e) => {
+          e.stopPropagation();
+          fabContainer.classList.toggle('active');
+        });
+        document.addEventListener('click', (e) => {
+          if (!fabContainer.contains(e.target)) {
+            fabContainer.classList.remove('active');
+          }
+        });
+      }
+    });
+  </script>
+
+  <!-- JS Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+  <!-- Dynamic Content Script -->
+  <script>
+    const blogDatabase = {
+      "bakery-automation": {
+        title: "The Future of Bakery Automation: Trends for 2026",
+        category: "Technology",
+        date: "June 28, 2026",
+        img: "https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=800&q=80",
+        fallbackImg: "assets/images/bakery.png",
+        content: `
+          <p>Industrial baking is entering a new era driven by data, robotics, and integrated automated control. Bakeries around the world are increasingly deploying smart machinery and closed-loop feedback systems to maximize quality, reduce waste, and manage labor resources efficiently.</p>
+          <blockquote>"The goal of modern automation is not to replace the baker, but to translate the sensory knowledge of master bakers into precise, repeatable machinery profiles."</blockquote>
+          
+          <h2>Key Automation Drivers in 2026</h2>
+          <p>Several critical factors are shifting how modern commercial bread and pastry factories organize their floors:</p>
+          <ul>
+            <li><strong>Precision Dosing & Ingredient Management:</strong> Automated silo layouts and flour weighing stations minimize flour dust contamination and ensure dosing accuracy within 0.1 grams.</li>
+            <li><strong>Continuous Dough Control:</strong> In-line moisture and temperature sensors analyze raw gluten structural characteristics during dough preparation and automatically adjust spiral mixer rotation speeds.</li>
+            <li><strong>Automated Proofing & Conveying:</strong> Continuous proofer tunnels dynamically track humidity levels, smoothly adjusting belt velocities to synchronize dough fermentation with oven loading lines.</li>
+          </ul>
+
+          <h2>Energy Recovery Systems in Tunnels</h2>
+          <p>Oven heating elements consume significant energy. High-performance baking installations utilize combustion gas recirculation and thermal exchangers to capture exhaust heat and recycle it back to proofing and sanitary water networks, shrinking total carbon emissions by up to 22%.</p>
+          
+          <h2>Conclusion</h2>
+          <p>Whether you run an artisanal patisserie with high-output modular electric deck ovens or a continuous automated bread facility, implementing targeted machinery nodes will secure your product consistency, increase packaging yield, and safeguard your operational scaling.</p>
+        `
+      },
+      "food-packaging": {
+        title: "Optimizing Your Food Packaging for Shelf Life",
+        category: "Packaging",
+        date: "June 15, 2026",
+        img: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=800&q=80",
+        fallbackImg: "assets/images/about_industrial.png",
+        content: `
+          <p>Packaging plays a dual role in food manufacturing: keeping foods secure for transit and preserving their visual freshness. Optimizing sealing parameters, barrier foils, and atmosphere compositions directly affects product shelf life and retail attractiveness.</p>
+          
+          <h2>Understanding Modified Atmosphere Packaging (MAP)</h2>
+          <p>Modified Atmosphere Packaging involves flushing secondary gas mixtures (typically nitrogen and carbon dioxide) into the package before sealing. This sweeps out oxygen, suppressing bacterial mold growth without introducing artificial additives.</p>
+          <blockquote>"Implementing gas-flushing modules inside horizontal flow-wrappers can extend bakery shelf stability from 4 days to over 24 days."</blockquote>
+
+          <h2>Improving Thermal Sealing Integrity</h2>
+          <p>A packaging seal is only as good as its temperature control. Minor fluctuations in sealer jaw heating will lead to microscopic channels where gas can leak out and air can seep back in. Modern enrobers and wrapping machinery rely on PID temperature modules that retain continuous sealing temperatures within a narrow 0.5°C tolerance profile.</p>
+
+          <h2>Selecting the Right Foil Density</h2>
+          <p>Different materials block moisture and gases differently. Choosing OPP or PET laminated sheets provides high barrier performance, protecting crust crispness and preventing crumb desiccation over transit routes.</p>
+        `
+      },
+      "oven-maintenance": {
+        title: "Preventative Maintenance for Industrial Ovens",
+        category: "Maintenance",
+        date: "May 30, 2026",
+        img: "https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?auto=format&fit=crop&w=800&q=80",
+        fallbackImg: "assets/images/about_industrial.png",
+        content: `
+          <p>Industrial ovens (whether deck electric, steam tube Termik, or rotating rack Rotor systems) represent a significant portion of capital investment in industrial baking plants. A structural breakdown during peak hours will trigger chain delays across production lines. A rigorous preventative checklist is key.</p>
+          
+          <h2>Daily Cleaning Protocols</h2>
+          <p>Flour debris, sugar residue, and fat spillages carbonize quickly under extreme heat. These crust deposits insulate burners and heating coils, reducing thermal transfer efficiency and creating fire hazards. Vacuuming decks daily prevents carbon build-up.</p>
+
+          <h2>Mechanical Inspection Checklist</h2>
+          <ul>
+            <li><strong>Burner Checkups:</strong> Inspect diesel/gas burner combustion flames. A clean blue flame indicates balanced gas-to-oxygen mixing, whereas a flickering yellow flame points to carbon soot build-up on nozzle jets.</li>
+            <li><strong>Steam Generator Valves:</strong> Periodically descale steam tubes. Mineral deposits block water dispersion, resulting in uneven bread crust colorations due to insufficient steam during initial bake cycles.</li>
+            <li><strong>Tray Racks:</strong> Lubricate rotation rollers using high-temperature industrial greases rated up to 350°C. Faulty bearings trigger mechanical vibration, disrupting rack movement and causing uneven baking zones.</li>
+          </ul>
+          <blockquote>"Routine maintenance lowers monthly energy consumption by 15% and prevents unexpected motor burnouts."</blockquote>
+        `
+      },
+      "chocolate-tempering": {
+        title: "Mastering Chocolate Tempering: Machinery Insights",
+        category: "Chocolate",
+        date: "May 14, 2026",
+        img: "assets/images/chocolate.png",
+        fallbackImg: "assets/images/chocolate.png",
+        content: `
+          <p>Working with chocolate requires extreme thermal control. To achieve the perfect glossy finish, clean snap, and temperature stability, cocoa butter must crystallize into stable Form V crystals. This critical process is known as tempering.</p>
+          
+          <h2>The Tempering Thermal Cycle</h2>
+          <p>Industrial tempering machinery like the Pomati T35 continuous tempering machine manages chocolate crystallization dynamically through a three-stage heating profile:</p>
+          <ol>
+            <li><strong>Melting:</strong> Heating the cocoa mass to 45°C to break down all existing crystal matrices.</li>
+            <li><strong>Cooling:</strong> Lowering the mass to 27°C (for dark chocolate) or 25°C (for milk chocolate) to spark seed crystal formation.</li>
+            <li><strong>Reheating:</strong> Raising temperature back to 31°C - 32°C to dissolve unstable Form I-IV crystals while preserving stable Form V matrices.</li>
+          </ol>
+          <blockquote>"Without precise tempering control, chocolate will suffer from fat bloom, developing grey surface streaks and a crumbly texture."</blockquote>
+
+          <h2>Integrated Enrobers & Depositors</h2>
+          <p>Integrating tempering units directly with enrobing mesh belts and automated dosing nozzles (like One Shot Depositors) allows producers to create layered cream chocolates, enrobed biscuits, and praline bars continuously without intermediate manual transfer steps.</p>
+        `
+      },
+      "factory-logistics": {
+        title: "Streamlining Factory Logistics with Racking Systems",
+        category: "Logistics",
+        date: "April 22, 2026",
+        img: "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=800&q=80",
+        fallbackImg: "assets/images/about_industrial.png",
+        content: `
+          <p>Efficient warehousing is just as vital as processing performance. Food logistics require compliance with strict health regulations, fast stock rotations, and vertical storage optimization to safeguard cold-chain and dry-goods storage.</p>
+          
+          <h2>FIFO (First-In, First-Out) Logistics</h2>
+          <p>Ingredients like yeast, butter, flour, and finished packaged goods have strict expiration dates. Implementing drive-in or gravity flow pallet racking layouts ensures stocks are loaded on one side and picked from the opposite side, enforcing structural FIFO inventory flow.</p>
+          <blockquote>"Optimized logistics prevent ingredient wastage, accelerate shipping times, and prevent inventory stagnation."</blockquote>
+
+          <h2>Industrial Racking Safety Standards</h2>
+          <p>B2B cold storage facilities present severe storage challenges. Racking constructs in deep freeze rooms (-25°C) must be built with structural carbon steels engineered to resist cold embrittlement and treated with heavy anti-corrosion galvanized coatings.</p>
+        `
+      },
+      "dough-mixing": {
+        title: "Commercial Dough Mixing Techniques & Technology",
+        category: "Production",
+        date: "April 05, 2026",
+        img: "https://images.unsplash.com/photo-1590794056226-79ef3a8147e1?auto=format&fit=crop&w=800&q=80",
+        fallbackImg: "assets/images/pastry.png",
+        content: `
+          <p>Mixing is the foundational stage of baking. The mixing action distributes yeast cells, dissolves solids, hydrates flour starch particles, and constructs a robust gluten network to trap fermentation gases.</p>
+          
+          <h2>Mixer Types Breakdown</h2>
+          <ul>
+            <li><strong>Spiral Mixers:</strong> Designed with a rotating bowl and a spiral tool. Ideal for high-hydration artisanal doughs, providing quick gluten development with minimal friction heat generation.</li>
+            <li><strong>Double-Arm Mixers:</strong> Mimic human hand folding actions. Perfect for delicate pastry doughs, panettone, and soft brioche where structural aeration is key.</li>
+            <li><strong>Continuous Mixers:</strong> Engineered for continuous automated lines. Ingredients are continuously dosed and mixed, feeding dividers directly at speeds exceeding 4,000 kg per hour.</li>
+          </ul>
+          <blockquote>"Choosing the correct mixer speed profile and cooling configuration directly dictates crumb softness and bread volume."</blockquote>
+        `
+      }
+    };
+
+    // Load Article Content Dynamically
+    document.addEventListener('DOMContentLoaded', () => {
+      const urlParams = new URLSearchParams(window.location.search);
+      const postKey = urlParams.get('post') || 'bakery-automation';
+      const article = blogDatabase[postKey] || blogDatabase['bakery-automation'];
+
+      // Populate text details
+      document.getElementById('crumb-title').textContent = article.title;
+      document.getElementById('header-title').textContent = article.title;
+      document.getElementById('main-title').textContent = article.title;
+      document.getElementById('meta-category').textContent = article.category;
+      document.getElementById('meta-date').innerHTML = `<i class="far fa-calendar-alt me-2"></i>${article.date}`;
+
+      const featuredImg = document.getElementById('featured-image');
+      featuredImg.alt = article.title;
+      featuredImg.onerror = () => {
+        featuredImg.onerror = null;
+        featuredImg.src = article.fallbackImg;
+      };
+      featuredImg.src = article.img;
+
+      // Populate HTML content
+      document.getElementById('article-body').innerHTML = article.content;
+
+      // Update Browser Tab Title
+      document.title = `${article.title} | Al Hazmi International`;
+
+      // Render Recent Articles in Sidebar
+      const sidebarContainer = document.getElementById('recent-posts-list');
+      sidebarContainer.innerHTML = "";
+
+      let count = 0;
+      for (const [key, value] of Object.entries(blogDatabase)) {
+        if (key !== postKey && count < 3) {
+          const recentItem = document.createElement('a');
+          recentItem.href = `blog-detail.html?post=${key}`;
+          recentItem.className = "recent-post-item text-decoration-none";
+
+          recentItem.innerHTML = `
+            <img src="${value.img}" alt="${value.title}" class="recent-post-img" onerror="this.onerror=null; this.src='${value.fallbackImg}';">
+            <div class="recent-post-info">
+              <h4>${value.title}</h4>
+              <span class="recent-post-date">${value.date}</span>
+            </div>
+          `;
+          sidebarContainer.appendChild(recentItem);
+          count++;
+        }
+      }
+    });
+
+    // AOS Init & Preloader
+    document.addEventListener('DOMContentLoaded', () => {
+      AOS.init({
+        duration: 900,
+        once: true,
+        offset: 80,
+        easing: 'ease-out-cubic'
+      });
+
+      const preloader = document.getElementById('preloader');
+      if (preloader) {
+        setTimeout(() => {
+          preloader.style.opacity = '0';
+          preloader.style.visibility = 'hidden';
+        }, 500);
+      }
+    });
+
+    // Scroll Navbar handling
+    window.addEventListener('scroll', () => {
+      const scrollY = window.scrollY;
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+
+      if (scrollY > 60) {
+        document.body.classList.add('navbar-scrolled');
+      } else {
+        document.body.classList.remove('navbar-scrolled');
+      }
+
+      const scrollPct = docHeight > 0 ? (scrollY / docHeight) * 100 : 0;
+      const progressEl = document.getElementById('scroll-progress');
+      if (progressEl) {
+        progressEl.style.width = scrollPct + '%';
+      }
+    });
+
+    // Handle Quote Modal Submit
+    document.addEventListener('DOMContentLoaded', () => {
+      const form = document.getElementById('modalQuoteForm');
+      const successMsg = document.getElementById('modalSuccessMsg');
+
+      if (form) {
+        form.addEventListener('submit', (e) => {
+          e.preventDefault();
+
+          if (!form.checkValidity()) {
+            e.stopPropagation();
+            form.classList.add('was-validated');
+            return;
+          }
+
+          form.classList.add('d-none');
+          successMsg.classList.remove('d-none');
+
+          const modalEl = document.getElementById('quoteModal');
+          modalEl.addEventListener('hidden.bs.modal', () => {
+            form.reset();
+            form.classList.remove('was-validated');
+            form.classList.remove('d-none');
+            successMsg.classList.add('d-none');
+          }, { once: true });
+        });
+      }
+    });
+  </script>
+
+  <!-- Get a Quote Modal -->
+  <div class="modal fade" id="quoteModal" tabindex="-1" aria-labelledby="quoteModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+      <div class="modal-content border-0 rounded-4 overflow-hidden shadow-lg bg-dark text-white">
+        <div class="modal-header border-bottom border-secondary p-4" style="background: #1c1d1f;">
+          <div class="d-flex align-items-center gap-3">
+            <div class="bg-gold p-2 rounded-3 text-dark d-flex align-items-center justify-content-center"
+              style="width: 40px; height: 40px; background-color: var(--accent-gold);">
+              <i class="fas fa-file-invoice-dollar fs-5"></i>
+            </div>
+            <div>
+              <h5 class="modal-title fw-bold font-headings text-white mb-0" id="quoteModalLabel">Request a Custom Quote
+              </h5>
+              <p class="text-white-50 mb-0 small">Tell us about your production requirements</p>
+            </div>
+          </div>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body p-4 p-md-5" style="background: #151618;">
+          <form id="modalQuoteForm" novalidate>
+            <div class="row g-4">
+              <!-- Full Name -->
+              <div class="col-md-6 text-start">
+                <label for="modalName" class="form-label small fw-semibold text-white-50 text-uppercase"
+                  style="letter-spacing: 0.5px;">Full Name *</label>
+                <div class="input-group">
+                  <span class="input-group-text"><i class="fas fa-user"></i></span>
+                  <input type="text" class="form-control" id="modalName" placeholder="John Doe" required>
+                </div>
+              </div>
+              <!-- Business Email -->
+              <div class="col-md-6 text-start">
+                <label for="modalEmail" class="form-label small fw-semibold text-white-50 text-uppercase"
+                  style="letter-spacing: 0.5px;">Business Email *</label>
+                <div class="input-group">
+                  <span class="input-group-text"><i class="fas fa-envelope"></i></span>
+                  <input type="email" class="form-control" id="modalEmail" placeholder="name@company.com" required>
+                </div>
+              </div>
+              <!-- Phone -->
+              <div class="col-md-6 text-start">
+                <label for="modalPhone" class="form-label small fw-semibold text-white-50 text-uppercase"
+                  style="letter-spacing: 0.5px;">Phone Number *</label>
+                <div class="input-group">
+                  <span class="input-group-text"><i class="fas fa-phone-alt"></i></span>
+                  <input type="tel" class="form-control" id="modalPhone" placeholder="+966 50 000 0000" required>
+                </div>
+              </div>
+              <!-- Company Name -->
+              <div class="col-md-6 text-start">
+                <label for="modalCompany" class="form-label small fw-semibold text-white-50 text-uppercase"
+                  style="letter-spacing: 0.5px;">Company Name</label>
+                <div class="input-group">
+                  <span class="input-group-text"><i class="fas fa-building"></i></span>
+                  <input type="text" class="form-control" id="modalCompany" placeholder="Al Hazmi Co.">
+                </div>
+              </div>
+              <!-- Product Category -->
+              <div class="col-md-12 text-start">
+                <label for="modalCategory" class="form-label small fw-semibold text-white-50 text-uppercase"
+                  style="letter-spacing: 0.5px;">Interest Category *</label>
+                <div class="input-group">
+                  <span class="input-group-text"><i class="fas fa-th-large"></i></span>
+                  <select class="form-select" id="modalCategory" required>
+                    <option value="" disabled selected>Select category...</option>
+                    <option value="bakery">Bakery Equipment</option>
+                    <option value="pastry">Pastry Equipment</option>
+                    <option value="chocolate">Chocolate Machines</option>
+                    <option value="production">Production Lines</option>
+                    <option value="packaging">Packaging Solutions</option>
+                    <option value="racking">Industrial Racking Solutions</option>
+                    <option value="other">Other Machinery</option>
+                  </select>
+                </div>
+              </div>
+              <!-- Message -->
+              <div class="col-md-12 text-start">
+                <label for="modalMessage" class="form-label small fw-semibold text-white-50 text-uppercase"
+                  style="letter-spacing: 0.5px;">Production Requirements / Message</label>
+                <textarea class="form-control" id="modalMessage" rows="4"
+                  placeholder="Please describe the machine capacity, target products, and electrical specs..."></textarea>
+              </div>
+            </div>
+            <!-- Submit Button -->
+            <div class="mt-4 pt-2 text-end">
+              <button type="button"
+                class="btn btn-outline-secondary px-4 py-2 me-2 rounded-pill font-headings text-white-50 border-secondary"
+                data-bs-dismiss="modal">Cancel</button>
+              <button type="submit" class="btn btn-header-cta px-4 py-2">Submit Request <i
+                  class="fas fa-paper-plane ms-2"></i></button>
+            </div>
+          </form>
+          <!-- Success Message -->
+          <div id="modalSuccessMsg" class="d-none py-5 text-center">
+            <div class="mb-4">
+              <span class="bg-gold rounded-circle d-inline-flex align-items-center justify-content-center"
+                style="width: 80px; height: 80px; box-shadow: 0 0 0 10px rgba(253, 183, 36, 0.15); background-color: var(--accent-gold);">
+                <i class="fas fa-check text-dark fs-1"></i>
+              </span>
+            </div>
+            <h3 class="fw-bold font-headings text-white mb-2">Quote Request Received!</h3>
+            <p class="text-white-50 mx-auto" style="max-width: 480px; line-height: 1.6;">
+              Thank you for requesting a quote. Our engineering sales team will review your requirements and get in
+              touch with a customized proposal within 24 hours.
+            </p>
+            <button type="button"
+              class="btn btn-outline-secondary px-4 py-2 mt-4 rounded-pill font-headings text-white-50 border-secondary"
+              data-bs-dismiss="modal">Close Window</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>

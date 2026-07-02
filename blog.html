@@ -4,9 +4,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Our Locations | Al Hazmi International</title>
+  <title>News & Insights | Al Hazmi International</title>
   <meta name="description"
-    content="Find Al Hazmi International global headquarters and regional Saudi Arabian offices in Jeddah, Riyadh, Dammam, Khamis Mushait, and Tabuk.">
+    content="Stay informed with the latest insights, technology trends, packaging guides, and maintenance protocols from Al Hazmi International.">
 
   <!-- Bootstrap 5.3 CSS -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -19,39 +19,118 @@
 
   <!-- Custom Stylesheet -->
   <link rel="stylesheet" href="styles.css">
-
+  
   <style>
-    /* Regional filter button styling */
-    .btn-filter {
+    .blog-page-grid {
+      padding: 80px 0;
+    }
+    .blog-grid-card {
+      background: var(--white);
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border-color);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.02);
+      transition: all 0.3s ease;
+    }
+    .blog-grid-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 35px rgba(21, 22, 24, 0.08);
+      border-color: rgba(253, 183, 36, 0.3);
+    }
+    .blog-grid-img-wrap {
+      position: relative;
+      overflow: hidden;
+      aspect-ratio: 16/10;
+    }
+    .blog-grid-img-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+    .blog-grid-card:hover .blog-grid-img-wrap img {
+      transform: scale(1.05);
+    }
+    .blog-grid-category {
+      position: absolute;
+      top: 15px;
+      left: 15px;
+      background: var(--accent-gold);
+      color: var(--primary-dark);
+      font-size: 11px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      padding: 6px 12px;
+      border-radius: 50px;
+      z-index: 2;
+      box-shadow: 0 4px 10px rgba(253, 183, 36, 0.3);
+    }
+    .blog-grid-body {
+      padding: 25px;
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+    }
+    .blog-grid-date {
+      font-size: 12.5px;
+      color: rgba(21, 22, 24, 0.5);
+      margin-bottom: 12px;
+      display: block;
+      font-weight: 500;
+    }
+    .blog-grid-body h3 {
+      font-family: var(--font-headings);
+      font-size: 18.5px;
+      font-weight: 800;
+      line-height: 1.4;
+      color: var(--primary-dark);
+      margin-bottom: 12px;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+    .blog-grid-body p {
+      font-size: 14px;
+      line-height: 1.6;
+      color: rgba(21, 22, 24, 0.7);
+      margin-bottom: 20px;
+      flex: 1;
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+    .blog-grid-link {
       font-family: var(--font-headings);
       font-weight: 800;
-      font-size: 0.82rem;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-      padding: 10px 24px;
-      border-radius: 50px;
-      border: 1px solid var(--border-color);
-      background-color: var(--white);
       color: var(--primary-dark);
-      transition: var(--transition-fast);
-      cursor: pointer;
+      text-decoration: none;
+      font-size: 13.5px;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      width: fit-content;
+      transition: color 0.2s ease;
     }
-
-    .btn-filter:hover,
-    .btn-filter.active {
-      background-color: var(--accent-gold);
-      border-color: var(--accent-gold);
-      color: var(--primary-dark);
-      box-shadow: 0 4px 15px rgba(253, 183, 36, 0.2);
+    .blog-grid-link i {
+      font-size: 11px;
+      transition: transform 0.2s ease;
     }
-
-    .branch-col {
-      transition: opacity 0.4s ease, transform 0.4s ease;
+    .blog-grid-card:hover .blog-grid-link {
+      color: var(--accent-gold);
+    }
+    .blog-grid-card:hover .blog-grid-link i {
+      transform: translateX(4px);
     }
   </style>
 </head>
 
-<body data-bs-spy="scroll" data-bs-target="#navbar" data-bs-offset="100">
+<body>
 
   <!-- Scroll Progress Indicator -->
   <div id="scroll-progress"></div>
@@ -116,7 +195,7 @@
               <a class="nav-link" href="services.html">Services</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link active" href="locations.html">Locations</a>
+              <a class="nav-link" href="locations.html">Locations</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="contact.html">Contact</a>
@@ -133,262 +212,119 @@
   <!-- Inner Page Hero Section -->
   <section class="about-hero-section">
     <div class="hero-overlay-gradient"></div>
-    <div class="container about-hero-container">
-      <div class="row">
-        <div class="col-12 text-center" data-aos="fade-up" data-aos-duration="1000">
-          <h1 class="about-hero-title">Our Locations</h1>
-          <div class="about-breadcrumbs d-flex justify-content-center align-items-center gap-2">
-            <a href="index.html">Home</a>
-            <i class="fas fa-chevron-right text-white-50 fs-12"></i>
-            <span class="text-white-50">Locations</span>
-          </div>
-        </div>
-      </div>
+    <div class="container about-hero-container text-start" data-aos="fade-up">
+      <span class="section-tag mb-2 d-inline-block">News & Insights</span>
+      <h1 class="about-hero-title">Our Blog & Articles</h1>
+      <p class="text-white-50 fs-16 mb-0" style="max-width: 600px;">Stay up-to-date with the latest trends in bakery automation, food packaging, preventative maintenance, and industrial B2B builds.</p>
     </div>
   </section>
 
-
-  <!-- Local Branches Section with Dynamic Filters -->
-  <section class="section-padding bg-light-section">
+  <!-- Blog Listing Grid Section -->
+  <section class="blog-page-grid bg-light-section">
     <div class="container">
-      <div class="text-center mb-5" data-aos="fade-up">
-        <span class="section-tag">National Offices</span>
-        <h2 class="section-title-large">Our Saudi Arabian Branches</h2>
-        <div
-          style="width: 80px; height: 4px; background-color: var(--accent-gold); margin: 15px auto 25px; border-radius: 2px;">
-        </div>
-      </div>
-
-      <!-- Regional Filter Buttons -->
-      <div class="d-flex justify-content-center flex-wrap gap-2 mb-5" data-aos="fade-up" data-aos-delay="100">
-        <button class="btn-filter active" id="btn-all">All Regions</button>
-        <button class="btn-filter" id="btn-western">Western (Jeddah)</button>
-        <button class="btn-filter" id="btn-central">Central (Riyadh)</button>
-        <button class="btn-filter" id="btn-eastern">Eastern (Dammam)</button>
-        <button class="btn-filter" id="btn-other">Southern & Northern</button>
-      </div>
-
-      <div class="row g-4 mt-2" id="branches-row">
-
-        <!-- Jeddah -->
-        <div class="col-lg-4 col-md-6 branch-col" data-region="western" data-aos="fade-up" data-aos-delay="100">
-          <div class="branch-card text-start d-flex flex-column h-100">
-            <div class="branch-map-container">
-              <div class="branch-coord-badge">21.5435° N, 39.1728° E</div>
-              <iframe
-                src="https://maps.google.com/maps?q=Al%20Amir%20Muhammad%20Bin%20AbdulAziz%20Street,%20Al%20aziziya,%20Jeddah,%20KSA&t=&z=13&ie=UTF8&iwloc=&output=embed"
-                width="100%" height="100%" style="border:0;" allowfullscreen loading="lazy"></iframe>
+      <div class="row g-4">
+        
+        <!-- Blog Card 1 -->
+        <div class="col-12 col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="50">
+          <div class="blog-grid-card">
+            <div class="blog-grid-img-wrap">
+              <span class="blog-grid-category">Technology</span>
+              <img src="https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=600&q=80"
+                alt="Bakery Automation" onerror="this.onerror=null; this.src='assets/images/bakery.png';">
             </div>
-            <div class="branch-card-body d-flex flex-column justify-content-between flex-grow-1">
-              <div>
-                <h4><i class="fas fa-map-marker-alt"></i> Jeddah (HQ)</h4>
-                <p class="branch-address text-muted">Al Amir Muhammad Bin AbdulAziz Street, Al Aziziya, Jeddah, KSA</p>
-                <div class="branch-details-row">
-                  <span><i class="fas fa-phone-alt"></i> +966 12 600 1100</span>
-                  <span><i class="fas fa-clock"></i> Sun - Thu: 8 AM - 5 PM</span>
-                </div>
-              </div>
-              <a href="https://maps.google.com/maps?q=Al%20Amir%20Muhammad%20Bin%20AbdulAziz%20Street,%20Al%20aziziya,%20Jeddah,%20KSA"
-                target="_blank" class="branch-btn-directions">
-                View Directions <i class="fas fa-external-link-alt ms-1"></i>
-              </a>
+            <div class="blog-grid-body text-start">
+              <span class="blog-grid-date"><i class="far fa-calendar-alt me-2"></i>June 28, 2026</span>
+              <h3>The Future of Bakery Automation: Trends for 2026</h3>
+              <p>Discover how smart machinery and automated processing lines are helping bakeries scale production while maintaining quality.</p>
+              <a href="blog-detail.html?post=bakery-automation" class="blog-grid-link">Read Article <i class="fas fa-arrow-right"></i></a>
             </div>
           </div>
         </div>
 
-        <!-- Riyadh -->
-        <div class="col-lg-4 col-md-6 branch-col" data-region="central" data-aos="fade-up" data-aos-delay="200">
-          <div class="branch-card text-start d-flex flex-column h-100">
-            <div class="branch-map-container">
-              <div class="branch-coord-badge">24.7136° N, 46.6753° E</div>
-              <iframe
-                src="https://maps.google.com/maps?q=Prince%20Mohmmed%20Bin%20Abdulrahman%20Street,%20Riyadh,%20KSA&t=&z=13&ie=UTF8&iwloc=&output=embed"
-                width="100%" height="100%" style="border:0;" allowfullscreen loading="lazy"></iframe>
+        <!-- Blog Card 2 -->
+        <div class="col-12 col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="100">
+          <div class="blog-grid-card">
+            <div class="blog-grid-img-wrap">
+              <span class="blog-grid-category">Packaging</span>
+              <img src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=600&q=80"
+                alt="Flow Wrap Packaging" onerror="this.onerror=null; this.src='assets/images/about_industrial.png';">
             </div>
-            <div class="branch-card-body d-flex flex-column justify-content-between flex-grow-1">
-              <div>
-                <h4><i class="fas fa-map-marker-alt"></i> Riyadh Office</h4>
-                <p class="branch-address text-muted">Prince Mohmmed Bin Abdulrahman Street, Riyadh, KSA</p>
-                <div class="branch-details-row">
-                  <span><i class="fas fa-phone-alt"></i> +966 11 400 2200</span>
-                  <span><i class="fas fa-clock"></i> Sun - Thu: 8 AM - 5 PM</span>
-                </div>
-              </div>
-              <a href="https://maps.google.com/maps?q=Prince%20Mohmmed%20Bin%20Abdulrahman%20Street,%20Riyadh,%20KSA"
-                target="_blank" class="branch-btn-directions">
-                View Directions <i class="fas fa-external-link-alt ms-1"></i>
-              </a>
+            <div class="blog-grid-body text-start">
+              <span class="blog-grid-date"><i class="far fa-calendar-alt me-2"></i>June 15, 2026</span>
+              <h3>Optimizing Your Food Packaging for Shelf Life</h3>
+              <p>A comprehensive guide to flow-wrap packaging technologies, thermal sealing, and gas flushing for bakeries.</p>
+              <a href="blog-detail.html?post=food-packaging" class="blog-grid-link">Read Article <i class="fas fa-arrow-right"></i></a>
             </div>
           </div>
         </div>
 
-        <!-- Dammam -->
-        <div class="col-lg-4 col-md-6 branch-col" data-region="eastern" data-aos="fade-up" data-aos-delay="300">
-          <div class="branch-card text-start d-flex flex-column h-100">
-            <div class="branch-map-container">
-              <div class="branch-coord-badge">26.4207° N, 50.0888° E</div>
-              <iframe
-                src="https://maps.google.com/maps?q=King%20Faisal%20Road,%20Dammam,%20KSA&t=&z=13&ie=UTF8&iwloc=&output=embed"
-                width="100%" height="100%" style="border:0;" allowfullscreen loading="lazy"></iframe>
+        <!-- Blog Card 3 -->
+        <div class="col-12 col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="150">
+          <div class="blog-grid-card">
+            <div class="blog-grid-img-wrap">
+              <span class="blog-grid-category">Maintenance</span>
+              <img src="https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?auto=format&fit=crop&w=600&q=80"
+                alt="Oven Maintenance" onerror="this.onerror=null; this.src='assets/images/about_industrial.png';">
             </div>
-            <div class="branch-card-body d-flex flex-column justify-content-between flex-grow-1">
-              <div>
-                <h4><i class="fas fa-map-marker-alt"></i> Dammam Hub</h4>
-                <p class="branch-address text-muted">King Faisal Road, Dammam, KSA</p>
-                <div class="branch-details-row">
-                  <span><i class="fas fa-phone-alt"></i> +966 13 800 3300</span>
-                  <span><i class="fas fa-clock"></i> Sun - Thu: 8 AM - 5 PM</span>
-                </div>
-              </div>
-              <a href="https://maps.google.com/maps?q=King%20Faisal%20Road,%20Dammam,%20KSA" target="_blank"
-                class="branch-btn-directions">
-                View Directions <i class="fas fa-external-link-alt ms-1"></i>
-              </a>
+            <div class="blog-grid-body text-start">
+              <span class="blog-grid-date"><i class="far fa-calendar-alt me-2"></i>May 30, 2026</span>
+              <h3>Preventative Maintenance for Industrial Ovens</h3>
+              <p>Reduce downtime and extend the lifespan of your commercial rotary and deck ovens with routine maintenance protocols.</p>
+              <a href="blog-detail.html?post=oven-maintenance" class="blog-grid-link">Read Article <i class="fas fa-arrow-right"></i></a>
             </div>
           </div>
         </div>
 
-        <!-- Khamis Mushait -->
-        <div class="col-lg-4 col-md-6 branch-col" data-region="other" data-aos="fade-up" data-aos-delay="100">
-          <div class="branch-card text-start d-flex flex-column h-100">
-            <div class="branch-map-container">
-              <div class="branch-coord-badge">18.3061° N, 42.7303° E</div>
-              <iframe
-                src="https://maps.google.com/maps?q=King%20Khaled%20Road,%20Khamis%20Mushait,%20KSA&t=&z=13&ie=UTF8&iwloc=&output=embed"
-                width="100%" height="100%" style="border:0;" allowfullscreen loading="lazy"></iframe>
+        <!-- Blog Card 4 -->
+        <div class="col-12 col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="50">
+          <div class="blog-grid-card">
+            <div class="blog-grid-img-wrap">
+              <span class="blog-grid-category">Chocolate</span>
+              <img src="assets/images/chocolate.png" alt="Chocolate Tempering" onerror="this.onerror=null; this.src='assets/images/chocolate.png';">
             </div>
-            <div class="branch-card-body d-flex flex-column justify-content-between flex-grow-1">
-              <div>
-                <h4><i class="fas fa-map-marker-alt"></i> Khamis Branch</h4>
-                <p class="branch-address text-muted">King Khaled Road, Khamis Mushait, KSA</p>
-                <div class="branch-details-row">
-                  <span><i class="fas fa-phone-alt"></i> +966 17 200 4400</span>
-                  <span><i class="fas fa-clock"></i> Sun - Thu: 8 AM - 5 PM</span>
-                </div>
-              </div>
-              <a href="https://maps.google.com/maps?q=King%20Khaled%20Road,%20Khamis%20Mushait,%20KSA" target="_blank"
-                class="branch-btn-directions">
-                View Directions <i class="fas fa-external-link-alt ms-1"></i>
-              </a>
+            <div class="blog-grid-body text-start">
+              <span class="blog-grid-date"><i class="far fa-calendar-alt me-2"></i>May 14, 2026</span>
+              <h3>Mastering Chocolate Tempering: Machinery</h3>
+              <p>Understanding the crystallization of cocoa butter and how modern tempering machinery ensures a glossy, crisp finish.</p>
+              <a href="blog-detail.html?post=chocolate-tempering" class="blog-grid-link">Read Article <i class="fas fa-arrow-right"></i></a>
             </div>
           </div>
         </div>
 
-        <!-- Tabuk -->
-        <div class="col-lg-4 col-md-6 branch-col" data-region="other" data-aos="fade-up" data-aos-delay="200">
-          <div class="branch-card text-start d-flex flex-column h-100">
-            <div class="branch-map-container">
-              <div class="branch-coord-badge">26.3899° N, 36.5715° E</div>
-              <iframe
-                src="https://maps.google.com/maps?q=Fahd%20Ipn%20Sultan%20Branch%20Rd,%20Tabuk,%20KSA&t=&z=13&ie=UTF8&iwloc=&output=embed"
-                width="100%" height="100%" style="border:0;" allowfullscreen loading="lazy"></iframe>
+        <!-- Blog Card 5 -->
+        <div class="col-12 col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="100">
+          <div class="blog-grid-card">
+            <div class="blog-grid-img-wrap">
+              <span class="blog-grid-category">Logistics</span>
+              <img src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=600&q=80"
+                alt="Pallet Racking" onerror="this.onerror=null; this.src='assets/images/about_industrial.png';">
             </div>
-            <div class="branch-card-body d-flex flex-column justify-content-between flex-grow-1">
-              <div>
-                <h4><i class="fas fa-map-marker-alt"></i> Tabuk Outlet</h4>
-                <p class="branch-address text-muted">Fahd Ipn Sultan Branch Rd, Cultivated Area, Tabuk 47316</p>
-                <div class="branch-details-row">
-                  <span><i class="fas fa-phone-alt"></i> +966 14 500 5500</span>
-                  <span><i class="fas fa-clock"></i> Sun - Thu: 8 AM - 5 PM</span>
-                </div>
-              </div>
-              <a href="https://maps.google.com/maps?q=Fahd%20Ipn%20Sultan%20Branch%20Rd,%20Cultivated%20Area,%20Tabuk%2047316"
-                target="_blank" class="branch-btn-directions">
-                View Directions <i class="fas fa-external-link-alt ms-1"></i>
-              </a>
+            <div class="blog-grid-body text-start">
+              <span class="blog-grid-date"><i class="far fa-calendar-alt me-2"></i>April 22, 2026</span>
+              <h3>Streamlining Factory Logistics with Racking</h3>
+              <p>How custom-engineered pallet racking configurations optimize warehousing space and improve inventory flow.</p>
+              <a href="blog-detail.html?post=factory-logistics" class="blog-grid-link">Read Article <i class="fas fa-arrow-right"></i></a>
             </div>
           </div>
         </div>
 
-      </div>
-
-    </div>
-  </section>
-  <!-- International Presence Section -->
-  <section class="section-padding bg-white pb-0">
-    <div class="container">
-      <div class="presence-world-wrap mb-5" data-aos="fade-up">
-        <div class="row g-5 align-items-center presence-content-box text-start">
-          <div class="col-md-12">
-            <h2 class="presence-title mb-3 text-white">Our Global Presence</h2>
-            <p class="text-white-80 mb-0" style="font-size: 1.05rem; line-height: 1.7;">
-              We collaborate with premier global manufacturers and maintain active operations across strategic
-              international corridors, ensuring a high-performance, seamless supply chain.
-            </p>
-          </div>
-          <div class="col-lg-5">
-            <div class="presence-list">
-              <div class="presence-item" data-hub="italy">
-                <div class="presence-dot"></div>
-                <div class="presence-item-text">
-                  <h3>ITALY</h3>
-                  <span class="presence-coords">41.8719° N, 12.5674° E</span>
-                </div>
-              </div>
-              <div class="presence-item" data-hub="ksa">
-                <div class="presence-dot"></div>
-                <div class="presence-item-text">
-                  <h3>SAUDI ARABIA (KSA)</h3>
-                  <span class="presence-coords">23.8859° N, 45.0792° E</span>
-                </div>
-              </div>
-              <div class="presence-item" data-hub="uae">
-                <div class="presence-dot"></div>
-                <div class="presence-item-text">
-                  <h3>UNITED ARAB EMIRATES (UAE)</h3>
-                  <span class="presence-coords">23.4241° N, 53.8478° E</span>
-                </div>
-              </div>
-              <div class="presence-item" data-hub="china">
-                <div class="presence-dot"></div>
-                <div class="presence-item-text">
-                  <h3>CHINA</h3>
-                  <span class="presence-coords">35.8617° N, 104.1954° E</span>
-                </div>
-              </div>
+        <!-- Blog Card 6 -->
+        <div class="col-12 col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="150">
+          <div class="blog-grid-card">
+            <div class="blog-grid-img-wrap">
+              <span class="blog-grid-category">Production</span>
+              <img src="https://images.unsplash.com/photo-1590794056226-79ef3a8147e1?auto=format&fit=crop&w=600&q=80"
+                alt="Dough Mixer" onerror="this.onerror=null; this.src='assets/images/pastry.png';">
             </div>
-          </div>
-          <div class="col-lg-7">
-            <div class="presence-map-container">
-              <div class="map-grid-overlay"></div>
-              <img src="https://images.unsplash.com/photo-1524661135-423995f22d0b?auto=format&fit=crop&w=1200&q=80"
-                class="presence-map-img" alt="World Map">
-
-              <!-- Hotspots -->
-              <div class="map-hotspot pin-italy" data-hub="italy">
-                <span class="pulse-ring ring-1"></span>
-                <span class="pulse-ring ring-2"></span>
-                <span class="pulse-ring ring-3"></span>
-                <div class="hotspot-dot"></div>
-                <div class="hotspot-tooltip">Italy Hub</div>
-              </div>
-
-              <div class="map-hotspot pin-ksa" data-hub="ksa">
-                <span class="pulse-ring ring-1"></span>
-                <span class="pulse-ring ring-2"></span>
-                <span class="pulse-ring ring-3"></span>
-                <div class="hotspot-dot"></div>
-                <div class="hotspot-tooltip">KSA Hub</div>
-              </div>
-
-              <div class="map-hotspot pin-uae" data-hub="uae">
-                <span class="pulse-ring ring-1"></span>
-                <span class="pulse-ring ring-2"></span>
-                <span class="pulse-ring ring-3"></span>
-                <div class="hotspot-dot"></div>
-                <div class="hotspot-tooltip">UAE Hub</div>
-              </div>
-
-              <div class="map-hotspot pin-china" data-hub="china">
-                <span class="pulse-ring ring-1"></span>
-                <span class="pulse-ring ring-2"></span>
-                <span class="pulse-ring ring-3"></span>
-                <div class="hotspot-dot"></div>
-                <div class="hotspot-tooltip">China Hub</div>
-              </div>
+            <div class="blog-grid-body text-start">
+              <span class="blog-grid-date"><i class="far fa-calendar-alt me-2"></i>April 05, 2026</span>
+              <h3>Commercial Dough Mixing Techniques</h3>
+              <p>An evaluation of spiral mixers, double-arm mixers, and continuous mixing systems for industrial bakeries.</p>
+              <a href="blog-detail.html?post=dough-mixing" class="blog-grid-link">Read Article <i class="fas fa-arrow-right"></i></a>
             </div>
           </div>
         </div>
+
       </div>
     </div>
   </section>
@@ -397,8 +333,7 @@
   <footer class="site-footer">
     <div class="container">
       <div class="row g-5">
-
-        <!-- Col 1: About & Info -->
+        <!-- Col 1 -->
         <div class="col-lg-4 text-start">
           <a class="d-flex align-items-center mb-4 text-white" href="index.html">
             <img src="assets/images/logo-light.png" alt="Al Hazmi International Logo" class="logo-img">
@@ -412,8 +347,7 @@
             <a href="#"><i class="fab fa-instagram"></i></a>
           </div>
         </div>
-
-        <!-- Col 2: Quick Links -->
+        <!-- Col 2 -->
         <div class="col-lg-4 text-start">
           <h4 class="footer-widget-title">Quick Links</h4>
           <ul class="footer-links">
@@ -426,8 +360,7 @@
             <li><a href="contact.html"><i class="fas fa-chevron-right fs-10"></i> Contact Us</a></li>
           </ul>
         </div>
-
-        <!-- Col 3: Contact Info -->
+        <!-- Col 3 -->
         <div class="col-lg-4 text-start">
           <h4 class="footer-widget-title">Contact Information</h4>
           <ul class="footer-contact-info">
@@ -436,14 +369,9 @@
             <li><i class="fas fa-envelope"></i> info@alhazmi.com</li>
           </ul>
         </div>
-
       </div>
-
-      <!-- Footer Bottom -->
       <div class="footer-bottom text-center">
-        <div class="d-flex justify-content-center align-items-center flex-wrap gap-3">
-          <p class="mb-0">&copy; 2026 Al Hazmi International. All Rights Reserved.</p>
-        </div>
+        <p class="mb-0">&copy; 2026 Al Hazmi International. All Rights Reserved.</p>
       </div>
     </div>
   </footer>
@@ -486,82 +414,28 @@
   </script>
 
   <!-- JS Scripts -->
-  <!-- Bootstrap Bundle 5.3 JS -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-
-  <!-- AOS Animation JS -->
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 
-  <!-- Core Custom JS -->
+  <!-- Common Functions -->
   <script>
-    // Initialize Scroll Reveal Animations (AOS)
     document.addEventListener('DOMContentLoaded', () => {
+      // AOS Init
       AOS.init({
         duration: 900,
         once: true,
-        offset: 120,
+        offset: 80,
         easing: 'ease-out-cubic'
       });
 
       // Hide Preloader smoothly
       const preloader = document.getElementById('preloader');
-      setTimeout(() => {
-        preloader.style.opacity = '0';
-        preloader.style.visibility = 'hidden';
-      }, 500);
-
-      // Interactive Map Hover Effects (sync hubs with coords list highlight)
-      const hubs = document.querySelectorAll('.presence-item');
-      const hotspots = document.querySelectorAll('.map-hotspot');
-
-      hubs.forEach(hub => {
-        hub.addEventListener('mouseenter', () => {
-          const hubId = hub.getAttribute('data-hub');
-          hotspots.forEach(hot => {
-            if (hot.classList.contains('pin-' + hubId)) {
-              hot.classList.add('active');
-            }
-          });
-        });
-
-        hub.addEventListener('mouseleave', () => {
-          hotspots.forEach(hot => hot.classList.remove('active'));
-        });
-      });
-
-      // Regional Branches Filtering Logic
-      const filterBtns = document.querySelectorAll('.btn-filter');
-      const branchCols = document.querySelectorAll('.branch-col');
-
-      filterBtns.forEach(btn => {
-        btn.addEventListener('click', () => {
-          // Toggle active class
-          filterBtns.forEach(b => b.classList.remove('active'));
-          btn.classList.add('active');
-
-          // Extract region criteria
-          const selectedRegion = btn.id.replace('btn-', '');
-
-          // Filter grid items
-          branchCols.forEach(col => {
-            const colRegion = col.getAttribute('data-region');
-            if (selectedRegion === 'all' || colRegion === selectedRegion) {
-              col.style.display = 'block';
-              setTimeout(() => {
-                col.style.opacity = '1';
-                col.style.transform = 'scale(1)';
-              }, 50);
-            } else {
-              col.style.opacity = '0';
-              col.style.transform = 'scale(0.95)';
-              setTimeout(() => {
-                col.style.display = 'none';
-              }, 300);
-            }
-          });
-        });
-      });
-
+      if (preloader) {
+        setTimeout(() => {
+          preloader.style.opacity = '0';
+          preloader.style.visibility = 'hidden';
+        }, 500);
+      }
     });
 
     // Handle Scroll Effects (Navbar shrinking, Scroll Progress)
@@ -577,8 +451,11 @@
       }
 
       // Update Scroll Progress bar at top
-      const scrollPct = (scrollY / docHeight) * 100;
-      document.getElementById('scroll-progress').style.width = scrollPct + '%';
+      const scrollPct = docHeight > 0 ? (scrollY / docHeight) * 100 : 0;
+      const progressEl = document.getElementById('scroll-progress');
+      if (progressEl) {
+        progressEl.style.width = scrollPct + '%';
+      }
     });
 
     // Handle Quote Modal Submit

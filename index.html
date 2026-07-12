@@ -19,6 +19,240 @@
 
   <!-- Custom Stylesheet -->
   <link rel="stylesheet" href="styles.css">
+  <style>
+    /* Latest Products Carousel Slider Styles */
+    .latest-products-scroll-wrapper {
+      display: flex;
+      gap: 24px;
+      overflow-x: auto;
+      scroll-behavior: smooth;
+      scrollbar-width: none;
+      /* Firefox */
+      padding: 15px 5px;
+    }
+
+    .latest-products-scroll-wrapper::-webkit-scrollbar {
+      display: none;
+      /* Safari / Chrome */
+    }
+
+    .carousel-card-item {
+      flex: 0 0 280px;
+      width: 280px;
+    }
+
+    @media (min-width: 992px) {
+      .carousel-card-item {
+        flex: 0 0 calc(25% - 18px);
+        width: calc(25% - 18px);
+      }
+    }
+
+    /* Branches Carousel Slider Styles */
+    .branches-scroll-wrapper {
+      display: flex;
+      gap: 24px;
+      overflow-x: auto;
+      scroll-behavior: smooth;
+      scrollbar-width: none;
+      padding: 15px 5px;
+    }
+
+    .branches-scroll-wrapper::-webkit-scrollbar {
+      display: none;
+    }
+
+    .branch-card-item {
+      flex: 0 0 290px;
+      width: 290px;
+      transition: all 0.3s;
+    }
+
+    @media (min-width: 992px) {
+      .branch-card-item {
+        flex: 0 0 calc(25% - 18px);
+        width: calc(25% - 18px);
+      }
+    }
+
+    .carousel-nav-btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 44px;
+      height: 44px;
+      background: #ffffff;
+      border: 1px solid var(--border-color);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+      z-index: 10;
+      color: var(--primary-dark);
+      transition: all 0.3s;
+      cursor: pointer;
+    }
+
+    .carousel-nav-btn:hover {
+      background: var(--accent-gold);
+      border-color: var(--accent-gold);
+      color: var(--primary-dark);
+    }
+
+    .prev-btn {
+      left: -22px;
+    }
+
+    .next-btn {
+      right: -22px;
+    }
+
+    /* Keep nav buttons visible on all screens since content overflows on all sizes */
+    .carousel-nav-btn {
+      display: flex !important;
+    }
+
+    /* Matching Products Catalog Card Styles */
+    .catalog-card-img-wrap {
+      height: 180px !important;
+      padding: 15px !important;
+      background-color: #ffffff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-bottom: 1px solid var(--border-color);
+      position: relative;
+    }
+
+    .catalog-card-body {
+      padding: 16px 20px 20px 20px !important;
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+    }
+
+    .badge-brand-tag {
+      background: rgba(253, 183, 36, 0.07);
+      color: var(--accent-gold);
+      border: 1px solid rgba(253, 183, 36, 0.18);
+      font-weight: 800;
+      font-size: 0.65rem;
+      padding: 3px 8px;
+      border-radius: 4px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      font-family: var(--font-headings);
+    }
+
+    .badge-subcat-tag {
+      background: #f8f9fa;
+      color: #6c757d;
+      border: 1px solid #e9ecef;
+      font-weight: 600;
+      font-size: 0.65rem;
+      padding: 3px 8px;
+      border-radius: 4px;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      overflow: hidden;
+      max-width: 140px;
+    }
+
+    .catalog-card-title {
+      font-size: 1.05rem !important;
+      font-weight: 700 !important;
+      color: var(--primary-dark) !important;
+      margin-top: 4px !important;
+      margin-bottom: 8px !important;
+      line-height: 1.35 !important;
+      display: -webkit-box;
+      -webkit-line-clamp: 1;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    /* Machine Finder Card styling for index.html */
+    .mf-card {
+      position: relative;
+      border-radius: 16px;
+      overflow: hidden;
+      aspect-ratio: 1/1.08;
+      cursor: pointer;
+      border: 1px solid var(--border-color);
+      background: var(--primary-dark);
+      box-shadow: 0 8px 20px -12px rgba(21, 22, 24, 0.15);
+      transition: transform .32s cubic-bezier(.22, 1, .36, 1), box-shadow .32s cubic-bezier(.22, 1, .36, 1), border-color .32s cubic-bezier(.22, 1, .36, 1);
+      -webkit-tap-highlight-color: transparent;
+      display: block;
+      width: 100%;
+      padding: 0;
+    }
+
+    .mf-card img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform .5s cubic-bezier(.22, 1, .36, 1);
+    }
+
+    .mf-card::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(21, 22, 24, 0) 35%, rgba(21, 22, 24, 0.86) 100%);
+      transition: opacity .3s cubic-bezier(.22, 1, .36, 1);
+      z-index: 1;
+    }
+
+    .mf-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 22px 34px -16px rgba(21, 22, 24, 0.35);
+      border-color: rgba(253, 183, 36, 0.6);
+    }
+
+    .mf-card:hover img {
+      transform: scale(1.08);
+    }
+
+    .mf-card-code {
+      position: absolute;
+      top: 12px;
+      left: 12px;
+      font-family: monospace;
+      font-size: 10.5px;
+      font-weight: 600;
+      letter-spacing: .05em;
+      color: rgba(255, 255, 255, 0.85);
+      background: rgba(21, 22, 24, 0.5);
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
+      padding: 4px 8px;
+      border-radius: 6px;
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      z-index: 2;
+    }
+
+    .mf-card-name {
+      position: absolute;
+      left: 14px;
+      right: 14px;
+      bottom: 13px;
+      z-index: 2;
+      color: #ffffff;
+      font-family: var(--font-headings);
+      font-weight: 700;
+      font-size: 14px;
+      letter-spacing: .01em;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin: 0;
+    }
+  </style>
 </head>
 
 <body data-bs-spy="scroll" data-bs-target="#navbar" data-bs-offset="100">
@@ -176,28 +410,7 @@
             </a>
           </div>
 
-          <!-- Social Proof / Customer Reviews -->
-          <div class="hero-trust-badge d-flex align-items-center gap-3 mt-5">
-            <div class="avatar-group">
-              <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=80&q=80"
-                alt="Customer 1">
-              <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=80&q=80"
-                alt="Customer 2">
-              <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=80&q=80"
-                alt="Customer 3">
-              <div class="plus-avatar">+</div>
-            </div>
-            <div class="trust-text text-start">
-              <div class="stars">
-                <i class="fas fa-star text-warning"></i>
-                <i class="fas fa-star text-warning"></i>
-                <i class="fas fa-star text-warning"></i>
-                <i class="fas fa-star text-warning"></i>
-                <i class="fas fa-star text-warning"></i>
-              </div>
-              <p class="mb-0 text-white-50 small fw-bold mt-1">100+ Happy Customer.</p>
-            </div>
-          </div>
+
 
         </div>
       </div>
@@ -205,22 +418,7 @@
 
     <!-- Rotating circular badge in the bottom-right of the hero -->
     <div class="rotating-badge-wrap d-none d-md-flex">
-      <svg class="rotating-badge" viewBox="0 0 150 150" width="150" height="150">
-        <path id="circlePath" d="M 75, 75 m -60, 0 a 60,60 0 1,1 120,0 a 60,60 0 1,1 -120,0" fill="none" />
-        <text fill="rgba(255,255,255,0.4)">
-          <textPath href="#circlePath" startOffset="0%">
-            • AL HAZMI SOLUTIONS • INDUSTRIAL SOLUTIONS
-          </textPath>
-        </text>
-      </svg>
-      <div class="badge-logo-center">
-        <!-- Stylized tech/industry gear icon -->
-        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5"
-          stroke-linecap="round" stroke-linejoin="round">
-          <path
-            d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41" />
-        </svg>
-      </div>
+      <img src="assets/images/brand-icon.png" alt="Al Hazmi Brand Icon" class="rotating-badge">
     </div>
 
     <!-- Mouse Scroll Down indicator -->
@@ -235,7 +433,7 @@
         <div class="row g-4">
 
           <!-- Fact 1 -->
-          <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="100">
+          <div class="col-lg-3 col-md-6 col-6" data-aos="fade-up" data-aos-delay="100">
             <div class="fact-card">
               <div class="fact-icon"><i class="fas fa-history"></i></div>
               <div class="fact-info">
@@ -246,7 +444,7 @@
           </div>
 
           <!-- Fact 2 -->
-          <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="200">
+          <div class="col-lg-3 col-md-6 col-6" data-aos="fade-up" data-aos-delay="200">
             <div class="fact-card">
               <div class="fact-icon"><i class="fas fa-headset"></i></div>
               <div class="fact-info">
@@ -257,7 +455,7 @@
           </div>
 
           <!-- Fact 3 -->
-          <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="300">
+          <div class="col-lg-3 col-md-6 col-6" data-aos="fade-up" data-aos-delay="300">
             <div class="fact-card">
               <div class="fact-icon"><i class="fas fa-tools"></i></div>
               <div class="fact-info">
@@ -268,7 +466,7 @@
           </div>
 
           <!-- Fact 4 -->
-          <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="400">
+          <div class="col-lg-3 col-md-6 col-6" data-aos="fade-up" data-aos-delay="400">
             <div class="fact-card">
               <div class="fact-icon"><i class="fas fa-comments"></i></div>
               <div class="fact-info">
@@ -384,12 +582,11 @@
 
       <div class="row g-4 ">
         <!-- 1. Industrial Line -->
-        <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
+        <div class="col-lg-4 col-md-6 col-6" data-aos="fade-up" data-aos-delay="100">
           <div class="product-card">
             <div class="product-img-wrap">
               <span class="category-count-badge">12+ Systems</span>
-              <img src="https://images.unsplash.com/photo-1616401784845-180882ba9ba8?auto=format&fit=crop&w=600&q=80"
-                alt="Industrial Line Conveyors">
+              <img src="assets/images/categories/industrial_line.png" alt="Industrial Line Conveyors">
               <div class="product-overlay-content text-start">
                 <h3>Industrial Line</h3>
                 <a href="products.html?category=industrial_line" class="product-action-link">View Details <i
@@ -400,12 +597,11 @@
         </div>
 
         <!-- 2. Bakery Equipment -->
-        <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
+        <div class="col-lg-4 col-md-6 col-6" data-aos="fade-up" data-aos-delay="200">
           <div class="product-card">
             <div class="product-img-wrap">
               <span class="category-count-badge">48+ Products</span>
-              <img src="https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=600&q=80"
-                alt="Bakery Equipment Mixer">
+              <img src="assets/images/categories/bakery_equipment.png" alt="Bakery Equipment Rotary Oven & Mixer">
               <div class="product-overlay-content text-start">
                 <h3>Bakery Equipment</h3>
                 <a href="products.html?category=bakery" class="product-action-link">View Details <i
@@ -416,12 +612,11 @@
         </div>
 
         <!-- 3. Pastry Equipment -->
-        <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="300">
+        <div class="col-lg-4 col-md-6 col-6" data-aos="fade-up" data-aos-delay="300">
           <div class="product-card">
             <div class="product-img-wrap">
               <span class="category-count-badge">32+ Products</span>
-              <img src="https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?auto=format&fit=crop&w=600&q=80"
-                alt="Pastry Equipment Machine">
+              <img src="assets/images/categories/pastry_equipment.png" alt="Pastry Sheeter & Laminator Machine">
               <div class="product-overlay-content text-start">
                 <h3>Pastry Equipment</h3>
                 <a href="products.html?category=pastry" class="product-action-link">View Details <i
@@ -432,11 +627,11 @@
         </div>
 
         <!-- 4. Chocolate Machine -->
-        <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="400">
+        <div class="col-lg-4 col-md-6 col-6" data-aos="fade-up" data-aos-delay="400">
           <div class="product-card">
             <div class="product-img-wrap">
               <span class="category-count-badge">18+ Products</span>
-              <img src="assets/images/chocolate.png" alt="Chocolate Machine">
+              <img src="assets/images/categories/chocolate_machine.png" alt="Industrial Chocolate Tempering Machine">
               <div class="product-overlay-content text-start">
                 <h3>Chocolate Machine</h3>
                 <a href="products.html?category=chocolate" class="product-action-link">View Details <i
@@ -447,12 +642,11 @@
         </div>
 
         <!-- 5. Kitchen Equipment -->
-        <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="500">
+        <div class="col-lg-4 col-md-6 col-6" data-aos="fade-up" data-aos-delay="500">
           <div class="product-card">
             <div class="product-img-wrap">
               <span class="category-count-badge">28+ Products</span>
-              <img src="https://images.unsplash.com/photo-1556910103-1c02745aae4d?auto=format&fit=crop&w=600&q=80"
-                alt="Kitchen Equipment">
+              <img src="assets/images/categories/kitchen_equipment.png" alt="Commercial Kitchen Stainless Equipment">
               <div class="product-overlay-content text-start">
                 <h3>Kitchen Equipment</h3>
                 <a href="products.html?category=kitchen" class="product-action-link">View Details <i
@@ -463,12 +657,11 @@
         </div>
 
         <!-- 6. Packing Machine -->
-        <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="600">
+        <div class="col-lg-4 col-md-6 col-6" data-aos="fade-up" data-aos-delay="600">
           <div class="product-card">
             <div class="product-img-wrap">
               <span class="category-count-badge">15+ Systems</span>
-              <img src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=600&q=80"
-                alt="Packing Machine">
+              <img src="assets/images/categories/packing_machine.png" alt="Automated Flow-Wrap Packing Machine">
               <div class="product-overlay-content text-start">
                 <h3>Packing Machine</h3>
                 <a href="products.html?category=packing_machine" class="product-action-link">View Details <i
@@ -479,12 +672,11 @@
         </div>
 
         <!-- 7. Packaging Materials -->
-        <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="700">
+        <div class="col-lg-4 col-md-6 col-6" data-aos="fade-up" data-aos-delay="700">
           <div class="product-card">
             <div class="product-img-wrap">
               <span class="category-count-badge">50+ Items</span>
-              <img src="https://images.unsplash.com/photo-1530587191325-3db32d826c18?auto=format&fit=crop&w=600&q=80"
-                alt="Packaging Materials">
+              <img src="assets/images/categories/packaging_materials.png" alt="Packaging Film & Roll System">
               <div class="product-overlay-content text-start">
                 <h3>Packaging Materials</h3>
                 <a href="products.html?category=packaging_materials" class="product-action-link">View Details <i
@@ -495,12 +687,12 @@
         </div>
 
         <!-- 8. Supermarket solution -->
-        <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="800">
+        <div class="col-lg-4 col-md-6 col-6" data-aos="fade-up" data-aos-delay="800">
           <div class="product-card">
             <div class="product-img-wrap">
               <span class="category-count-badge">20+ Systems</span>
-              <img src="https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&w=600&q=80"
-                alt="Supermarket Solutions">
+              <img src="assets/images/categories/supermarket_solution.png"
+                alt="Commercial Supermarket Refrigeration & Display Equipment">
               <div class="product-overlay-content text-start">
                 <h3>Supermarket solution</h3>
                 <a href="products.html?category=supermarket" class="product-action-link">View Details <i
@@ -511,12 +703,12 @@
         </div>
 
         <!-- 9. Used Machine -->
-        <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="900">
+        <div class="col-lg-4 col-md-6 col-6" data-aos="fade-up" data-aos-delay="900">
           <div class="product-card">
             <div class="product-img-wrap">
               <span class="category-count-badge">10+ Refurbished</span>
-              <img src="https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?auto=format&fit=crop&w=600&q=80"
-                alt="Used Machines">
+              <img src="assets/images/categories/used_machine.png"
+                alt="Refurbished Industrial Stainless Steel Machinery">
               <div class="product-overlay-content text-start">
                 <h3>Used Machine</h3>
                 <a href="products.html?category=used_machine" class="product-action-link">View Details <i
@@ -529,7 +721,7 @@
 
       <!-- View All Products CTA Button -->
       <div class="text-center mt-5 pt-3" data-aos="fade-up">
-        <a href="products.html" class="btn-explore-more">
+        <a href="products.html" class="btn btn-gold-catalog px-5 py-3">
           <span>View All Products</span>
           <span class="arrow-box"><i class="fas fa-arrow-right"></i></span>
         </a>
@@ -960,7 +1152,7 @@
 
   <!-- Find the Right Machine Section -->
   <section class="section-padding bg-dark text-white position-relative overflow-hidden"
-    style="background-color: #151618 !important; border-top: 1px solid rgba(255,255,255,0.05); border-bottom: 1px solid rgba(255,255,255,0.05);">
+    style="background-color: var(--primary-dark) !important; border-top: 1px solid rgba(255,255,255,0.05); border-bottom: 1px solid rgba(255,255,255,0.05);">
     <!-- Gold accent blur blobs for a premium dark mode glow -->
     <div
       style="position: absolute; top: -100px; left: -100px; width: 300px; height: 300px; background: rgba(253, 183, 36, 0.08); border-radius: 50%; filter: blur(80px); pointer-events: none;">
@@ -973,7 +1165,7 @@
       <div class="row align-items-center g-5">
 
         <!-- Left: Text & CTA -->
-        <div class="col-lg-6 text-start" data-aos="fade-right">
+        <div class="col-lg-5 text-start" data-aos="fade-right">
           <span class="section-tag d-inline-block p-2
            rounded"
             style="background: rgba(253, 183, 36, 0.1); color: var(--accent-gold); border: 1px solid rgba(253, 183, 36, 0.2);">Product
@@ -998,85 +1190,303 @@
         </div>
 
         <!-- Right: Interactive Product Grid -->
-        <div class="col-lg-6" data-aos="fade-left">
+        <div class="col-lg-7" data-aos="fade-left">
           <div class="row g-3">
 
-            <!-- Card 1: Breads & Loaves -->
-            <div class="col-6 col-sm-6">
-              <a href="products.html?category=bakery" class="product-finder-card text-decoration-none">
-                <div class="finder-card-bg"
-                  style="background-image: url('https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=400&q=80');">
-                </div>
-                <div class="finder-card-overlay"></div>
-                <div class="finder-card-content text-start">
-                  <div class="finder-card-icon"><i class="fas fa-bread-slice"></i></div>
-                  <div>
-                    <h5 class="fw-bold mb-1 text-white" style="font-size: 0.95rem;">Breads & Loaves</h5>
-                    <p class="mb-0 text-white-50" style="font-size: 11px; line-height: 1.2;">Deck ovens, rounders &
-                      mixers</p>
-                  </div>
-                  <span class="finder-card-arrow"><i class="fas fa-chevron-right"></i></span>
-                </div>
+            <!-- Card 1: Bread Lines -->
+            <div class="col-6 col-sm-4">
+              <a href="machine-finder-section.html?product=bread" class="mf-card text-decoration-none">
+                <img src="https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=600&q=80"
+                  alt="Bread Lines" loading="lazy">
+                <span class="mf-card-code">PRD.01</span>
+                <span class="mf-card-name">
+                  Bread Lines <i class="fas fa-arrow-right"></i>
+                </span>
               </a>
             </div>
 
-            <!-- Card 2: Croissants & Pastry -->
-            <div class="col-6 col-sm-6">
-              <a href="products.html?category=pastry" class="product-finder-card text-decoration-none">
-                <div class="finder-card-bg"
-                  style="background-image: url('https://images.unsplash.com/photo-1555507036-ab1f4038808a?auto=format&fit=crop&w=400&q=80');">
-                </div>
-                <div class="finder-card-overlay"></div>
-                <div class="finder-card-content text-start">
-                  <div class="finder-card-icon"><i class="fas fa-cookie"></i></div>
-                  <div>
-                    <h5 class="fw-bold mb-1 text-white" style="font-size: 0.95rem;">Croissants & Pastry</h5>
-                    <p class="mb-0 text-white-50" style="font-size: 11px; line-height: 1.2;">Laminators, sheeters &
-                      depositors</p>
-                  </div>
-                  <span class="finder-card-arrow"><i class="fas fa-chevron-right"></i></span>
-                </div>
+            <!-- Card 2: Cake Mixers -->
+            <div class="col-6 col-sm-4">
+              <a href="machine-finder-section.html?product=cakes" class="mf-card text-decoration-none">
+                <img src="https://images.unsplash.com/photo-1578683010236-d716f9a3f461?auto=format&fit=crop&w=600&q=80"
+                  alt="Cake Mixers" loading="lazy">
+                <span class="mf-card-code">PRD.02</span>
+                <span class="mf-card-name">
+                  Cake Mixers <i class="fas fa-arrow-right"></i>
+                </span>
               </a>
             </div>
 
-            <!-- Card 3: Artisan Chocolate -->
-            <div class="col-6 col-sm-6">
-              <a href="products.html?category=chocolate" class="product-finder-card text-decoration-none">
-                <div class="finder-card-bg" style="background-image: url('assets/images/chocolate.png');"></div>
-                <div class="finder-card-overlay"></div>
-                <div class="finder-card-content text-start">
-                  <div class="finder-card-icon"><i class="fas fa-candy-cane"></i></div>
-                  <div>
-                    <h5 class="fw-bold mb-1 text-white" style="font-size: 0.95rem;">Artisan Chocolate</h5>
-                    <p class="mb-0 text-white-50" style="font-size: 11px; line-height: 1.2;">Tempering, melting &
-                      molding</p>
-                  </div>
-                  <span class="finder-card-arrow"><i class="fas fa-chevron-right"></i></span>
-                </div>
+            <!-- Card 3: Cookie Depositors -->
+            <div class="col-6 col-sm-4">
+              <a href="machine-finder-section.html?product=cookies" class="mf-card text-decoration-none">
+                <img src="https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?auto=format&fit=crop&w=600&q=80"
+                  alt="Cookie Depositors" loading="lazy">
+                <span class="mf-card-code">PRD.03</span>
+                <span class="mf-card-name">
+                  Cookie Depositors <i class="fas fa-arrow-right"></i>
+                </span>
               </a>
             </div>
 
-            <!-- Card 4: High-Speed Bun Lines -->
-            <div class="col-6 col-sm-6">
-              <a href="products.html?category=production" class="product-finder-card text-decoration-none">
-                <div class="finder-card-bg"
-                  style="background-image: url('https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?auto=format&fit=crop&w=400&q=80');">
-                </div>
-                <div class="finder-card-overlay"></div>
-                <div class="finder-card-content text-start">
-                  <div class="finder-card-icon"><i class="fas fa-cogs"></i></div>
-                  <div>
-                    <h5 class="fw-bold mb-1 text-white" style="font-size: 0.95rem;">Bun & Roll Lines</h5>
-                    <p class="mb-0 text-white-50" style="font-size: 11px; line-height: 1.2;">Automated divider & rounder
-                      lines</p>
-                  </div>
-                  <span class="finder-card-arrow"><i class="fas fa-chevron-right"></i></span>
-                </div>
+
+
+            <!-- Card 5: Laminators -->
+            <div class="col-6 col-sm-4">
+              <a href="machine-finder-section.html?product=croissant" class="mf-card text-decoration-none">
+                <img src="https://images.unsplash.com/photo-1581092795360-fd1ca04f0952?auto=format&fit=crop&w=600&q=80"
+                  alt="Laminators" loading="lazy">
+                <span class="mf-card-code">PRD.05</span>
+                <span class="mf-card-name">
+                  Laminators <i class="fas fa-arrow-right"></i>
+                </span>
               </a>
             </div>
+
+            <!-- Card 6: Donut Fryer Lines -->
+            <div class="col-6 col-sm-4">
+              <a href="machine-finder-section.html?product=donuts" class="mf-card text-decoration-none">
+                <img src="https://images.unsplash.com/photo-1616401784845-180882ba9ba8?auto=format&fit=crop&w=600&q=80"
+                  alt="Donut Fryer Lines" loading="lazy">
+                <span class="mf-card-code">PRD.06</span>
+                <span class="mf-card-name">
+                  Donut Fryer Lines <i class="fas fa-arrow-right"></i>
+                </span>
+              </a>
+            </div>
+
+            <!-- Card 7: Muffin Depositors -->
+            <div class="col-6 col-sm-4">
+              <a href="machine-finder-section.html?product=muffins" class="mf-card text-decoration-none">
+                <img src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&w=600&q=80"
+                  alt="Muffin Depositors" loading="lazy">
+                <span class="mf-card-code">PRD.07</span>
+                <span class="mf-card-name">
+                  Muffin Depositors <i class="fas fa-arrow-right"></i>
+                </span>
+              </a>
+            </div>
+
+
+            <!-- Card 12: Flow Pack Wrappers -->
+
 
           </div>
         </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Latest Product List Carousel Section -->
+  <section class="section-padding bg-light" id="latest-products">
+    <div class="container">
+      <div class="text-center mb-5" data-aos="fade-up">
+
+        <h2 class="section-title-large text-dark fw-bold mt-3">Latest Machinery Systems</h2>
+        <div
+          style="width: 80px; height: 4px; background-color: var(--accent-gold); margin: 15px auto 0; border-radius: 2px;">
+        </div>
+      </div>
+
+      <div class="position-relative" data-aos="fade-up">
+        <!-- Navigation Buttons for Scroll Carousel -->
+        <button class="carousel-nav-btn prev-btn" id="latest-prev-btn"><i class="fas fa-chevron-left"></i></button>
+        <button class="carousel-nav-btn next-btn" id="latest-next-btn"><i class="fas fa-chevron-right"></i></button>
+
+        <div class="latest-products-scroll-wrapper" id="latest-products-scroll">
+
+          <!-- Product Card 1 -->
+          <div class="carousel-card-item">
+            <div class="catalog-card h-100 d-flex flex-column"
+              style="background: #ffffff; border: 1px solid var(--border-color); border-radius: 20px; overflow: hidden; transition: all 0.3s;">
+              <div class="catalog-card-img-wrap">
+                <img src="assets/images/products/1.webp" alt="Rotor Convection Oven"
+                  style="max-width: 100%; max-height: 100%; object-fit: contain;">
+              </div>
+              <div class="catalog-card-body">
+                <div class="d-flex align-items-center gap-2 mb-2">
+                  <span class="badge-brand-tag">Tagliavini</span>
+                  <span class="badge-subcat-tag" title="Convection Ovens">Convection Ovens</span>
+                </div>
+                <h4 class="catalog-card-title">Rotor</h4>
+                <div class="mt-auto">
+                  <a href="product-detail.html?product=Tagliavini%20Rotor"
+                    class="btn btn-gold-catalog w-100 text-center">
+                    View Details <i class="fas fa-arrow-right ms-1 fs-11"></i>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Product Card 2 -->
+          <div class="carousel-card-item">
+            <div class="catalog-card h-100 d-flex flex-column"
+              style="background: #ffffff; border: 1px solid var(--border-color); border-radius: 20px; overflow: hidden; transition: all 0.3s;">
+              <div class="catalog-card-img-wrap">
+                <img src="assets/images/products/2.webp" alt="One Tempering Machine"
+                  style="max-width: 100%; max-height: 100%; object-fit: contain;">
+              </div>
+              <div class="catalog-card-body">
+                <div class="d-flex align-items-center gap-2 mb-2">
+                  <span class="badge-brand-tag">Pomati</span>
+                  <span class="badge-subcat-tag" title="Tempering Machines">Tempering Machines</span>
+                </div>
+                <h4 class="catalog-card-title">One</h4>
+                <div class="mt-auto">
+                  <a href="product-detail.html?product=Pomati%20One" class="btn btn-gold-catalog w-100 text-center">
+                    View Details <i class="fas fa-arrow-right ms-1 fs-11"></i>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Product Card 3 -->
+          <div class="carousel-card-item">
+            <div class="catalog-card h-100 d-flex flex-column"
+              style="background: #ffffff; border: 1px solid var(--border-color); border-radius: 20px; overflow: hidden; transition: all 0.3s;">
+              <div class="catalog-card-img-wrap">
+                <img src="assets/images/products/3.png" alt="Rollmat Moulding Machine"
+                  style="max-width: 100%; max-height: 100%; object-fit: contain;">
+              </div>
+              <div class="catalog-card-body">
+                <div class="d-flex align-items-center gap-2 mb-2">
+                  <span class="badge-brand-tag">WP</span>
+                  <span class="badge-subcat-tag" title="Roll Lines">Roll Lines</span>
+                </div>
+                <h4 class="catalog-card-title">Rollmat</h4>
+                <div class="mt-auto">
+                  <a href="product-detail.html?product=WP%20Rollmat" class="btn btn-gold-catalog w-100 text-center">
+                    View Details <i class="fas fa-arrow-right ms-1 fs-11"></i>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Product Card 4 -->
+          <div class="carousel-card-item">
+            <div class="catalog-card h-100 d-flex flex-column"
+              style="background: #ffffff; border: 1px solid var(--border-color); border-radius: 20px; overflow: hidden; transition: all 0.3s;">
+              <div class="catalog-card-img-wrap">
+                <img src="assets/images/products/4.jpg" alt="Flowwrap Packaging Machine"
+                  style="max-width: 100%; max-height: 100%; object-fit: contain;">
+              </div>
+              <div class="catalog-card-body">
+                <div class="d-flex align-items-center gap-2 mb-2">
+                  <span class="badge-brand-tag">Lafer Pack</span>
+                  <span class="badge-subcat-tag" title="Horizontal Packaging">Horizontal Packaging</span>
+                </div>
+                <h4 class="catalog-card-title">Flowwrap</h4>
+                <div class="mt-auto">
+                  <a href="product-detail.html?product=Lafer%20Pack%20Flowwrap"
+                    class="btn btn-gold-catalog w-100 text-center">
+                    View Details <i class="fas fa-arrow-right ms-1 fs-11"></i>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Product Card 5 -->
+          <div class="carousel-card-item">
+            <div class="catalog-card h-100 d-flex flex-column"
+              style="background: #ffffff; border: 1px solid var(--border-color); border-radius: 20px; overflow: hidden; transition: all 0.3s;">
+              <div class="catalog-card-img-wrap">
+                <img src="assets/images/products/4.jpg" alt="Modular Deck Oven"
+                  style="max-width: 100%; max-height: 100%; object-fit: contain;">
+              </div>
+              <div class="catalog-card-body">
+                <div class="d-flex align-items-center gap-2 mb-2">
+                  <span class="badge-brand-tag">Tagliavini</span>
+                  <span class="badge-subcat-tag" title="Deck Electric Ovens">Deck Electric Ovens</span>
+                </div>
+                <h4 class="catalog-card-title">Modular</h4>
+                <div class="mt-auto">
+                  <a href="product-detail.html?product=Tagliavini%20Modular"
+                    class="btn btn-gold-catalog w-100 text-center">
+                    View Details <i class="fas fa-arrow-right ms-1 fs-11"></i>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Product Card 6 -->
+          <div class="carousel-card-item">
+            <div class="catalog-card h-100 d-flex flex-column"
+              style="background: #ffffff; border: 1px solid var(--border-color); border-radius: 20px; overflow: hidden; transition: all 0.3s;">
+              <div class="catalog-card-img-wrap">
+                <img src="assets/images/products/3.png" alt="Sfogly Dough Sheeter"
+                  style="max-width: 100%; max-height: 100%; object-fit: contain;">
+              </div>
+              <div class="catalog-card-body">
+                <div class="d-flex align-items-center gap-2 mb-2">
+                  <span class="badge-brand-tag">Pomati</span>
+                  <span class="badge-subcat-tag" title="Pastry Sheeters">Pastry Sheeters</span>
+                </div>
+                <h4 class="catalog-card-title">Sfogly</h4>
+                <div class="mt-auto">
+                  <a href="product-detail.html?product=Pomati%20Sfogly" class="btn btn-gold-catalog w-100 text-center">
+                    View Details <i class="fas fa-arrow-right ms-1 fs-11"></i>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Product Card 7 -->
+          <div class="carousel-card-item">
+            <div class="catalog-card h-100 d-flex flex-column"
+              style="background: #ffffff; border: 1px solid var(--border-color); border-radius: 20px; overflow: hidden; transition: all 0.3s;">
+              <div class="catalog-card-img-wrap">
+                <img src="assets/images/products/2.webp" alt="Sabitech Arabic Bread Line"
+                  style="max-width: 100%; max-height: 100%; object-fit: contain;">
+              </div>
+              <div class="catalog-card-body">
+                <div class="d-flex align-items-center gap-2 mb-2">
+                  <span class="badge-brand-tag">Sabitech</span>
+                  <span class="badge-subcat-tag" title="Pita & Flatbread Lines">Pita & Flatbread Lines</span>
+                </div>
+                <h4 class="catalog-card-title">Arabic Bread Line</h4>
+                <div class="mt-auto">
+                  <a href="product-detail.html?product=Sabitech%20Arabic%20Bread%20Production%20Line"
+                    class="btn btn-gold-catalog w-100 text-center">
+                    View Details <i class="fas fa-arrow-right ms-1 fs-11"></i>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Product Card 8 -->
+          <div class="carousel-card-item">
+            <div class="catalog-card h-100 d-flex flex-column"
+              style="background: #ffffff; border: 1px solid var(--border-color); border-radius: 20px; overflow: hidden; transition: all 0.3s;">
+              <div class="catalog-card-img-wrap">
+                <img src="assets/images/products/1.webp" alt="Pratika Shrink Wrapper"
+                  style="max-width: 100%; max-height: 100%; object-fit: contain;">
+              </div>
+              <div class="catalog-card-body">
+                <div class="d-flex align-items-center gap-2 mb-2">
+                  <span class="badge-brand-tag">Minipack</span>
+                  <span class="badge-subcat-tag" title="Shrink Wrap Machines">Shrink Wrap Machines</span>
+                </div>
+                <h4 class="catalog-card-title">Pratika 55 Smart</h4>
+                <div class="mt-auto">
+                  <a href="product-detail.html?product=Minipack%20Pratika%2055%20Smart%20Shrink%20Wrapper"
+                    class="btn btn-gold-catalog w-100 text-center">
+                    View Details <i class="fas fa-arrow-right ms-1 fs-11"></i>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
 
       </div>
     </div>
@@ -1097,138 +1507,159 @@
         </div>
       </div>
 
-      <div class="row g-4 mt-2">
+      <!-- Carousel Slider container -->
+      <div class="position-relative mt-4">
+        <!-- Navigation Buttons -->
+        <button class="carousel-nav-btn prev-btn" id="branches-prev-btn" aria-label="Previous Slide">
+          <i class="fas fa-chevron-left"></i>
+        </button>
+        <button class="carousel-nav-btn next-btn" id="branches-next-btn" aria-label="Next Slide">
+          <i class="fas fa-chevron-right"></i>
+        </button>
 
-        <!-- Jeddah -->
-        <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
-          <div class="branch-card text-start d-flex flex-column h-100">
-            <div class="branch-map-container">
-              <div class="branch-coord-badge">21.5435° N, 39.1728° E</div>
-              <iframe
-                src="https://maps.google.com/maps?q=Al%20Amir%20Muhammad%20Bin%20AbdulAziz%20Street,%20Al%20aziziya,%20Jeddah,%20KSA&t=&z=13&ie=UTF8&iwloc=&output=embed"
-                width="100%" height="100%" style="border:0;" allowfullscreen loading="lazy"></iframe>
-            </div>
-            <div class="branch-card-body d-flex flex-column justify-content-between flex-grow-1">
-              <div>
-                <h4><i class="fas fa-map-marker-alt"></i> Jeddah</h4>
-                <p class="branch-address text-muted">Al Amir Muhammad Bin AbdulAziz Street, Al Aziziya, Jeddah, KSA</p>
-                <div class="branch-details-row">
-                  <span><i class="fas fa-phone-alt"></i> +966 12 600 1100</span>
-                  <span><i class="fas fa-clock"></i> Sun - Thu: 8 AM - 5 PM</span>
-                </div>
+        <!-- Slider Wrapper -->
+        <div class="branches-scroll-wrapper" id="branchesScrollWrapper">
+
+          <!-- Jeddah -->
+          <div class="branch-card-item">
+            <div class="branch-card text-start d-flex flex-column h-100">
+              <div class="branch-map-container">
+                <div class="branch-coord-badge">21.5435° N, 39.1728° E</div>
+                <iframe
+                  src="https://maps.google.com/maps?q=Al%20Amir%20Muhammad%20Bin%20AbdulAziz%20Street,%20Al%20aziziya,%20Jeddah,%20KSA&t=&z=13&ie=UTF8&iwloc=&output=embed"
+                  width="100%" height="100%" style="border:0;" allowfullscreen loading="lazy"></iframe>
               </div>
-              <a href="https://maps.google.com/maps?q=Al%20Amir%20Muhammad%20Bin%20AbdulAziz%20Street,%20Al%20aziziya,%20Jeddah,%20KSA"
-                target="_blank" class="branch-btn-directions">
-                View Directions <i class="fas fa-external-link-alt ms-1"></i>
-              </a>
+              <div class="branch-card-body d-flex flex-column justify-content-between flex-grow-1">
+                <div>
+                  <h4><i class="fas fa-map-marker-alt"></i> Jeddah</h4>
+                  <p class="branch-address text-muted">Al Amir Muhammad Bin AbdulAziz Street, Al Aziziya, Jeddah, KSA
+                  </p>
+                  <div class="branch-details-row">
+                    <span><i class="fas fa-phone-alt"></i> +966 12 600 1100</span>
+                    <span><i class="fas fa-clock"></i> Sun - Thu: 8 AM - 5 PM</span>
+                  </div>
+                </div>
+                <a href="https://maps.google.com/maps?q=Al%20Amir%20Muhammad%20Bin%20AbdulAziz%20Street,%20Al%20aziziya,%20Jeddah,%20KSA"
+                  target="_blank" class="branch-btn-directions">
+                  View Directions <i class="fas fa-external-link-alt ms-1"></i>
+                </a>
+              </div>
             </div>
           </div>
-        </div>
 
-        <!-- Riyadh -->
-        <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
-          <div class="branch-card text-start d-flex flex-column h-100">
-            <div class="branch-map-container">
-              <div class="branch-coord-badge">24.7136° N, 46.6753° E</div>
-              <iframe
-                src="https://maps.google.com/maps?q=Prince%20Mohmmed%20Bin%20Abdulrahman%20Street,%20Riyadh,%20KSA&t=&z=13&ie=UTF8&iwloc=&output=embed"
-                width="100%" height="100%" style="border:0;" allowfullscreen loading="lazy"></iframe>
-            </div>
-            <div class="branch-card-body d-flex flex-column justify-content-between flex-grow-1">
-              <div>
-                <h4><i class="fas fa-map-marker-alt"></i> Riyadh</h4>
-                <p class="branch-address text-muted">Prince Mohmmed Bin Abdulrahman Street, Riyadh, KSA</p>
-                <div class="branch-details-row">
-                  <span><i class="fas fa-phone-alt"></i> +966 11 400 2200</span>
-                  <span><i class="fas fa-clock"></i> Sun - Thu: 8 AM - 5 PM</span>
-                </div>
+          <!-- Riyadh -->
+          <div class="branch-card-item">
+            <div class="branch-card text-start d-flex flex-column h-100">
+              <div class="branch-map-container">
+                <div class="branch-coord-badge">24.7136° N, 46.6753° E</div>
+                <iframe
+                  src="https://maps.google.com/maps?q=Prince%20Mohmmed%20Bin%20Abdulrahman%20Street,%20Riyadh,%20KSA&t=&z=13&ie=UTF8&iwloc=&output=embed"
+                  width="100%" height="100%" style="border:0;" allowfullscreen loading="lazy"></iframe>
               </div>
-              <a href="https://maps.google.com/maps?q=Prince%20Mohmmed%20Bin%20Abdulrahman%20Street,%20Riyadh,%20KSA"
-                target="_blank" class="branch-btn-directions">
-                View Directions <i class="fas fa-external-link-alt ms-1"></i>
-              </a>
+              <div class="branch-card-body d-flex flex-column justify-content-between flex-grow-1">
+                <div>
+                  <h4><i class="fas fa-map-marker-alt"></i> Riyadh</h4>
+                  <p class="branch-address text-muted">Prince Mohmmed Bin Abdulrahman Street, Riyadh, KSA</p>
+                  <div class="branch-details-row">
+                    <span><i class="fas fa-phone-alt"></i> +966 11 400 2200</span>
+                    <span><i class="fas fa-clock"></i> Sun - Thu: 8 AM - 5 PM</span>
+                  </div>
+                </div>
+                <a href="https://maps.google.com/maps?q=Prince%20Mohmmed%20Bin%20Abdulrahman%20Street,%20Riyadh,%20KSA"
+                  target="_blank" class="branch-btn-directions">
+                  View Directions <i class="fas fa-external-link-alt ms-1"></i>
+                </a>
+              </div>
             </div>
           </div>
-        </div>
 
-        <!-- Dammam -->
-        <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="300">
-          <div class="branch-card text-start d-flex flex-column h-100">
-            <div class="branch-map-container">
-              <div class="branch-coord-badge">26.4207° N, 50.0888° E</div>
-              <iframe
-                src="https://maps.google.com/maps?q=King%20Faisal%20Road,%20Dammam,%20KSA&t=&z=13&ie=UTF8&iwloc=&output=embed"
-                width="100%" height="100%" style="border:0;" allowfullscreen loading="lazy"></iframe>
-            </div>
-            <div class="branch-card-body d-flex flex-column justify-content-between flex-grow-1">
-              <div>
-                <h4><i class="fas fa-map-marker-alt"></i> Dammam</h4>
-                <p class="branch-address text-muted">King Faisal Road, Dammam, KSA</p>
-                <div class="branch-details-row">
-                  <span><i class="fas fa-phone-alt"></i> +966 13 800 3300</span>
-                  <span><i class="fas fa-clock"></i> Sun - Thu: 8 AM - 5 PM</span>
-                </div>
+          <!-- Dammam -->
+          <div class="branch-card-item">
+            <div class="branch-card text-start d-flex flex-column h-100">
+              <div class="branch-map-container">
+                <div class="branch-coord-badge">26.4207° N, 50.0888° E</div>
+                <iframe
+                  src="https://maps.google.com/maps?q=King%20Faisal%20Road,%20Dammam,%20KSA&t=&z=13&ie=UTF8&iwloc=&output=embed"
+                  width="100%" height="100%" style="border:0;" allowfullscreen loading="lazy"></iframe>
               </div>
-              <a href="https://maps.google.com/maps?q=King%20Faisal%20Road,%20Dammam,%20KSA" target="_blank"
-                class="branch-btn-directions">
-                View Directions <i class="fas fa-external-link-alt ms-1"></i>
-              </a>
+              <div class="branch-card-body d-flex flex-column justify-content-between flex-grow-1">
+                <div>
+                  <h4><i class="fas fa-map-marker-alt"></i> Dammam</h4>
+                  <p class="branch-address text-muted">King Faisal Road, Dammam, KSA</p>
+                  <div class="branch-details-row">
+                    <span><i class="fas fa-phone-alt"></i> +966 13 800 3300</span>
+                    <span><i class="fas fa-clock"></i> Sun - Thu: 8 AM - 5 PM</span>
+                  </div>
+                </div>
+                <a href="https://maps.google.com/maps?q=King%20Faisal%20Road,%20Dammam,%20KSA" target="_blank"
+                  class="branch-btn-directions">
+                  View Directions <i class="fas fa-external-link-alt ms-1"></i>
+                </a>
+              </div>
             </div>
           </div>
-        </div>
 
-        <!-- Khamis Mushait -->
-        <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
-          <div class="branch-card text-start d-flex flex-column h-100">
-            <div class="branch-map-container">
-              <div class="branch-coord-badge">18.3061° N, 42.7303° E</div>
-              <iframe
-                src="https://maps.google.com/maps?q=King%20Khaled%20Road,%20Khamis%20Mushait,%20KSA&t=&z=13&ie=UTF8&iwloc=&output=embed"
-                width="100%" height="100%" style="border:0;" allowfullscreen loading="lazy"></iframe>
-            </div>
-            <div class="branch-card-body d-flex flex-column justify-content-between flex-grow-1">
-              <div>
-                <h4><i class="fas fa-map-marker-alt"></i> Khamis</h4>
-                <p class="branch-address text-muted">King Khaled Road, Khamis Mushait, KSA</p>
-                <div class="branch-details-row">
-                  <span><i class="fas fa-phone-alt"></i> +966 17 200 4400</span>
-                  <span><i class="fas fa-clock"></i> Sun - Thu: 8 AM - 5 PM</span>
-                </div>
+          <!-- Khamis Mushait -->
+          <div class="branch-card-item">
+            <div class="branch-card text-start d-flex flex-column h-100">
+              <div class="branch-map-container">
+                <div class="branch-coord-badge">18.3061° N, 42.7303° E</div>
+                <iframe
+                  src="https://maps.google.com/maps?q=King%20Khaled%20Road,%20Khamis%20Mushait,%20KSA&t=&z=13&ie=UTF8&iwloc=&output=embed"
+                  width="100%" height="100%" style="border:0;" allowfullscreen loading="lazy"></iframe>
               </div>
-              <a href="https://maps.google.com/maps?q=King%20Khaled%20Road,%20Khamis%20Mushait,%20KSA" target="_blank"
-                class="branch-btn-directions">
-                View Directions <i class="fas fa-external-link-alt ms-1"></i>
-              </a>
+              <div class="branch-card-body d-flex flex-column justify-content-between flex-grow-1">
+                <div>
+                  <h4><i class="fas fa-map-marker-alt"></i> Khamis</h4>
+                  <p class="branch-address text-muted">King Khaled Road, Khamis Mushait, KSA</p>
+                  <div class="branch-details-row">
+                    <span><i class="fas fa-phone-alt"></i> +966 17 200 4400</span>
+                    <span><i class="fas fa-clock"></i> Sun - Thu: 8 AM - 5 PM</span>
+                  </div>
+                </div>
+                <a href="https://maps.google.com/maps?q=King%20Khaled%20Road,%20Khamis%20Mushait,%20KSA" target="_blank"
+                  class="branch-btn-directions">
+                  View Directions <i class="fas fa-external-link-alt ms-1"></i>
+                </a>
+              </div>
             </div>
           </div>
-        </div>
 
-        <!-- Tabuk -->
-        <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
-          <div class="branch-card text-start d-flex flex-column h-100">
-            <div class="branch-map-container">
-              <div class="branch-coord-badge">26.3899° N, 36.5715° E</div>
-              <iframe
-                src="https://maps.google.com/maps?q=Fahd%20Ipn%20Sultan%20Branch%20Rd,%20Tabuk,%20KSA&t=&z=13&ie=UTF8&iwloc=&output=embed"
-                width="100%" height="100%" style="border:0;" allowfullscreen loading="lazy"></iframe>
-            </div>
-            <div class="branch-card-body d-flex flex-column justify-content-between flex-grow-1">
-              <div>
-                <h4><i class="fas fa-map-marker-alt"></i> Tabuk</h4>
-                <p class="branch-address text-muted">Fahd Ipn Sultan Branch Rd, Cultivated Area, Tabuk 47316</p>
-                <div class="branch-details-row">
-                  <span><i class="fas fa-phone-alt"></i> +966 14 500 5500</span>
-                  <span><i class="fas fa-clock"></i> Sun - Thu: 8 AM - 5 PM</span>
-                </div>
+          <!-- Tabuk -->
+          <div class="branch-card-item">
+            <div class="branch-card text-start d-flex flex-column h-100">
+              <div class="branch-map-container">
+                <div class="branch-coord-badge">26.3899° N, 36.5715° E</div>
+                <iframe
+                  src="https://maps.google.com/maps?q=Fahd%20Ipn%20Sultan%20Branch%20Rd,%20Tabuk,%20KSA&t=&z=13&ie=UTF8&iwloc=&output=embed"
+                  width="100%" height="100%" style="border:0;" allowfullscreen loading="lazy"></iframe>
               </div>
-              <a href="https://maps.google.com/maps?q=Fahd%20Ipn%20Sultan%20Branch%20Rd,%20Cultivated%20Area,%20Tabuk%2047316"
-                target="_blank" class="branch-btn-directions">
-                View Directions <i class="fas fa-external-link-alt ms-1"></i>
-              </a>
+              <div class="branch-card-body d-flex flex-column justify-content-between flex-grow-1">
+                <div>
+                  <h4><i class="fas fa-map-marker-alt"></i> Tabuk</h4>
+                  <p class="branch-address text-muted">Fahd Ipn Sultan Branch Rd, Cultivated Area, Tabuk 47316</p>
+                  <div class="branch-details-row">
+                    <span><i class="fas fa-phone-alt"></i> +966 14 500 5500</span>
+                    <span><i class="fas fa-clock"></i> Sun - Thu: 8 AM - 5 PM</span>
+                  </div>
+                </div>
+                <a href="https://maps.google.com/maps?q=Fahd%20Ipn%20Sultan%20Branch%20Rd,%20Cultivated%20Area,%20Tabuk%2047316"
+                  target="_blank" class="branch-btn-directions">
+                  View Directions <i class="fas fa-external-link-alt ms-1"></i>
+                </a>
+              </div>
             </div>
           </div>
-        </div>
 
+        </div>
+      </div>
+
+      <!-- View All Branches Button Center Bottom -->
+      <div class="text-center mt-5" data-aos="fade-up">
+        <a href="locations.html" class="btn btn-gold-catalog px-5 py-3"
+          style="font-size: 0.95rem; font-weight: 800; border-radius: 50px;">
+          View All Branches <i class="fas fa-map-marked-alt ms-2"></i>
+        </a>
       </div>
 
     </div>
@@ -1385,7 +1816,7 @@
         <div class="col-lg-7" data-aos="fade-left">
           <div class="service-form-wrap">
             <form id="productServiceForm" class="needs-validation" novalidate>
-              <h3 class="fw-bold text-white mb-4" style="font-size: 1.5rem; letter-spacing: -0.02em;">Submit Technical
+              <h3 class="fw-bold text-dark mb-4" style="font-size: 1.5rem; letter-spacing: -0.02em;">Submit Technical
                 Request</h3>
               <div class="row g-3">
                 <!-- Full Name -->
@@ -1450,35 +1881,6 @@
                   </div>
                 </div>
 
-                <!-- Service Request Type -->
-                <div class="col-md-6">
-                  <div class="service-form-group">
-                    <label class="service-form-label">Request Type *</label>
-                    <select class="service-form-control" id="srvType" required>
-                      <option value="" disabled selected>Select Service Type</option>
-                      <option value="preventative">Preventative Maintenance</option>
-                      <option value="repair">Emergency Breakdown Repair</option>
-                      <option value="installation">Installation & Startup</option>
-                      <option value="spare_parts">Spare Parts Request</option>
-                      <option value="training">Training & Calibration</option>
-                    </select>
-                  </div>
-                </div>
-
-                <!-- Priority Level -->
-                <div class="col-md-6">
-                  <div class="service-form-group">
-                    <label class="service-form-label">Priority Level *</label>
-                    <select class="service-form-control" id="srvPriority" required>
-                      <option value="" disabled selected>Select Priority</option>
-                      <option value="low">Low - General Inquiry</option>
-                      <option value="medium">Medium - Scheduled Work</option>
-                      <option value="high">High - Production Interruption</option>
-                      <option value="critical">Critical - Complete Line Stop</option>
-                    </select>
-                  </div>
-                </div>
-
                 <!-- Details / Problem Description -->
                 <div class="col-12">
                   <div class="service-form-group">
@@ -1505,13 +1907,13 @@
                   <i class="fas fa-check text-dark fs-1"></i>
                 </span>
               </div>
-              <h3 class="fw-bold text-white mb-2">Technical Request Submitted!</h3>
-              <p class="text-white-50 mx-auto" style="max-width: 480px; line-height: 1.6;">
+              <h3 class="fw-bold text-dark mb-2">Technical Request Submitted!</h3>
+              <p class="text-muted mx-auto" style="max-width: 480px; line-height: 1.6;">
                 Thank you. A service ticket has been created, and our engineering department is reviewing your details.
-                For high/critical priorities, an engineer will call you within 1 hour.
+                Our team will contact you shortly to coordinate intervention.
               </p>
               <button type="button" id="btnResetServiceForm"
-                class="btn btn-outline-light px-4 py-2 mt-4 rounded-pill font-headings text-white-50 border-secondary">
+                class="btn btn-outline-dark px-4 py-2 mt-4 rounded-pill font-headings">
                 Submit Another Request
               </button>
             </div>
@@ -1522,99 +1924,6 @@
     </div>
   </section>
 
-  <section id="locations" class="section-padding">
-    <div class="container">
-
-      <!-- Part 1: International Presence Map -->
-      <div class="presence-world-wrap " data-aos="fade-up">
-        <div class="row g-5 align-items-center presence-content-box text-start">
-          <div class="col-md-12">
-            <h2 class="presence-title mb-3 text-white">Our Globel Presence</h2>
-            <p class="text-white-80 mb-0" style="font-size: 1.05rem; line-height: 1.7;">
-              We collaborate with premier global manufacturers and maintain active operations across strategic
-              international corridors, ensuring a high-performance, seamless supply chain.
-            </p>
-          </div>
-          <div class="col-lg-5">
-            <!-- <span class="section-tag text-warning mb-2 d-inline-block">• Global Network •</span> -->
-
-            <div class="presence-list">
-              <div class="presence-item" data-hub="italy">
-                <div class="presence-dot"></div>
-                <div class="presence-item-text">
-                  <h3>ITALY</h3>
-                  <span class="presence-coords">41.8719° N, 12.5674° E</span>
-                </div>
-              </div>
-              <div class="presence-item" data-hub="ksa">
-                <div class="presence-dot"></div>
-                <div class="presence-item-text">
-                  <h3>SAUDI ARABIA (KSA)</h3>
-                  <span class="presence-coords">23.8859° N, 45.0792° E</span>
-                </div>
-              </div>
-              <div class="presence-item" data-hub="uae">
-                <div class="presence-dot"></div>
-                <div class="presence-item-text">
-                  <h3>UNITED ARAB EMIRATES (UAE)</h3>
-                  <span class="presence-coords">23.4241° N, 53.8478° E</span>
-                </div>
-              </div>
-              <div class="presence-item" data-hub="china">
-                <div class="presence-dot"></div>
-                <div class="presence-item-text">
-                  <h3>CHINA</h3>
-                  <span class="presence-coords">35.8617° N, 104.1954° E</span>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-7">
-            <div class="presence-map-container">
-              <div class="map-grid-overlay"></div>
-              <img src="https://images.unsplash.com/photo-1524661135-423995f22d0b?auto=format&fit=crop&w=1200&q=80"
-                class="presence-map-img" alt="World Map">
-
-              <!-- Hotspots -->
-              <div class="map-hotspot pin-italy" data-hub="italy">
-                <span class="pulse-ring ring-1"></span>
-                <span class="pulse-ring ring-2"></span>
-                <span class="pulse-ring ring-3"></span>
-                <div class="hotspot-dot"></div>
-                <div class="hotspot-tooltip">Italy Hub</div>
-              </div>
-
-              <div class="map-hotspot pin-ksa" data-hub="ksa">
-                <span class="pulse-ring ring-1"></span>
-                <span class="pulse-ring ring-2"></span>
-                <span class="pulse-ring ring-3"></span>
-                <div class="hotspot-dot"></div>
-                <div class="hotspot-tooltip">KSA Hub</div>
-              </div>
-
-              <div class="map-hotspot pin-uae" data-hub="uae">
-                <span class="pulse-ring ring-1"></span>
-                <span class="pulse-ring ring-2"></span>
-                <span class="pulse-ring ring-3"></span>
-                <div class="hotspot-dot"></div>
-                <div class="hotspot-tooltip">UAE Hub</div>
-              </div>
-
-              <div class="map-hotspot pin-china" data-hub="china">
-                <span class="pulse-ring ring-1"></span>
-                <span class="pulse-ring ring-2"></span>
-                <span class="pulse-ring ring-3"></span>
-                <div class="hotspot-dot"></div>
-                <div class="hotspot-tooltip">China Hub</div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-
-    </div>
-  </section>
 
   <!-- Blog Listing Section -->
   <section id="blog" class="section-padding bg-white">
@@ -1864,58 +2173,85 @@
   </section>
 
   <!-- Footer -->
+  <!-- Footer -->
   <footer class="site-footer">
     <div class="container">
       <div class="row g-5">
 
         <!-- Col 1: About & Info -->
-        <div class="col-lg-4 text-start">
-          <!-- Text/SVG Logo footer -->
+        <div class="col-lg-4 col-md-6 text-start">
           <a class="d-flex align-items-center mb-4 text-white" href="#home">
             <img src="assets/images/logo-light.png" alt="Al Hazmi International Logo" class="logo-img">
           </a>
-          <p class="mb-4">Delivering industrial bakery machines, packaging lines, refrigeration, and material racking
-            storage solution systems globally for 20+ years.</p>
+          <p class="mb-4" style="line-height: 1.7;">Delivering industrial bakery machines, packaging lines,
+            refrigeration, and material racking storage solution systems globally for 20+ years.</p>
           <div class="footer-social-icons">
-            <a href="#"><i class="fab fa-facebook-f"></i></a>
-            <a href="#"><i class="fab fa-twitter"></i></a>
-            <a href="#"><i class="fab fa-linkedin-in"></i></a>
-            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+            <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+            <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
           </div>
         </div>
 
         <!-- Col 2: Quick Links -->
-        <div class="col-lg-4 text-start">
+        <div class="col-lg-2 col-md-6 text-start">
           <h4 class="footer-widget-title">Quick Links</h4>
           <ul class="footer-links">
-            <li><a href="#home"><i class="fas fa-chevron-right fs-10"></i> Home</a></li>
-            <li><a href="about.html"><i class="fas fa-chevron-right fs-10"></i> About Us</a></li>
-            <li><a href="products.html"><i class="fas fa-chevron-right fs-10"></i> Products</a></li>
-            <li><a href="used-equipment.html"><i class="fas fa-chevron-right fs-10"></i> Used Equipment</a></li>
-            <li><a href="services.html"><i class="fas fa-chevron-right fs-10"></i> Services</a></li>
-            <li><a href="blog.html"><i class="fas fa-chevron-right fs-10"></i> Blog</a></li>
-            <li><a href="locations.html"><i class="fas fa-chevron-right fs-10"></i> Locations</a></li>
-            <li><a href="contact.html"><i class="fas fa-chevron-right fs-10"></i> Contact Us</a></li>
+            <li><a href="index.html#home"><i class="fas fa-chevron-right"></i> Home</a></li>
+            <li><a href="about.html"><i class="fas fa-chevron-right"></i> About Us</a></li>
+            <li><a href="products.html"><i class="fas fa-chevron-right"></i> Products</a></li>
+            <li><a href="used-equipment.html"><i class="fas fa-chevron-right"></i> Used Equipment</a></li>
+            <li><a href="services.html"><i class="fas fa-chevron-right"></i> Services</a></li>
+            <li><a href="contact.html"><i class="fas fa-chevron-right"></i> Contact Us</a></li>
           </ul>
         </div>
 
-        <!-- Col 3: Contact Info -->
-        <div class="col-lg-4 text-start">
-          <h4 class="footer-widget-title">Contact Information</h4>
-          <ul class="footer-contact-info">
-            <li><i class="fas fa-map-marker-alt"></i> Head Office: Prince Sultan St, Al aziziya, Jeddah, KSA</li>
+        <!-- Col 3: Solutions -->
+        <div class="col-lg-3 col-md-6 text-start">
+          <h4 class="footer-widget-title">Solutions</h4>
+          <ul class="footer-links">
+            <li><a href="products.html?category=bakery"><i class="fas fa-chevron-right"></i> Bakery Systems</a></li>
+            <li><a href="products.html?category=pastry"><i class="fas fa-chevron-right"></i> Pastry Processing</a></li>
+            <li><a href="products.html?category=chocolate"><i class="fas fa-chevron-right"></i> Chocolate Tempering</a>
+            </li>
+            <li><a href="products.html?category=production"><i class="fas fa-chevron-right"></i> Production Lines</a>
+            </li>
+            <li><a href="products.html?category=packaging"><i class="fas fa-chevron-right"></i> Packaging Solutions</a>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Col 4: Contact & Newsletter -->
+        <div class="col-lg-3 col-md-6 text-start">
+          <h4 class="footer-widget-title">Contact Us</h4>
+          <ul class="footer-contact-info mb-4">
+            <li><i class="fas fa-map-marker-alt"></i> Prince Sultan St, Al aziziya, Jeddah, KSA</li>
             <li><i class="fas fa-phone-alt"></i> +966 12 345 6789</li>
             <li><i class="fas fa-envelope"></i> info@alhazmi.com</li>
           </ul>
+
+          <h5 class="text-white small fw-bold text-uppercase mb-2" style="letter-spacing: 0.5px;">Newsletter Signup</h5>
+          <form class="footer-newsletter-form">
+            <input type="email" placeholder="Your Email Address" required>
+            <button type="submit" aria-label="Subscribe"><i class="fas fa-paper-plane"></i></button>
+          </form>
         </div>
 
       </div>
 
       <!-- Footer Bottom -->
-      <div class="footer-bottom text-center">
-        <div class="d-flex justify-content-center align-items-center flex-wrap gap-3">
-          <p class="mb-0">&copy; 2026 Al Hazmi International. All Rights Reserved.</p>
-          <!-- <p class="mb-0">Designed in partnership with Antigravity AI.</p> -->
+      <div class="footer-bottom">
+        <div class="row align-items-center">
+          <div class="col-md-6 text-md-start text-center mb-3 mb-md-0">
+            <p class="mb-0">&copy; 2026 Al Hazmi International. All Rights Reserved.</p>
+          </div>
+          <div class="col-md-6 text-md-end text-center">
+            <div class="d-flex justify-content-center justify-content-md-end gap-3 small">
+              <a href="#" class="text-decoration-none text-white-50 hover-text-gold">Privacy Policy</a>
+              <span class="text-white-50">|</span>
+              <a href="#" class="text-decoration-none text-white-50 hover-text-gold">Terms of Service</a>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -2048,6 +2384,60 @@
         blogNext.addEventListener('click', () => {
           blogTrack.scrollBy({
             left: getScrollAmount(),
+            behavior: 'smooth'
+          });
+        });
+      }
+
+      // Latest Products Carousel Horizontal Scrolling Track
+      const latestTrack = document.getElementById('latest-products-scroll');
+      const latestPrev = document.getElementById('latest-prev-btn');
+      const latestNext = document.getElementById('latest-next-btn');
+
+      if (latestTrack && latestPrev && latestNext) {
+        const getLatestScrollAmount = () => {
+          const card = latestTrack.querySelector('.carousel-card-item');
+          if (!card) return 300;
+          return card.offsetWidth + 24; // width + gap
+        };
+
+        latestPrev.addEventListener('click', () => {
+          latestTrack.scrollBy({
+            left: -getLatestScrollAmount(),
+            behavior: 'smooth'
+          });
+        });
+
+        latestNext.addEventListener('click', () => {
+          latestTrack.scrollBy({
+            left: getLatestScrollAmount(),
+            behavior: 'smooth'
+          });
+        });
+      }
+
+      // Branches Carousel Horizontal Scrolling Track
+      const branchesTrack = document.getElementById('branchesScrollWrapper');
+      const branchesPrev = document.getElementById('branches-prev-btn');
+      const branchesNext = document.getElementById('branches-next-btn');
+
+      if (branchesTrack && branchesPrev && branchesNext) {
+        const getBranchesScrollAmount = () => {
+          const card = branchesTrack.querySelector('.branch-card-item');
+          if (!card) return 300;
+          return card.offsetWidth + 24; // width + gap
+        };
+
+        branchesPrev.addEventListener('click', () => {
+          branchesTrack.scrollBy({
+            left: -getBranchesScrollAmount(),
+            behavior: 'smooth'
+          });
+        });
+
+        branchesNext.addEventListener('click', () => {
+          branchesTrack.scrollBy({
+            left: getBranchesScrollAmount(),
             behavior: 'smooth'
           });
         });

@@ -19,6 +19,80 @@
 
   <!-- Custom Stylesheet -->
   <link rel="stylesheet" href="styles.css">
+  <style>
+    /* Enhanced Product Catalog Card Styles */
+    .catalog-card-img-wrap {
+      height: 180px !important;
+      padding: 15px !important;
+    }
+    
+    .catalog-card-body {
+      padding: 16px 20px 20px 20px !important;
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+    }
+    
+    .badge-brand-tag {
+      background: rgba(253, 183, 36, 0.07);
+      color: var(--accent-gold);
+      border: 1px solid rgba(253, 183, 36, 0.18);
+      font-weight: 800;
+      font-size: 0.65rem;
+      padding: 3px 8px;
+      border-radius: 4px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      font-family: var(--font-headings);
+    }
+    
+    .badge-subcat-tag {
+      background: #f8f9fa;
+      color: #6c757d;
+      border: 1px solid #e9ecef;
+      font-weight: 600;
+      font-size: 0.65rem;
+      padding: 3px 8px;
+      border-radius: 4px;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      overflow: hidden;
+      max-width: 140px;
+    }
+    
+    .catalog-card-title {
+      font-size: 1.05rem !important;
+      font-weight: 700 !important;
+      color: var(--primary-dark) !important;
+      margin-top: 4px !important;
+      margin-bottom: 8px !important;
+      line-height: 1.35 !important;
+      display: -webkit-box;
+      -webkit-line-clamp: 1;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    
+    .catalog-card-desc {
+      font-size: 0.8rem !important;
+      line-height: 1.5 !important;
+      color: #747d88 !important;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      height: 3rem;
+      margin-bottom: 15px !important;
+      flex-grow: 0 !important;
+    }
+    
+    .btn-gold-catalog {
+      padding: 10px 16px !important;
+      font-size: 0.82rem !important;
+      font-weight: 700 !important;
+    }
+  </style>
 </head>
 
 <body data-bs-spy="scroll" data-bs-target="#navbar" data-bs-offset="100">
@@ -138,13 +212,25 @@
         </div>
       </div>
 
+      <!-- Mobile/Tablet Filters Toggle Button -->
+      <div class="d-lg-none text-center mb-4">
+        <button type="button" class="btn btn-primary-dark px-4 py-2.5 rounded-pill font-headings text-white d-inline-flex align-items-center gap-2" id="toggle-filter-drawer" style="background-color: var(--primary-dark); border-color: var(--primary-dark);">
+          <i class="fas fa-filter text-gold" style="color: var(--accent-gold);"></i> Filter & Categories
+        </button>
+      </div>
+
       <!-- Main Layout with Category Sidebar & Cards -->
       <div class="row g-4">
 
-        <!-- Sidebar Navigation (Desktop) / Dropdown Toggle (Mobile) -->
+        <!-- Sidebar Navigation (Desktop) / Drawer (Mobile/Tablet) -->
         <div class="col-lg-3">
-          <div class="category-sidebar \ p-4 bg-white rounded-4 shadow-sm text-start" style="top: 120px; z-index: 10;"
+          <div class="category-sidebar p-4 bg-white rounded-4 shadow-sm text-start" style="top: 120px; z-index: 10;"
             data-aos="fade-right">
+            <!-- Mobile Close Button inside Sidebar -->
+            <div class="d-flex justify-content-between align-items-center mb-4 d-lg-none">
+              <h5 class="fw-bold mb-0 text-dark">Filters</h5>
+              <button type="button" class="btn text-dark p-0 fs-5" id="close-filter-drawer"><i class="fas fa-times"></i></button>
+            </div>
             <h4 class="sidebar-title mb-4">Categories</h4>
             <div class="nav flex-column nav-pills category-nav-list" id="category-tabs" role="tablist">
               <!-- All -->
@@ -275,55 +361,81 @@
   </section>
 
   <!-- Footer -->
+  <!-- Footer -->
   <footer class="site-footer">
     <div class="container">
       <div class="row g-5">
 
         <!-- Col 1: About & Info -->
-        <div class="col-lg-4 text-start">
+        <div class="col-lg-4 col-md-6 text-start">
           <a class="d-flex align-items-center mb-4 text-white" href="index.html">
             <img src="assets/images/logo-light.png" alt="Al Hazmi International Logo" class="logo-img">
           </a>
-          <p class="mb-4">Delivering industrial bakery machines, packaging lines, refrigeration, and material racking
-            storage solution systems globally for 20+ years.</p>
+          <p class="mb-4" style="line-height: 1.7;">Delivering industrial bakery machines, packaging lines, refrigeration, and material racking storage solution systems globally for 20+ years.</p>
           <div class="footer-social-icons">
-            <a href="#"><i class="fab fa-facebook-f"></i></a>
-            <a href="#"><i class="fab fa-twitter"></i></a>
-            <a href="#"><i class="fab fa-linkedin-in"></i></a>
-            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+            <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+            <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
           </div>
         </div>
 
         <!-- Col 2: Quick Links -->
-        <div class="col-lg-4 text-start">
+        <div class="col-lg-2 col-md-6 text-start">
           <h4 class="footer-widget-title">Quick Links</h4>
           <ul class="footer-links">
-            <li><a href="index.html#home"><i class="fas fa-chevron-right fs-10"></i> Home</a></li>
-            <li><a href="about.html"><i class="fas fa-chevron-right fs-10"></i> About Us</a></li>
-            <li><a href="products.html"><i class="fas fa-chevron-right fs-10"></i> Products</a></li>
-            <li><a href="services.html"><i class="fas fa-chevron-right fs-10"></i> Services</a></li>
-            <li><a href="blog.html"><i class="fas fa-chevron-right fs-10"></i> Blog</a></li>
-            <li><a href="locations.html"><i class="fas fa-chevron-right fs-10"></i> Locations</a></li>
-            <li><a href="contact.html"><i class="fas fa-chevron-right fs-10"></i> Contact Us</a></li>
+            <li><a href="index.html#home"><i class="fas fa-chevron-right"></i> Home</a></li>
+            <li><a href="about.html"><i class="fas fa-chevron-right"></i> About Us</a></li>
+            <li><a href="products.html"><i class="fas fa-chevron-right"></i> Products</a></li>
+            <li><a href="used-equipment.html"><i class="fas fa-chevron-right"></i> Used Equipment</a></li>
+            <li><a href="services.html"><i class="fas fa-chevron-right"></i> Services</a></li>
+            <li><a href="contact.html"><i class="fas fa-chevron-right"></i> Contact Us</a></li>
           </ul>
         </div>
 
-        <!-- Col 3: Contact Info -->
-        <div class="col-lg-4 text-start">
-          <h4 class="footer-widget-title">Contact Information</h4>
-          <ul class="footer-contact-info">
-            <li><i class="fas fa-map-marker-alt"></i> Head Office: Prince Sultan St, Al aziziya, Jeddah, KSA</li>
+        <!-- Col 3: Solutions -->
+        <div class="col-lg-3 col-md-6 text-start">
+          <h4 class="footer-widget-title">Solutions</h4>
+          <ul class="footer-links">
+            <li><a href="products.html?category=bakery"><i class="fas fa-chevron-right"></i> Bakery Systems</a></li>
+            <li><a href="products.html?category=pastry"><i class="fas fa-chevron-right"></i> Pastry Processing</a></li>
+            <li><a href="products.html?category=chocolate"><i class="fas fa-chevron-right"></i> Chocolate Tempering</a></li>
+            <li><a href="products.html?category=production"><i class="fas fa-chevron-right"></i> Production Lines</a></li>
+            <li><a href="products.html?category=packaging"><i class="fas fa-chevron-right"></i> Packaging Solutions</a></li>
+          </ul>
+        </div>
+
+        <!-- Col 4: Contact & Newsletter -->
+        <div class="col-lg-3 col-md-6 text-start">
+          <h4 class="footer-widget-title">Contact Us</h4>
+          <ul class="footer-contact-info mb-4">
+            <li><i class="fas fa-map-marker-alt"></i> Prince Sultan St, Al aziziya, Jeddah, KSA</li>
             <li><i class="fas fa-phone-alt"></i> +966 12 345 6789</li>
             <li><i class="fas fa-envelope"></i> info@alhazmi.com</li>
           </ul>
+          
+          <h5 class="text-white small fw-bold text-uppercase mb-2" style="letter-spacing: 0.5px;">Newsletter Signup</h5>
+          <form class="footer-newsletter-form">
+            <input type="email" placeholder="Your Email Address" required>
+            <button type="submit" aria-label="Subscribe"><i class="fas fa-paper-plane"></i></button>
+          </form>
         </div>
 
       </div>
 
       <!-- Footer Bottom -->
-      <div class="footer-bottom text-center">
-        <div class="d-flex justify-content-center align-items-center flex-wrap gap-3">
-          <p class="mb-0">&copy; 2026 Al Hazmi International. All Rights Reserved.</p>
+      <div class="footer-bottom">
+        <div class="row align-items-center">
+          <div class="col-md-6 text-md-start text-center mb-3 mb-md-0">
+            <p class="mb-0">&copy; 2026 Al Hazmi International. All Rights Reserved.</p>
+          </div>
+          <div class="col-md-6 text-md-end text-center">
+            <div class="d-flex justify-content-center justify-content-md-end gap-3 small">
+              <a href="#" class="text-decoration-none text-white-50 hover-text-gold">Privacy Policy</a>
+              <span class="text-white-50">|</span>
+              <a href="#" class="text-decoration-none text-white-50 hover-text-gold">Terms of Service</a>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -383,7 +495,7 @@
         brand: "TAGLIAVINI",
         category: "bakery",
         subcategory: "Ovens",
-        img: "https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=600&q=80",
+        img: "https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=600&q=80",
         link: "https://www.tagliavini.com/en/ovens/rotary-ovens/rotor.aspx",
         desc: "High performance rotary rack oven providing exceptional steam distribution and consistent bake uniformity."
       },
@@ -401,7 +513,7 @@
         brand: "TAGLIAVINI",
         category: "bakery",
         subcategory: "Ovens",
-        img: "https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=600&q=80",
+        img: "https://images.unsplash.com/photo-1581092335397-9583fe92d232?auto=format&fit=crop&w=600&q=80",
         link: "https://www.tagliavini.com/en/ovens/deck-electricovens/modular.aspx",
         desc: "Electric modular deck oven customizable with multiple chambers for pastry shops and bakery facilities."
       },
@@ -410,7 +522,7 @@
         brand: "TAGLIAVINI",
         category: "bakery",
         subcategory: "Ovens",
-        img: "https://images.unsplash.com/photo-1548907040-4d42b52125e0?auto=format&fit=crop&w=600&q=80",
+        img: "https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=600&q=80",
         link: "https://www.tagliavini.com/en/ovens/deck-electricovens/tronik.aspx",
         desc: "A fully electronic deck oven designed for energy-efficient baking and precise computerized control."
       },
@@ -437,7 +549,7 @@
         brand: "TAGLIAVINI",
         category: "bakery",
         subcategory: "Ovens",
-        img: "https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=600&q=80",
+        img: "https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=600&q=80",
         link: "https://www.tagliavini.com/en/",
         desc: "Flexible, space-saving hybrid baking solution combining deck and convection technologies."
       },
@@ -446,7 +558,7 @@
         brand: "RM FORNI",
         category: "bakery",
         subcategory: "Ovens",
-        img: "https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=600&q=80",
+        img: "https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=600&q=80",
         link: "https://www.rmforni.com/en/forno/rotary-rack-oven-rmp8080-18/",
         desc: "Premium rotary rack oven for 18 trays. Heavy duty configuration running on electric, diesel, gas, or pellet fuel."
       },
@@ -455,7 +567,7 @@
         brand: "RM FORNI",
         category: "bakery",
         subcategory: "Ovens",
-        img: "https://images.unsplash.com/photo-1548907040-4d42b52125e0?auto=format&fit=crop&w=600&q=80",
+        img: "https://images.unsplash.com/photo-1581092335397-9583fe92d232?auto=format&fit=crop&w=600&q=80",
         link: "https://www.rmforni.com/en/forno/rotary-rack-oven-rmp4060-10/",
         desc: "Compact rotary rack oven with 10-tray capacity, designed to deliver high productivity in minimal bakery space."
       },
@@ -482,7 +594,7 @@
         brand: "RM FORNI",
         category: "bakery",
         subcategory: "Ovens",
-        img: "https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=600&q=80",
+        img: "https://images.unsplash.com/photo-1581092335397-9583fe92d232?auto=format&fit=crop&w=600&q=80",
         link: "https://www.rmforni.com/en/forno/prochef-compact-7-gn-1-1-530x325-lateral/",
         desc: "Space-saving 7-deck convection oven engineered for high speed, uniform hot-air circulation cooking."
       },
@@ -491,7 +603,7 @@
         brand: "RM FORNI",
         category: "bakery",
         subcategory: "Ovens",
-        img: "https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=600&q=80",
+        img: "https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=600&q=80",
         link: "https://www.rmforni.com/en/forno/pizza-oven-fep68/",
         desc: "Professional electric pizza oven with refractory stone plate, heating up to 450°C for authentic pizza baking."
       },
@@ -500,7 +612,7 @@
         brand: "RM FORNI",
         category: "bakery",
         subcategory: "Ovens",
-        img: "https://images.unsplash.com/photo-1548907040-4d42b52125e0?auto=format&fit=crop&w=600&q=80",
+        img: "https://images.unsplash.com/photo-1581092335397-9583fe92d232?auto=format&fit=crop&w=600&q=80",
         link: "https://www.rmforni.com/en/forno/pizza-oven-fep812/",
         desc: "High capacity electric deck pizza oven with dual chambers, catering to busy pizzerias and bakery outlets."
       },
@@ -518,7 +630,7 @@
         brand: "Macpan",
         category: "bakery",
         subcategory: "Spiral Mixers",
-        img: "https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=600&q=80",
+        img: "https://images.unsplash.com/photo-1578683010236-d716f9a3f461?auto=format&fit=crop&w=600&q=80",
         link: "https://www.macpan.com/en/dough-kneaders/25-spiral-mixer-with-fixed-bowl.html",
         desc: "Classic professional spiral mixer featuring a fixed stainless steel bowl, built for uniform yeast dough kneading."
       },
@@ -527,7 +639,7 @@
         brand: "Macpan",
         category: "bakery",
         subcategory: "Spiral Mixers",
-        img: "https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=600&q=80",
+        img: "https://images.unsplash.com/photo-1578683010236-d716f9a3f461?auto=format&fit=crop&w=600&q=80",
         link: "https://www.macpan.com/en/dough-kneaders/23-spiral-mixer.html",
         desc: "Reliable, high-torque dual-speed spiral mixer built for artisanal bakeries and demanding kitchen requirements."
       },
@@ -545,7 +657,7 @@
         brand: "pietroberto",
         category: "bakery",
         subcategory: "Fork Mixers",
-        img: "https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=600&q=80",
+        img: "https://images.unsplash.com/photo-1578683010236-d716f9a3f461?auto=format&fit=crop&w=600&q=80",
         link: "https://pietroberto.com/pietroberto-detail-products/3/266/Fork-Mixer-VITTORIA",
         desc: "Artisanal fork mixer designed for traditional delicate doughs, preventing friction heating and over-kneading."
       },
@@ -554,7 +666,7 @@
         brand: "Macpan",
         category: "bakery",
         subcategory: "Dividers & Rounders",
-        img: "https://images.unsplash.com/photo-1548907040-4d42b52125e0?auto=format&fit=crop&w=600&q=80",
+        img: "https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?auto=format&fit=crop&w=600&q=80",
         link: "https://www.macpan.com/en/dough-dividers/46-manual-bun-rounding-dividers.html",
         desc: "Manual lever-driven bun divider and rounder, ensuring absolute piece weight consistency for rolls."
       },
@@ -581,7 +693,7 @@
         brand: "MF ITALY",
         category: "bakery",
         subcategory: "Dividers & Rounders",
-        img: "https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=600&q=80",
+        img: "https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?auto=format&fit=crop&w=600&q=80",
         link: "https://www.mfitaly.com/en/products/tm120s-pratico/",
         desc: "Italian engineered hydraulic dough divider with automatic cycle control for accurate high volume bakeries."
       },
@@ -590,7 +702,7 @@
         brand: "Chanmag",
         category: "bakery",
         subcategory: "Dividers & Rounders",
-        img: "https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=600&q=80",
+        img: "https://images.unsplash.com/photo-1581092335397-9583fe92d232?auto=format&fit=crop&w=600&q=80",
         link: "https://chanmag.com.tw/product/long-loaf-moulder-cm-238",
         desc: "High speed loaf moulder designed to shape uniform toast loaves, sandwich breads, and hotdog rolls."
       },
@@ -599,7 +711,7 @@
         brand: "South Star",
         category: "bakery",
         subcategory: "Dividers & Rounders",
-        img: "https://images.unsplash.com/photo-1548907040-4d42b52125e0?auto=format&fit=crop&w=600&q=80",
+        img: "https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?auto=format&fit=crop&w=600&q=80",
         link: "http://southstaroven.com/product-4-3-dough-divider-rounder-en/153287/",
         desc: "Robust mechanical dough divider rounder, ideal for medium-sized bakeries looking to automate bun production."
       },
@@ -626,7 +738,7 @@
         brand: "Macpan",
         category: "bakery",
         subcategory: "Other Machinery",
-        img: "https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=600&q=80",
+        img: "https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?auto=format&fit=crop&w=600&q=80",
         link: "https://www.macpan.com/en/raw-materials-preparation/67-flour-sifter.html",
         desc: "High throughput mechanical sifter to aerate flour, remove impurities, and speed up dough mixing."
       },
@@ -635,7 +747,7 @@
         brand: "Macpan",
         category: "bakery",
         subcategory: "Other Machinery",
-        img: "https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=600&q=80",
+        img: "https://images.unsplash.com/photo-1581092335397?auto=format&fit=crop&w=600&q=80",
         link: "https://www.macpan.com/en/bread-slicers/64-semi-automatic-bread-slicer.html",
         desc: "Heavy duty electric bread slicer with adjustable blade guides, designed for uniform toast and loaf slicing."
       },
@@ -644,7 +756,7 @@
         brand: "Macpan",
         category: "bakery",
         subcategory: "Other Machinery",
-        img: "https://images.unsplash.com/photo-1548907040-4d42b52125e0?auto=format&fit=crop&w=600&q=80",
+        img: "https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?auto=format&fit=crop&w=600&q=80",
         link: "https://www.macpan.com/en/bread-grinders/68-bread-grinder.html",
         desc: "Industrial milling machine to crush dry leftover bread into custom-grain breadcrumbs."
       },
@@ -673,7 +785,7 @@
         brand: "Flamic",
         category: "pastry",
         subcategory: "Sheeters",
-        img: "https://images.unsplash.com/photo-1551024601-bec78aea704b?auto=format&fit=crop&w=600&q=80",
+        img: "https://images.unsplash.com/photo-1581092335397-9583fe92d232?auto=format&fit=crop&w=600&q=80",
         link: "https://www.flamic.it/sf500-sf500v-en",
         desc: "Italian floor-standing pastry dough sheeter with conveyor belts, built for laminating puff pastry."
       },
@@ -682,7 +794,7 @@
         brand: "Flamic",
         category: "pastry",
         subcategory: "Sheeters",
-        img: "https://images.unsplash.com/photo-1551024601-bec78aea704b?auto=format&fit=crop&w=600&q=80",
+        img: "https://images.unsplash.com/photo-1581092335397-9583fe92d232?auto=format&fit=crop&w=600&q=80",
         link: "https://www.flamic.it/sf450b-sf450bv-en",
         desc: "Compact tabletop sheeter, ideal for small bakeries, patisseries, and gourmet dining kitchens."
       },
@@ -691,7 +803,7 @@
         brand: "Flamic",
         category: "pastry",
         subcategory: "Sheeters",
-        img: "https://images.unsplash.com/photo-1551024601-bec78aea704b?auto=format&fit=crop&w=600&q=80",
+        img: "https://images.unsplash.com/photo-1581092335397-9583fe92d232?auto=format&fit=crop&w=600&q=80",
         link: "https://www.flamic.it/sf450d--sf450vd-175",
         desc: "Heavy duty sheeter series with structural reinforcements for high output patisseries."
       },
@@ -700,7 +812,7 @@
         brand: "Flamic",
         category: "pastry",
         subcategory: "Sheeters",
-        img: "https://images.unsplash.com/photo-1551024601-bec78aea704b?auto=format&fit=crop&w=600&q=80",
+        img: "https://images.unsplash.com/photo-1581092335397-9583fe92d232?auto=format&fit=crop&w=600&q=80",
         link: "https://www.flamic.it/sf600-sf600v-en",
         desc: "High production floor dough sheeter with wide conveyors and digital adjustment controls."
       },
@@ -709,7 +821,7 @@
         brand: "Flamic",
         category: "pastry",
         subcategory: "Sheeters",
-        img: "https://images.unsplash.com/photo-1551024601-bec78aea704b?auto=format&fit=crop&w=600&q=80",
+        img: "https://images.unsplash.com/photo-1581092335397-9583fe92d232?auto=format&fit=crop&w=600&q=80",
         link: "https://www.flamic.it/fast700-en",
         desc: "Fully automatic, programmable sheeter with touchscreen controller and dynamic laminating profiles."
       },
@@ -718,7 +830,7 @@
         brand: "Starmix",
         category: "pastry",
         subcategory: "Planetary Mixers",
-        img: "https://images.unsplash.com/photo-1551024601-bec78aea704b?auto=format&fit=crop&w=600&q=80",
+        img: "https://images.unsplash.com/photo-1578683010236-d716f9a3f461?auto=format&fit=crop&w=600&q=80",
         link: "https://www.starmix.it/pl20cn-195",
         desc: "Professional 20-liter tabletop planetary mixer for whipping cream, beating eggs, and light pastry doughs."
       },
@@ -727,7 +839,7 @@
         brand: "Starmix",
         category: "pastry",
         subcategory: "Planetary Mixers",
-        img: "https://images.unsplash.com/photo-1551024601-bec78aea704b?auto=format&fit=crop&w=600&q=80",
+        img: "https://images.unsplash.com/photo-1578683010236-d716f9a3f461?auto=format&fit=crop&w=600&q=80",
         link: "https://www.starmix.it/planetary-mixer-n-series-pl40n",
         desc: "Medium 40-liter commercial planetary mixer, highly versatile with electronic speed variations."
       },
@@ -736,7 +848,7 @@
         brand: "Starmix",
         category: "pastry",
         subcategory: "Planetary Mixers",
-        img: "https://images.unsplash.com/photo-1551024601-bec78aea704b?auto=format&fit=crop&w=600&q=80",
+        img: "https://images.unsplash.com/photo-1578683010236-d716f9a3f461?auto=format&fit=crop&w=600&q=80",
         link: "https://www.starmix.it/pl60n-198",
         desc: "Heavy duty 60-liter industrial planetary mixer with automatic bowl lifting and digital programming."
       },
@@ -745,7 +857,7 @@
         brand: "Starmix",
         category: "pastry",
         subcategory: "Planetary Mixers",
-        img: "https://images.unsplash.com/photo-1551024601-bec78aea704b?auto=format&fit=crop&w=600&q=80",
+        img: "https://images.unsplash.com/photo-1578683010236-d716f9a3f461?auto=format&fit=crop&w=600&q=80",
         link: "https://www.starmix.it/pl80n-199",
         desc: "80-liter planetary mixer built for industrial confectioneries requiring continuous production cycles."
       },
@@ -754,7 +866,7 @@
         brand: "Starmix",
         category: "pastry",
         subcategory: "Planetary Mixers",
-        img: "https://images.unsplash.com/photo-1551024601-bec78aea704b?auto=format&fit=crop&w=600&q=80",
+        img: "https://images.unsplash.com/photo-1578683010236-d716f9a3f461?auto=format&fit=crop&w=600&q=80",
         link: "https://www.starmix.it/planetary-mixers-n-series",
         desc: "The complete N-Series planetary line featuring extreme motor torque and quick-change tools."
       },
@@ -763,7 +875,7 @@
         brand: "Spar",
         category: "pastry",
         subcategory: "Planetary Mixers",
-        img: "https://images.unsplash.com/photo-1551024601-bec78aea704b?auto=format&fit=crop&w=600&q=80",
+        img: "https://images.unsplash.com/photo-1578683010236-d716f9a3f461?auto=format&fit=crop&w=600&q=80",
         link: "https://www.sparmixers.com/mixer-en",
         desc: "Standard commercial planetary mixers featuring high-durability thermal overload protectors."
       },
@@ -772,7 +884,7 @@
         brand: "Spar",
         category: "pastry",
         subcategory: "Planetary Mixers",
-        img: "https://images.unsplash.com/photo-1551024601-bec78aea704b?auto=format&fit=crop&w=600&q=80",
+        img: "https://images.unsplash.com/photo-1578683010236-d716f9a3f461?auto=format&fit=crop&w=600&q=80",
         link: "https://www.sparmixers.com/mixer-20liter-en",
         desc: "20-liter pastry mixer equipped with 3 speed settings and fully geared alloy steel transmissions."
       },
@@ -781,7 +893,7 @@
         brand: "Spar",
         category: "pastry",
         subcategory: "Planetary Mixers",
-        img: "https://images.unsplash.com/photo-1551024601-bec78aea704b?auto=format&fit=crop&w=600&q=80",
+        img: "https://images.unsplash.com/photo-1578683010236-d716f9a3f461?auto=format&fit=crop&w=600&q=80",
         link: "https://www.sparmixers.com/mixer-40liter-en",
         desc: "Heavy-duty 40-liter planetary mixer with mechanical safety guard and heat-treated steel gears."
       },
@@ -790,7 +902,7 @@
         brand: "Spar",
         category: "pastry",
         subcategory: "Planetary Mixers",
-        img: "https://images.unsplash.com/photo-1551024601-bec78aea704b?auto=format&fit=crop&w=600&q=80",
+        img: "https://images.unsplash.com/photo-1578683010236-d716f9a3f461?auto=format&fit=crop&w=600&q=80",
         link: "https://www.sparmixers.com/mixer-60liter-en",
         desc: "60-liter industrial mixer designed for mixing large batches of stiff cookie or bagel doughs."
       },
@@ -799,7 +911,7 @@
         brand: "Spar",
         category: "pastry",
         subcategory: "Planetary Mixers",
-        img: "https://images.unsplash.com/photo-1551024601-bec78aea704b?auto=format&fit=crop&w=600&q=80",
+        img: "https://images.unsplash.com/photo-1578683010236-d716f9a3f461?auto=format&fit=crop&w=600&q=80",
         link: "https://www.sparmixers.com/mixer-80liter-en",
         desc: "High capacity 80-liter industrial pastry mixer, features motor brake and mechanical bowl raising."
       },
@@ -808,7 +920,7 @@
         brand: "Anko",
         category: "pastry",
         subcategory: "Cookies & Depositors",
-        img: "https://images.unsplash.com/photo-1551024601-bec78aea704b?auto=format&fit=crop&w=600&q=80",
+        img: "https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?auto=format&fit=crop&w=600&q=80",
         link: "https://www.anko.com.tw/en/product/Automatic-Encrusting-and-Forming-Machine/sd97m.html",
         desc: "Tabletop automatic encrusting and forming machine for stuffed pastries, cookies, and meat pies."
       },
@@ -817,7 +929,7 @@
         brand: "Anko",
         category: "pastry",
         subcategory: "Cookies & Depositors",
-        img: "https://images.unsplash.com/photo-1551024601-bec78aea704b?auto=format&fit=crop&w=600&q=80",
+        img: "https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?auto=format&fit=crop&w=600&q=80",
         link: "https://www.anko.com.tw/en/product/Automatic-Encrusting-and-Forming-Machine/sd97w.html",
         desc: "High output dual-filling encrusting machine, capable of producing bi-color cookies and mochi."
       },
@@ -826,7 +938,7 @@
         brand: "Anko",
         category: "pastry",
         subcategory: "Cookies & Depositors",
-        img: "https://images.unsplash.com/photo-1551024601-bec78aea704b?auto=format&fit=crop&w=600&q=80",
+        img: "https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?auto=format&fit=crop&w=600&q=80",
         link: "https://www.anko.com.tw/en/product/Automatic-Encrusting-and-Forming-Machine/sd97l.html",
         desc: "Large scale industrial encrusting machine, producing up to 3600 pastries per hour."
       },
@@ -835,7 +947,7 @@
         brand: "Mimac",
         category: "pastry",
         subcategory: "Cookies & Depositors",
-        img: "https://images.unsplash.com/photo-1551024601-bec78aea704b?auto=format&fit=crop&w=600&q=80",
+        img: "https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?auto=format&fit=crop&w=600&q=80",
         link: "https://www.anko.com.tw/en/",
         desc: "Italian engineered cookies, biscuits, and pastry depositors for medium to large confections."
       },
@@ -846,7 +958,7 @@
         brand: "Pomati",
         category: "chocolate",
         subcategory: "Tempering & Melting",
-        img: "https://images.unsplash.com/photo-1548907040-4d42b52125e0?auto=format&fit=crop&w=600&q=80",
+        img: "https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?auto=format&fit=crop&w=600&q=80",
         link: "https://www.pomati.it/en/tempering-and-melting-machines/t5-tempering-machine/",
         desc: "Entry level 5kg tempering machine, ideal for small pastry shops, ice cream parlors, and test kitchens."
       },
@@ -855,7 +967,7 @@
         brand: "Pomati",
         category: "chocolate",
         subcategory: "Tempering & Melting",
-        img: "https://images.unsplash.com/photo-1548907040-4d42b52125e0?auto=format&fit=crop&w=600&q=80",
+        img: "https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?auto=format&fit=crop&w=600&q=80",
         link: "https://www.pomati.it/en/tempering-and-melting-machines/t8-tempering-machine/",
         desc: "Compact 8kg chocolate tempering machine with heated vibrating table and volumetric pedal control."
       },
@@ -864,34 +976,70 @@
         brand: "Pomati",
         category: "chocolate",
         subcategory: "Tempering & Melting",
-        img: "https://images.unsplash.com/photo-1548907040-4d42b52125e0?auto=format&fit=crop&w=600&q=80",
+        img: "https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?auto=format&fit=crop&w=600&q=80",
         link: "https://www.pomati.it/en/tempering-and-melting-machines/t10-tempering-machine/",
-        desc: "Medium 10kg chocolate tempering machine equipped with electronic cooling and micro-processor regulation."
+        desc: "10kg continuous tempering machine featuring Archimedean screw heating/cooling technology."
       },
       {
         name: "T20 Tempering Machine",
         brand: "Pomati",
         category: "chocolate",
         subcategory: "Tempering & Melting",
-        img: "https://images.unsplash.com/photo-1548907040-4d42b52125e0?auto=format&fit=crop&w=600&q=80",
+        img: "https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?auto=format&fit=crop&w=600&q=80",
         link: "https://www.pomati.it/en/tempering-and-melting-machines/t20-tempering-machine/",
-        desc: "High capacity 20kg tempering machine, features programmable chocolate dosing and auger extraction."
+        desc: "Medium scale 20kg tempering machine engineered for artisan chocolatiers and continuous moulding."
       },
       {
         name: "T35 Tempering Machine",
         brand: "Pomati",
         category: "chocolate",
         subcategory: "Tempering & Melting",
-        img: "https://images.unsplash.com/photo-1548907040-4d42b52125e0?auto=format&fit=crop&w=600&q=80",
+        img: "https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?auto=format&fit=crop&w=600&q=80",
         link: "https://www.pomati.it/en/tempering-and-melting-machines/t35-tempering-machine/",
-        desc: "Industrial 35kg tempering machine for large confectioneries, compatible with Pomati cooling tunnels."
+        desc: "Industrial 35kg tempering unit capable of integrating enrobing lines and automatic dosing tables."
+      },
+      {
+        name: "Cooling Tunnel 4m / 6m",
+        brand: "Pomati",
+        category: "chocolate",
+        subcategory: "Enrobing & Tunnels",
+        img: "https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?auto=format&fit=crop&w=600&q=80",
+        link: "https://www.pomati.it/en/cooling-tunnels/",
+        desc: "High efficiency refrigerated cooling tunnel with adjustable belt speeds for molded or enrobed chocolates."
+      },
+      {
+        name: "Enrobing Attachment",
+        brand: "Pomati",
+        category: "chocolate",
+        subcategory: "Enrobing & Tunnels",
+        img: "https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?auto=format&fit=crop&w=600&q=80",
+        link: "https://www.pomati.it/en/enrobing-attachment/",
+        desc: "Modular wire belt enrobing accessory with blower and tail cutter, mounts directly onto T20/T35 machines."
+      },
+      {
+        name: "One Shot Depositor OSD-5",
+        brand: "Pomati",
+        category: "chocolate",
+        subcategory: "One Shot Depositors",
+        img: "https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?auto=format&fit=crop&w=600&q=80",
+        link: "https://www.pomati.it/en/one-shot-depositor/one-shotdepositor-osd-5/",
+        desc: "Simultaneous chocolate shell and filling depositor for pralines, truffles, and chocolate bars."
+      },
+      {
+        name: "One Shot Depositor OSD-10",
+        brand: "Pomati",
+        category: "chocolate",
+        subcategory: "One Shot Depositors",
+        img: "https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?auto=format&fit=crop&w=600&q=80",
+        link: "https://www.pomati.it/en/one-shot-depositor/one-shotdepositor-osd-10/",
+        desc: "High capacity one-shot depositor processing up to 120kg of filled chocolate shapes per hour."
       },
       {
         name: "CUBE Melter",
         brand: "Pomati",
         category: "chocolate",
         subcategory: "Tempering & Melting",
-        img: "https://images.unsplash.com/photo-1548907040-4d42b52125e0?auto=format&fit=crop&w=600&q=80",
+        img: "https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?auto=format&fit=crop&w=600&q=80",
         link: "https://www.pomati.it/en/tempering-and-melting-machines/cube-melter/",
         desc: "Compact modular chocolate melter built to melt and hold chocolate blocks at stable temperatures."
       },
@@ -900,7 +1048,7 @@
         brand: "Pomati",
         category: "chocolate",
         subcategory: "One Shot Depositors",
-        img: "https://images.unsplash.com/photo-1548907040-4d42b52125e0?auto=format&fit=crop&w=600&q=80",
+        img: "https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?auto=format&fit=crop&w=600&q=80",
         link: "https://www.pomati.it/en/one-shot-depositor/one-shotdepositor-osd-zero/",
         desc: "Compact depositors that inject chocolate shells and fillings simultaneously. Zero-clog pneumatic system."
       },
@@ -909,7 +1057,7 @@
         brand: "Pomati",
         category: "chocolate",
         subcategory: "One Shot Depositors",
-        img: "https://images.unsplash.com/photo-1548907040-4d42b52125e0?auto=format&fit=crop&w=600&q=80",
+        img: "https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?auto=format&fit=crop&w=600&q=80",
         link: "https://www.pomati.it/en/one-shot-depositor/one-shotdepositor-osd-5/",
         desc: "Volumetric one-shot chocolate depositor for 2D/3D pralines, truffles, and filled chocolate bars."
       },
@@ -918,7 +1066,7 @@
         brand: "Pomati",
         category: "chocolate",
         subcategory: "One Shot Depositors",
-        img: "https://images.unsplash.com/photo-1548907040-4d42b52125e0?auto=format&fit=crop&w=600&q=80",
+        img: "https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?auto=format&fit=crop&w=600&q=80",
         link: "https://www.pomati.it/en/one-shot-depositor/one-shotdepositor-osd-10/",
         desc: "High capacity one-shot depositor processing up to 120kg of filled chocolate shapes per hour."
       },
@@ -938,7 +1086,7 @@
         brand: "Trima",
         category: "production",
         subcategory: "Bread Bun Lines",
-        img: "https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=600&q=80",
+        img: "https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=600&q=80",
         link: "https://www.trimabakerymachines.com/Produkte/CombiLine.php",
         desc: "Automatic bun dividing and rounding line with integrated proving and stamping modules."
       },
@@ -947,7 +1095,7 @@
         brand: "Trima",
         category: "production",
         subcategory: "Bread Bun Lines",
-        img: "https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=600&q=80",
+        img: "https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=600&q=80",
         link: "https://www.trima-bakerymachines.com/download/Infothek/CombiLine_Productfolder_EN.pdf",
         desc: "Official engineering brochure and technical layout parameters for the Trima CombiLine bun systems."
       },
@@ -965,7 +1113,7 @@
         brand: "Pomati",
         category: "production",
         subcategory: "Chocolate Lines",
-        img: "https://images.unsplash.com/photo-1548907040-4d42b52125e0?auto=format&fit=crop&w=600&q=80",
+        img: "https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?auto=format&fit=crop&w=600&q=80",
         link: "https://www.pomati.it/en/chocolate-machines-standard-production-lines/",
         desc: "Customizable industrial chocolate production system incorporating melting, tempering, depositing, and cooling."
       },
@@ -1095,6 +1243,22 @@
     let activeSubcategory = "all";
     let activeBrand = "all";
     let searchText = "";
+
+    // Automatically map each product image to one of the 4 local images deterministically
+    productCatalog.forEach(product => {
+      let hash = 0;
+      for (let i = 0; i < product.name.length; i++) {
+        hash = product.name.charCodeAt(i) + ((hash << 5) - hash);
+      }
+      const imgIdx = Math.abs(hash) % 4;
+      const productImages = [
+        "assets/images/products/1.webp",
+        "assets/images/products/2.webp",
+        "assets/images/products/3.png",
+        "assets/images/products/4.jpg"
+      ];
+      product.img = productImages[imgIdx];
+    });
 
     // DOM Elements
     let productGrid;
@@ -1303,7 +1467,7 @@
 
       filteredProducts.forEach((product, idx) => {
         const cardCol = document.createElement('div');
-        cardCol.className = "col-md-6 col-xl-4";
+        cardCol.className = "col-6 col-md-6 col-lg-4";
         cardCol.setAttribute('data-aos', 'fade-up');
         cardCol.setAttribute('data-aos-delay', (idx % 3) * 50);
 
@@ -1315,15 +1479,19 @@
         cardCol.innerHTML = `
           <div class="catalog-card">
             <div class="catalog-card-img-wrap">
-              <span class="catalog-card-badge">${product.subcategory}</span>
               <img src="${product.img}" alt="${product.name}" onerror="this.onerror=null; this.src='${fallbackImg}';">
             </div>
             <div class="catalog-card-body">
-              <div class="d-flex justify-content-between align-items-start mb-2">
-                <span class="catalog-card-brand">${product.brand}</span>
+              <!-- Inline Category & Brand Tags -->
+              <div class="d-flex align-items-center gap-2 mb-2">
+                <span class="badge-brand-tag">${product.brand}</span>
+                <span class="badge-subcat-tag" title="${product.subcategory}">${product.subcategory}</span>
               </div>
-              <h4 class="catalog-card-title">${product.name}</h4>
               
+              <!-- Product Title -->
+              <h4 class="catalog-card-title mb-3">${product.name}</h4>
+              
+              <!-- View details CTA Button -->
               <div class="mt-auto">
                 <a href="product-detail.html?product=${encodeURIComponent(product.brand + ' ' + product.name)}" class="btn btn-gold-catalog w-100 text-center">
                   View Details <i class="fas fa-arrow-right ms-1 fs-11"></i>
@@ -1379,6 +1547,46 @@
         });
       }
     });
+
+    // Mobile/Tablet Filter Drawer Toggle Logic
+    document.addEventListener('DOMContentLoaded', () => {
+      const toggleBtn = document.getElementById('toggle-filter-drawer');
+      const closeBtn = document.getElementById('close-filter-drawer');
+      const sidebar = document.querySelector('.category-sidebar');
+      
+      const backdrop = document.createElement('div');
+      backdrop.className = 'filter-drawer-backdrop';
+      document.body.appendChild(backdrop);
+
+      if (toggleBtn && sidebar) {
+        toggleBtn.addEventListener('click', () => {
+          sidebar.classList.add('active');
+          backdrop.classList.add('active');
+          document.body.style.overflow = 'hidden';
+        });
+      }
+
+      function closeDrawer() {
+        if (sidebar) sidebar.classList.remove('active');
+        backdrop.classList.remove('active');
+        document.body.style.overflow = '';
+      }
+
+      if (closeBtn) closeBtn.addEventListener('click', closeDrawer);
+      backdrop.addEventListener('click', closeDrawer);
+
+      // Close drawer when sidebar buttons are clicked on mobile
+      if (sidebar) {
+        const filterActions = sidebar.querySelectorAll('button');
+        filterActions.forEach(btn => {
+          btn.addEventListener('click', () => {
+            if (window.innerWidth < 992) {
+              closeDrawer();
+            }
+          });
+        });
+      }
+    });
   </script>
 
   <!-- Get a Quote Modal -->
@@ -1397,7 +1605,7 @@
           </div>
           <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
-        <div class="modal-body p-4 p-md-5" style="background: #151618;">
+        <div class="modal-body p-4 p-md-5" style="background: var(--primary-dark);">
           <form id="modalQuoteForm" novalidate>
             <div class="row g-4">
               <!-- Full Name -->

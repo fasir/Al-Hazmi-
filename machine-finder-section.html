@@ -719,18 +719,18 @@
   <script>
     (function () {
       const products = [
-        { id: "bread", name: "Bread", code: "PRD.01", img: "https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=600&q=80" },
-        { id: "cakes", name: "Cakes", code: "PRD.02", img: "https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&w=600&q=80" },
-        { id: "cookies", name: "Cookies", code: "PRD.03", img: "https://images.unsplash.com/photo-1499636136210-6f4ee915583e?auto=format&fit=crop&w=600&q=80" },
-        { id: "pizza", name: "Pizza", code: "PRD.04", img: "https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&w=600&q=80" },
-        { id: "croissant", name: "Croissant", code: "PRD.05", img: "https://images.unsplash.com/photo-1555507036-ab1f4038808a?auto=format&fit=crop&w=600&q=80" },
-        { id: "donuts", name: "Donuts", code: "PRD.06", img: "https://images.unsplash.com/photo-1551024601-bec78aea704b?auto=format&fit=crop&w=600&q=80" },
-        { id: "muffins", name: "Muffins", code: "PRD.07", img: "https://images.unsplash.com/photo-1607958996333-41aef7caefaa?auto=format&fit=crop&w=600&q=80" },
-        { id: "pastries", name: "Pastries", code: "PRD.08", img: "https://images.unsplash.com/photo-1608686207856-001b95cf60ca?auto=format&fit=crop&w=600&q=80" },
-        { id: "biscuits", name: "Biscuits", code: "PRD.09", img: "https://images.unsplash.com/photo-1558961313-7f8a9e527d6c?auto=format&fit=crop&w=600&q=80" },
-        { id: "buns", name: "Buns", code: "PRD.10", img: "https://images.unsplash.com/photo-1549931319-a545dcf3bc73?auto=format&fit=crop&w=600&q=80" },
-        { id: "chocolates", name: "Chocolates", code: "PRD.11", img: "https://images.unsplash.com/photo-1511381939415-e44015466834?auto=format&fit=crop&w=600&q=80" },
-        { id: "snacks", name: "Snacks", code: "PRD.12", img: "https://images.unsplash.com/photo-1599490659273-e3a72a621675?auto=format&fit=crop&w=600&q=80" },
+        { id: "bread", name: "Bread Lines", code: "PRD.01", img: "https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=600&q=80" },
+        { id: "cakes", name: "Cake Mixers", code: "PRD.02", img: "https://images.unsplash.com/photo-1578683010236-d716f9a3f461?auto=format&fit=crop&w=600&q=80" },
+        { id: "cookies", name: "Cookie Depositors", code: "PRD.03", img: "https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?auto=format&fit=crop&w=600&q=80" },
+        { id: "pizza", name: "Pizza Sheeters", code: "PRD.04", img: "https://images.unsplash.com/photo-1581092335397-9583fe92d232?auto=format&fit=crop&w=600&q=80" },
+        { id: "croissant", name: "Laminators", code: "PRD.05", img: "https://images.unsplash.com/photo-1581092795360-fd1ca04f0952?auto=format&fit=crop&w=600&q=80" },
+        { id: "donuts", name: "Donut Fryer Lines", code: "PRD.06", img: "https://images.unsplash.com/photo-1616401784845-180882ba9ba8?auto=format&fit=crop&w=600&q=80" },
+        { id: "muffins", name: "Muffin Depositors", code: "PRD.07", img: "https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&w=600&q=80" },
+        { id: "pastries", name: "Pastry Sheeters", code: "PRD.08", img: "https://images.unsplash.com/photo-1581092335397-9583fe92d232?auto=format&fit=crop&w=600&q=80" },
+        { id: "biscuits", name: "Rotary Moulders", code: "PRD.09", img: "https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?auto=format&fit=crop&w=600&q=80" },
+        { id: "buns", name: "Bun Dividers", code: "PRD.10", img: "https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=600&q=80" },
+        { id: "chocolates", name: "Chocolate Tempering", code: "PRD.11", img: "https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?auto=format&fit=crop&w=600&q=80" },
+        { id: "snacks", name: "Flow Pack Wrappers", code: "PRD.12", img: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=600&q=80" },
       ];
 
       const categoryMapping = {
@@ -752,39 +752,39 @@
         bread: [
           { name: "Spiral Mixer", desc: "High-torque dough mixing for consistent gluten development at scale.", img: "https://images.unsplash.com/photo-1578683010236-d716f9a3f461?auto=format&fit=crop&w=400&q=80" },
           { name: "Dough Divider", desc: "Precision-cuts dough into uniform, weight-accurate portions.", img: "https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?auto=format&fit=crop&w=400&q=80" },
-          { name: "Dough Rounder", desc: "Shapes divided dough into smooth rounds ahead of proofing.", img: "https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=400&q=80" },
-          { name: "Proofer Cabinet", desc: "Controlled humidity and temperature for reliable fermentation.", img: "https://images.unsplash.com/photo-1548907040-4d42b52125e0?auto=format&fit=crop&w=400&q=80" },
+          { name: "Dough Rounder", desc: "Shapes divided dough into smooth rounds ahead of proofing.", img: "https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=400&q=80" },
+          { name: "Proofer Cabinet", desc: "Controlled humidity and temperature for reliable fermentation.", img: "https://images.unsplash.com/photo-1581092335397-9583fe92d232?auto=format&fit=crop&w=400&q=80" },
           { name: "Rotary Rack Oven", desc: "Even, all-around baking for high-volume bread production.", img: "https://images.unsplash.com/photo-1616401784845-180882ba9ba8?auto=format&fit=crop&w=400&q=80" },
         ],
         cakes: [
           { name: "Planetary Mixer", desc: "Multi-speed mixing for batters, creams and fine fillings.", img: "https://images.unsplash.com/photo-1578683010236-d716f9a3f461?auto=format&fit=crop&w=400&q=80" },
           { name: "Batter Depositor", desc: "Dispenses accurate batter volumes into trays or moulds.", img: "https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?auto=format&fit=crop&w=400&q=80" },
           { name: "Cake Deck Oven", desc: "Stable, even heat for consistent crumb and rise.", img: "https://images.unsplash.com/photo-1616401784845-180882ba9ba8?auto=format&fit=crop&w=400&q=80" },
-          { name: "Cooling Tunnel", desc: "Rapid, hygienic cooling before decoration or packing.", img: "https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=400&q=80" },
+          { name: "Cooling Tunnel", desc: "Rapid, hygienic cooling before decoration or packing.", img: "https://images.unsplash.com/photo-1581092795360-fd1ca04f0952?auto=format&fit=crop&w=400&q=80" },
         ],
         cookies: [
           { name: "Rotary Moulder", desc: "Forms detailed, uniform cookie shapes at high speed.", img: "https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?auto=format&fit=crop&w=400&q=80" },
-          { name: "Wire-Cut Machine", desc: "Extrudes and cuts soft doughs into precise pieces.", img: "https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=400&q=80" },
+          { name: "Wire-Cut Machine", desc: "Extrudes and cuts soft doughs into precise pieces.", img: "https://images.unsplash.com/photo-1581092335397-9583fe92d232?auto=format&fit=crop&w=400&q=80" },
           { name: "Tunnel Oven", desc: "Continuous baking line built for large cookie batches.", img: "https://images.unsplash.com/photo-1616401784845-180882ba9ba8?auto=format&fit=crop&w=400&q=80" },
-          { name: "Cooling Conveyor", desc: "Even airflow cooling to lock in texture and snap.", img: "https://images.unsplash.com/photo-1548907040-4d42b52125e0?auto=format&fit=crop&w=400&q=80" },
+          { name: "Cooling Conveyor", desc: "Even airflow cooling to lock in texture and snap.", img: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=400&q=80" },
         ],
         pizza: [
-          { name: "Dough Sheeter", desc: "Rolls dough to a consistent, even base thickness.", img: "https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=400&q=80" },
+          { name: "Dough Sheeter", desc: "Rolls dough to a consistent, even base thickness.", img: "https://images.unsplash.com/photo-1581092335397-9583fe92d232?auto=format&fit=crop&w=400&q=80" },
           { name: "Pizza Press", desc: "Forms round pizza bases in a single quick cycle.", img: "https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?auto=format&fit=crop&w=400&q=80" },
-          { name: "Topping Line", desc: "Automated sauce and topping distribution for consistency.", img: "https://images.unsplash.com/photo-1548907040-4d42b52125e0?auto=format&fit=crop&w=400&q=80" },
+          { name: "Topping Line", desc: "Automated sauce and topping distribution for consistency.", img: "https://images.unsplash.com/photo-1581092162384-8987c1d64718?auto=format&fit=crop&w=400&q=80" },
           { name: "Stone Deck Oven", desc: "High, radiant heat for authentic crust and char.", img: "https://images.unsplash.com/photo-1616401784845-180882ba9ba8?auto=format&fit=crop&w=400&q=80" },
         ],
         croissant: [
-          { name: "Dough Sheeter", desc: "Rolls dough to precise thickness for lamination.", img: "https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=400&q=80" },
+          { name: "Dough Sheeter", desc: "Rolls dough to precise thickness for lamination.", img: "https://images.unsplash.com/photo-1581092335397-9583fe92d232?auto=format&fit=crop&w=400&q=80" },
           { name: "Laminator", desc: "Folds butter and dough into even, flaky layers.", img: "https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?auto=format&fit=crop&w=400&q=80" },
-          { name: "Proofer Cabinet", desc: "Gentle, controlled proofing to preserve layered structure.", img: "https://images.unsplash.com/photo-1548907040-4d42b52125e0?auto=format&fit=crop&w=400&q=80" },
+          { name: "Proofer Cabinet", desc: "Gentle, controlled proofing to preserve layered structure.", img: "https://images.unsplash.com/photo-1581092795360-fd1ca04f0952?auto=format&fit=crop&w=400&q=80" },
           { name: "Deck Oven", desc: "Even top-and-bottom heat for a golden, crisp finish.", img: "https://images.unsplash.com/photo-1616401784845-180882ba9ba8?auto=format&fit=crop&w=400&q=80" },
         ],
         donuts: [
           { name: "Donut Depositor", desc: "Rings out consistent donut shapes ready for frying.", img: "https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?auto=format&fit=crop&w=400&q=80" },
-          { name: "Fryer Line", desc: "Continuous frying with controlled oil temperature.", img: "https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?auto=format&fit=crop&w=400&q=80" },
-          { name: "Glazing Machine", desc: "Applies an even glaze or sugar coat automatically.", img: "https://images.unsplash.com/photo-1548907040-4d42b52125e0?auto=format&fit=crop&w=400&q=80" },
-          { name: "Cooling Conveyor", desc: "Sets glaze and cools product before packing.", img: "https://images.unsplash.com/photo-1616401784845-180882ba9ba8?auto=format&fit=crop&w=400&q=80" },
+          { name: "Fryer Line", desc: "Continuous frying with controlled oil temperature.", img: "https://images.unsplash.com/photo-1616401784845-180882ba9ba8?auto=format&fit=crop&w=400&q=80" },
+          { name: "Glazing Machine", desc: "Applies an even glaze or sugar coat automatically.", img: "https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?auto=format&fit=crop&w=400&q=80" },
+          { name: "Cooling Conveyor", desc: "Sets glaze and cools product before packing.", img: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=400&q=80" },
         ],
         muffins: [
           { name: "Planetary Mixer", desc: "Smooth, consistent batter mixing at any batch size.", img: "https://images.unsplash.com/photo-1578683010236-d716f9a3f461?auto=format&fit=crop&w=400&q=80" },
@@ -792,32 +792,32 @@
           { name: "Tray Deck Oven", desc: "Even bake and rise across every tray position.", img: "https://images.unsplash.com/photo-1616401784845-180882ba9ba8?auto=format&fit=crop&w=400&q=80" },
         ],
         pastries: [
-          { name: "Dough Sheeter", desc: "Even sheeting for laminated and short pastry bases.", img: "https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=400&q=80" },
+          { name: "Dough Sheeter", desc: "Even sheeting for laminated and short pastry bases.", img: "https://images.unsplash.com/photo-1581092335397-9583fe92d232?auto=format&fit=crop&w=400&q=80" },
           { name: "Laminator", desc: "Builds fine, consistent butter-dough layers.", img: "https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?auto=format&fit=crop&w=400&q=80" },
-          { name: "Filling Machine", desc: "Injects or deposits fillings with portion accuracy.", img: "https://images.unsplash.com/photo-1548907040-4d42b52125e0?auto=format&fit=crop&w=400&q=80" },
+          { name: "Filling Machine", desc: "Injects or deposits fillings with portion accuracy.", img: "https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?auto=format&fit=crop&w=400&q=80" },
           { name: "Deck Oven", desc: "Precise heat zones for delicate, flaky results.", img: "https://images.unsplash.com/photo-1616401784845-180882ba9ba8?auto=format&fit=crop&w=400&q=80" },
         ],
         biscuits: [
           { name: "Rotary Moulder", desc: "Stamps detailed biscuit shapes with fast changeovers.", img: "https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?auto=format&fit=crop&w=400&q=80" },
-          { name: "Wire-Cut Machine", desc: "Cuts soft, chunky doughs into uniform pieces.", img: "https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=400&q=80" },
+          { name: "Wire-Cut Machine", desc: "Cuts soft, chunky doughs into uniform pieces.", img: "https://images.unsplash.com/photo-1581092335397-9583fe92d232?auto=format&fit=crop&w=400&q=80" },
           { name: "Tunnel Oven", desc: "Continuous, high-throughput baking line.", img: "https://images.unsplash.com/photo-1616401784845-180882ba9ba8?auto=format&fit=crop&w=400&q=80" },
         ],
         buns: [
           { name: "Divider Rounder", desc: "Divides and rounds dough into equal bun portions.", img: "https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?auto=format&fit=crop&w=400&q=80" },
-          { name: "Proofer Cabinet", desc: "Controlled proofing for soft, even bun rise.", img: "https://images.unsplash.com/photo-1548907040-4d42b52125e0?auto=format&fit=crop&w=400&q=80" },
+          { name: "Proofer Cabinet", desc: "Controlled proofing for soft, even bun rise.", img: "https://images.unsplash.com/photo-1581092795360-fd1ca04f0952?auto=format&fit=crop&w=400&q=80" },
           { name: "Bun Oven", desc: "Even, gentle bake for a soft crumb and crust.", img: "https://images.unsplash.com/photo-1616401784845-180882ba9ba8?auto=format&fit=crop&w=400&q=80" },
         ],
         chocolates: [
-          { name: "Tempering Machine", desc: "Stabilises cocoa butter for glossy, snap-ready chocolate.", img: "https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?auto=format&fit=crop&w=400&q=80" },
+          { name: "Tempering Machine", desc: "Stabilises cocoa butter for glossy, snap-ready chocolate.", img: "https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?auto=format&fit=crop&w=400&q=80" },
           { name: "Enrobing Line", desc: "Coats centres in an even chocolate shell.", img: "https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?auto=format&fit=crop&w=400&q=80" },
-          { name: "Moulding Line", desc: "Fills and sets moulded chocolate pieces at speed.", img: "https://images.unsplash.com/photo-1548907040-4d42b52125e0?auto=format&fit=crop&w=400&q=80" },
+          { name: "Moulding Line", desc: "Fills and sets moulded chocolate pieces at speed.", img: "https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?auto=format&fit=crop&w=400&q=80" },
           { name: "Cooling Tunnel", desc: "Sets chocolate with a controlled cooling curve.", img: "https://images.unsplash.com/photo-1616401784845-180882ba9ba8?auto=format&fit=crop&w=400&q=80" },
         ],
         snacks: [
           { name: "Extruder", desc: "Shapes snack dough or mash into continuous forms.", img: "https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?auto=format&fit=crop&w=400&q=80" },
-          { name: "Fryer Line", desc: "Continuous frying with consistent oil control.", img: "https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=400&q=80" },
-          { name: "Seasoning Drum", desc: "Tumbles product for even seasoning coverage.", img: "https://images.unsplash.com/photo-1548907040-4d42b52125e0?auto=format&fit=crop&w=400&q=80" },
-          { name: "Packaging Line", desc: "Weighs, fills and seals product for dispatch.", img: "https://images.unsplash.com/photo-1616401784845-180882ba9ba8?auto=format&fit=crop&w=400&q=80" },
+          { name: "Fryer Line", desc: "Continuous frying with consistent oil control.", img: "https://images.unsplash.com/photo-1616401784845-180882ba9ba8?auto=format&fit=crop&w=400&q=80" },
+          { name: "Seasoning Drum", desc: "Tumbles product for even seasoning coverage.", img: "https://images.unsplash.com/photo-1581092795360-fd1ca04f0952?auto=format&fit=crop&w=400&q=80" },
+          { name: "Packaging Line", desc: "Weighs, fills and seals product for dispatch.", img: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=400&q=80" },
         ],
       };
 
@@ -916,7 +916,13 @@
       searchInput.addEventListener('keydown', e => { if (e.key === 'Enter') handleSearch(); });
 
       renderProducts();
-      selectProduct('bread', false);
+      const urlParams = new URLSearchParams(window.location.search);
+      const productParam = urlParams.get('product');
+      if (productParam && products.some(p => p.id === productParam)) {
+        selectProduct(productParam, false);
+      } else {
+        selectProduct('bread', false);
+      }
 
       document.addEventListener('DOMContentLoaded', () => {
         const preloader = document.getElementById('preloader');
@@ -1003,7 +1009,7 @@
           </div>
           <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
-        <div class="modal-body p-4 p-md-5" style="background: #151618;">
+        <div class="modal-body p-4 p-md-5" style="background: var(--primary-dark);">
           <form id="modalQuoteForm" novalidate>
             <div class="row g-4">
               <!-- Full Name -->

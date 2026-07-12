@@ -19,6 +19,232 @@
 
   <!-- Custom Stylesheet -->
   <link rel="stylesheet" href="styles.css">
+  <style>
+    /* Premium Product Detail Custom Styles */
+    :root {
+      --primary-neon-gold: #fdb724;
+      --deep-slate-blue: #1e2022;
+      --glass-bg: rgba(255, 255, 255, 0.03);
+      --glass-border: rgba(255, 255, 255, 0.08);
+    }
+
+    #detail-hero {
+      background: radial-gradient(circle at 75% 20%, rgba(253, 183, 36, 0.12) 0%, transparent 60%),
+        radial-gradient(circle at 25% 80%, rgba(21, 22, 24, 0.98) 0%, #111213 100%);
+      position: relative;
+      overflow: hidden;
+      border-bottom: 1px solid rgba(253, 183, 36, 0.15);
+    }
+
+    #detail-hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+      background-size: 30px 30px;
+      pointer-events: none;
+    }
+
+    .blueprint-container {
+      background-color: #0b1a30;
+      background-image: linear-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+      background-size: 15px 15px;
+      border: 1px solid rgba(253, 183, 36, 0.25);
+      border-radius: 16px;
+      padding: 20px;
+      position: relative;
+      overflow: hidden;
+      min-height: 280px;
+      box-shadow: inset 0 0 40px rgba(0, 0, 0, 0.6), 0 10px 30px rgba(0, 0, 0, 0.2);
+    }
+
+    .blueprint-title {
+      font-family: monospace;
+      color: rgba(253, 183, 36, 0.85);
+      font-size: 0.75rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 15px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .blueprint-drawing {
+      width: 100%;
+      height: 100%;
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 200px;
+    }
+
+    .blueprint-grid-accent {
+      position: absolute;
+      border: 1px dashed rgba(253, 183, 36, 0.15);
+      pointer-events: none;
+    }
+
+    .blueprint-axis-x {
+      width: 90%;
+      height: 1px;
+      left: 5%;
+      top: 50%;
+    }
+
+    .blueprint-axis-y {
+      width: 1px;
+      height: 80%;
+      left: 50%;
+      top: 10%;
+    }
+
+    .blueprint-circle-accent {
+      position: absolute;
+      border: 1px dashed rgba(253, 183, 36, 0.12);
+      border-radius: 50%;
+      width: 130px;
+      height: 130px;
+      pointer-events: none;
+    }
+
+    .blueprint-hotspot {
+      position: absolute;
+      width: 16px;
+      height: 16px;
+      background-color: var(--primary-neon-gold);
+      border-radius: 50%;
+      cursor: pointer;
+      z-index: 10;
+      transition: transform 0.2s;
+    }
+
+    .blueprint-hotspot::after {
+      content: '';
+      position: absolute;
+      top: -12px;
+      left: -12px;
+      right: -12px;
+      bottom: -12px;
+      border: 2px solid var(--primary-neon-gold);
+      border-radius: 50%;
+      animation: pulse-hotspot 2s infinite ease-out;
+      pointer-events: none;
+    }
+
+    @keyframes pulse-hotspot {
+      0% {
+        transform: scale(0.3);
+        opacity: 1;
+      }
+
+      100% {
+        transform: scale(1.1);
+        opacity: 0;
+      }
+    }
+
+    .blueprint-hotspot:hover {
+      transform: scale(1.3);
+      background-color: #ffffff;
+    }
+
+    .blueprint-tooltip {
+      position: absolute;
+      bottom: 25px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 90%;
+      background: rgba(11, 26, 48, 0.95);
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(253, 183, 36, 0.4);
+      padding: 12px 16px;
+      border-radius: 8px;
+      color: #ffffff;
+      font-size: 0.8rem;
+      line-height: 1.4;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s ease;
+      z-index: 20;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+    }
+
+    .blueprint-tooltip.active {
+      opacity: 1;
+      visibility: visible;
+      bottom: 15px;
+    }
+
+    .blueprint-draft-tag {
+      position: absolute;
+      bottom: 10px;
+      right: 15px;
+      font-family: monospace;
+      color: rgba(255, 255, 255, 0.25);
+      font-size: 0.62rem;
+      letter-spacing: 1px;
+    }
+
+    .gallery-thumbnail {
+      border: 2px solid transparent !important;
+      transition: all 0.25s ease !important;
+    }
+
+    .gallery-thumbnail.active {
+      border-color: var(--primary-neon-gold) !important;
+      box-shadow: 0 0 10px rgba(253, 183, 36, 0.3) !important;
+      transform: translateY(-2px);
+    }
+
+    .inquiry-premium-card {
+      background: linear-gradient(135deg, rgba(21, 22, 24, 0.98) 0%, rgba(35, 37, 41, 0.95) 100%);
+      border: 1px solid rgba(253, 183, 36, 0.25);
+      border-radius: 20px;
+      padding: 30px;
+      color: #ffffff;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+    }
+
+    .inquiry-premium-card::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: linear-gradient(45deg, transparent, rgba(253, 183, 36, 0.03), transparent);
+      transform: rotate(45deg);
+      transition: 0.8s;
+      pointer-events: none;
+    }
+
+    .inquiry-premium-card:hover::before {
+      left: 120%;
+    }
+
+    .accordion-button:not(.collapsed) {
+      background-color: rgba(253, 183, 36, 0.08) !important;
+      color: var(--primary-dark) !important;
+      box-shadow: inset 0 -1px 0 rgba(0, 0, 0, .125);
+    }
+
+    .overview-callout {
+      border-left: 4px solid var(--primary-neon-gold);
+      background-color: rgba(253, 183, 36, 0.03);
+      border-radius: 0 12px 12px 0;
+      transition: all 0.3s;
+    }
+
+    .overview-callout:hover {
+      background-color: rgba(253, 183, 36, 0.06);
+    }
+  </style>
 </head>
 
 <body data-bs-spy="scroll" data-bs-target="#navbar" data-bs-offset="100">
@@ -163,18 +389,21 @@
               </div>
             </div>
 
-            <div class="  mb-4">
-              <h5 class="fw-bold mb-3"><i class="fas fa-file-invoice-dollar me-2 text-gold"></i>Product Inquiry</h5>
-              <p class="text-muted fs-14 mb-4">Request a customized price quotation, technical blueprint layout, or
-                service check agreement for this equipment.</p>
+            <!-- Premium Inquiry Card -->
+            <div class="inquiry-premium-card mb-4 text-start">
+              <h5 class="fw-bold text-white mb-2"><i class="fas fa-file-invoice-dollar me-2 text-gold"></i>Product
+                Inquiry</h5>
+              <p class="text-white-50 fs-14 mb-4">Request a customized price quotation, technical blueprint layout, or
+                service SLA agreement for this equipment.</p>
 
-              <div class="d-grid gap-2">
+              <div class="d-grid">
                 <a href="contact.html?category=bakery&product=Tagliavini%20Rotor"
-                  class="btn btn-gold-catalog py-3 fw-bold" id="detail-inquiry-btn">
+                  class="btn btn-gold-catalog py-3 fw-bold shadow-sm" id="detail-inquiry-btn">
                   Request Quotation <i class="fas fa-paper-plane ms-2"></i>
                 </a>
               </div>
             </div>
+
 
           </div>
         </div>
@@ -187,7 +416,8 @@
             generators, and rapid thermal exchanger recovery.</p>
 
           <!-- Enhanced Overview Callout -->
-          <div class="overview-callout p-3  -start-gold mb-4">
+          <div class="overview-callout p-3 mb-4"
+            style="border-left: 4px solid var(--primary-neon-gold); background-color: rgba(253, 183, 36, 0.03);">
             <h4 class="fw-bold mb-2 text-dark"><i class="fas fa-info-circle text-gold me-2"></i>Overview</h4>
             <p class="text-muted fs-15 mb-0" style="line-height: 1.7;" id="detail-desc">
               The Tagliavini ROTOR convection rack oven represents the pinnacle of industrial baking engineering.
@@ -197,307 +427,134 @@
             </p>
           </div>
 
-          <!-- Specs Accordion -->
-          <div class="accordion custom-specs-accordion mt-4 mb-4" id="specsAccordion">
+          <!-- Specs Cards List -->
+          <div class="mt-4">
 
-            <!-- Item 1: Technical Parameters -->
-            <div class="accordion-item border rounded-4 overflow-hidden mb-3">
-              <h2 class="accordion-header" id="headingSpecs">
-                <button class="accordion-button fw-bold py-3 text-dark bg-light-alt" type="button"
-                  data-bs-toggle="collapse" data-bs-target="#collapseSpecs" aria-expanded="true"
-                  aria-controls="collapseSpecs">
-                  <i class="fas fa-cogs text-gold me-2 fs-15"></i> Technical Parameters
-                </button>
-              </h2>
-              <div id="collapseSpecs" class="accordion-collapse collapse show" aria-labelledby="headingSpecs"
-                data-bs-parent="#specsAccordion">
-                <div class="accordion-body p-4 bg-white">
-                  <div id="tech-specs-container">
-                    <p class="text-muted fs-13 mb-3 text-center"><i class="fas fa-hand-pointer text-gold me-1"></i>
-                      Select a configuration to view technical parameters:</p>
-                    <div class="d-flex flex-wrap gap-2 justify-content-center mb-4" id="model-tab-pills">
-                      <button class="btn btn-outline-catalog btn-sm active" data-model-idx="0">Rotor 60.80</button>
-                      <button class="btn btn-outline-catalog btn-sm" data-model-idx="1">Rotor 80.80</button>
-                      <button class="btn btn-outline-catalog btn-sm" data-model-idx="2">Rotor 80.100</button>
-                      <button class="btn btn-outline-catalog btn-sm" data-model-idx="3">Rotor 80.120</button>
-                      <button class="btn btn-outline-catalog btn-sm" data-model-idx="4">Rotor 120.120</button>
-                    </div>
-                    <div class=" " id="active-model-specs-card">
-                      <div class="row g-3" id="active-model-specs-grid">
-                        <div class="col-sm-12">
-                          <div
-                            class=" p-3 bg-white rounded-3 border d-flex justify-content-between align-items-center h-100">
-                            <div class="d-flex align-items-center">
-                              <i class="fas fa-expand text-gold me-2" style="font-size: 0.8rem;"></i>
-                              <span class="text-muted fw-bold fs-11 text-uppercase"
-                                style="letter-spacing: 0.5px; color: var(--primary-slate) !important;">Tray Size
-                                (cm)</span>
-                            </div>
-                            <span class="fw-bold text-dark fs-12">60 x 80 (18 Trays)</span>
-                          </div>
-                        </div>
-                        <div class="col-sm-12">
-                          <div
-                            class=" p-3 bg-white rounded-3 border d-flex justify-content-between align-items-center h-100">
-                            <div class="d-flex align-items-center">
-                              <i class="fas fa-fire text-gold me-2" style="font-size: 0.8rem;"></i>
-                              <span class="text-muted fw-bold fs-11 text-uppercase"
-                                style="letter-spacing: 0.5px; color: var(--primary-slate) !important;">Fuel
-                                Supply</span>
-                            </div>
-                            <span class="fw-bold text-dark fs-12">Gas / Diesel / Elec</span>
-                          </div>
-                        </div>
-                        <div class="col-sm-12">
-                          <div
-                            class=" p-3 bg-white rounded-3 border d-flex justify-content-between align-items-center h-100">
-                            <div class="d-flex align-items-center">
-                              <i class="fas fa-bolt text-gold me-2" style="font-size: 0.8rem;"></i>
-                              <span class="text-muted fw-bold fs-11 text-uppercase"
-                                style="letter-spacing: 0.5px; color: var(--primary-slate) !important;">Thermal
-                                Power</span>
-                            </div>
-                            <span class="fw-bold text-dark fs-12">55,000 kcal/h</span>
-                          </div>
-                        </div>
-                        <div class="col-sm-12">
-                          <div
-                            class=" p-3 bg-white rounded-3 border d-flex justify-content-between align-items-center h-100">
-                            <div class="d-flex align-items-center">
-                              <i class="fas fa-plug text-gold me-2" style="font-size: 0.8rem;"></i>
-                              <span class="text-muted fw-bold fs-11 text-uppercase"
-                                style="letter-spacing: 0.5px; color: var(--primary-slate) !important;">Electrical
-                                Load</span>
-                            </div>
-                            <span class="fw-bold text-dark fs-12">1.5 kW</span>
-                          </div>
-                        </div>
-                        <div class="col-12">
-                          <div
-                            class=" p-3 bg-white rounded-3 border d-flex justify-content-between align-items-center h-100">
-                            <div class="d-flex align-items-center">
-                              <i class="fas fa-ruler-combined text-gold me-2" style="font-size: 0.8rem;"></i>
-                              <span class="text-muted fw-bold fs-11 text-uppercase"
-                                style="letter-spacing: 0.5px; color: var(--primary-slate) !important;">Dimensions (WxDxH
-                                mm)</span>
-                            </div>
-                            <span class="fw-bold text-dark fs-12">1420 x 2050 x 2200</span>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
+            <!-- Card 1: Equipment Quick Facts -->
+            <div class="card border rounded-4 overflow-hidden mb-4 shadow-sm">
+              <div class="card-header py-3 bg-light border-bottom d-flex align-items-center">
+                <h5 class="fw-bold text-dark mb-0"><i class="fas fa-clipboard-list text-gold me-2"></i>Equipment Quick
+                  Facts</h5>
+              </div>
+              <div class="card-body p-4 bg-white">
+                <div class="row g-3" id="quick-facts-list">
+                  <!-- Dynamically populated facts -->
                 </div>
               </div>
             </div>
 
-            <!-- Item 2: Equipment Quick Facts -->
-            <div class="accordion-item border rounded-4 overflow-hidden mb-3">
-              <h2 class="accordion-header" id="headingFacts">
-                <button class="accordion-button collapsed fw-bold py-3 text-dark bg-light-alt" type="button"
-                  data-bs-toggle="collapse" data-bs-target="#collapseFacts" aria-expanded="false"
-                  aria-controls="collapseFacts">
-                  <i class="fas fa-clipboard-list text-gold me-2 fs-15"></i> Equipment Quick Facts
-                </button>
-              </h2>
-              <div id="collapseFacts" class="accordion-collapse collapse" aria-labelledby="headingFacts"
-                data-bs-parent="#specsAccordion">
-                <div class="accordion-body p-4 bg-white">
-                  <div class="row g-2" id="quick-facts-list">
-                    <div class="col-sm-6">
-                      <div
-                        class="quick-fact-item p-3 bg-white rounded-4 border h-100 transition-hover d-flex align-items-center">
-                        <div
-                          class="quick-fact-icon-wrapper rounded-circle d-flex align-items-center justify-content-center me-3"
-                          style="width: 38px; height: 38px; min-width: 38px; background: rgba(253, 183, 36, 0.08); border: 1px solid rgba(253, 183, 36, 0.15); color: var(--accent-gold);">
-                          <i class="fas fa-building fs-13"></i>
-                        </div>
-                        <div class="text-start">
-                          <span class="text-muted fw-bold d-block mb-1"
-                            style="font-size: 0.65rem; letter-spacing: 0.8px; color: var(--primary-slate) !important; text-transform: uppercase;">Manufacturer</span>
-                          <span class="fw-bold text-dark fs-12">Tagliavini</span>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="col-sm-6">
-                      <div
-                        class="quick-fact-item p-3 bg-white rounded-4 border h-100 transition-hover d-flex align-items-center">
-                        <div
-                          class="quick-fact-icon-wrapper rounded-circle d-flex align-items-center justify-content-center me-3"
-                          style="width: 38px; height: 38px; min-width: 38px; background: rgba(253, 183, 36, 0.08); border: 1px solid rgba(253, 183, 36, 0.15); color: var(--accent-gold);">
-                          <i class="fas fa-earth-europe fs-13"></i>
-                        </div>
-                        <div class="text-start">
-                          <span class="text-muted fw-bold d-block mb-1"
-                            style="font-size: 0.65rem; letter-spacing: 0.8px; color: var(--primary-slate) !important; text-transform: uppercase;">Origin
-                            Country</span>
-                          <span class="fw-bold text-dark fs-12">Italy</span>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="col-sm-6">
-                      <div
-                        class="quick-fact-item p-3 bg-white rounded-4 border h-100 transition-hover d-flex align-items-center">
-                        <div
-                          class="quick-fact-icon-wrapper rounded-circle d-flex align-items-center justify-content-center me-3"
-                          style="width: 38px; height: 38px; min-width: 38px; background: rgba(253, 183, 36, 0.08); border: 1px solid rgba(253, 183, 36, 0.15); color: var(--accent-gold);">
-                          <i class="fas fa-shield-halved fs-13"></i>
-                        </div>
-                        <div class="text-start">
-                          <span class="text-muted fw-bold d-block mb-1"
-                            style="font-size: 0.65rem; letter-spacing: 0.8px; color: var(--primary-slate) !important; text-transform: uppercase;">Warranty
-                            SLA</span>
-                          <span class="fw-bold text-dark fs-12">2 Years Commercial</span>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="col-sm-6">
-                      <div
-                        class="quick-fact-item p-3 bg-white rounded-4 border h-100 transition-hover d-flex align-items-center">
-                        <div
-                          class="quick-fact-icon-wrapper rounded-circle d-flex align-items-center justify-content-center me-3"
-                          style="width: 38px; height: 38px; min-width: 38px; background: rgba(253, 183, 36, 0.08); border: 1px solid rgba(253, 183, 36, 0.15); color: var(--accent-gold);">
-                          <i class="fas fa-headset fs-13"></i>
-                        </div>
-                        <div class="text-start">
-                          <span class="text-muted fw-bold d-block mb-1"
-                            style="font-size: 0.65rem; letter-spacing: 0.8px; color: var(--primary-slate) !important; text-transform: uppercase;">Local
-                            Support</span>
-                          <span class="fw-bold text-dark fs-12">Jeddah / Riyadh</span>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="col-sm-6">
-                      <div
-                        class="quick-fact-item p-3 bg-white rounded-4 border h-100 transition-hover d-flex align-items-center">
-                        <div
-                          class="quick-fact-icon-wrapper rounded-circle d-flex align-items-center justify-content-center me-3"
-                          style="width: 38px; height: 38px; min-width: 38px; background: rgba(253, 183, 36, 0.08); border: 1px solid rgba(253, 183, 36, 0.15); color: var(--accent-gold);">
-                          <i class="fas fa-screwdriver-wrench fs-13"></i>
-                        </div>
-                        <div class="text-start">
-                          <span class="text-muted fw-bold d-block mb-1"
-                            style="font-size: 0.65rem; letter-spacing: 0.8px; color: var(--primary-slate) !important; text-transform: uppercase;">Installation</span>
-                          <span class="fw-bold text-dark fs-12">Al Hazmi Certified</span>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="col-sm-6">
-                      <div
-                        class="quick-fact-item p-3 bg-white rounded-4 border h-100 transition-hover d-flex align-items-center">
-                        <div
-                          class="quick-fact-icon-wrapper rounded-circle d-flex align-items-center justify-content-center me-3"
-                          style="width: 38px; height: 38px; min-width: 38px; background: rgba(253, 183, 36, 0.08); border: 1px solid rgba(253, 183, 36, 0.15); color: var(--accent-gold);">
-                          <i class="fas fa-certificate fs-13"></i>
-                        </div>
-                        <div class="text-start">
-                          <span class="text-muted fw-bold d-block mb-1"
-                            style="font-size: 0.65rem; letter-spacing: 0.8px; color: var(--primary-slate) !important; text-transform: uppercase;">Conformity</span>
-                          <span class="fw-bold text-dark fs-12">CE / SASO Standard</span>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
+            <!-- Card 2: Key Engineering Features -->
+            <div class="card border rounded-4 overflow-hidden mb-4 shadow-sm" id="tech-innovations-container">
+              <div class="card-header py-3 bg-light border-bottom d-flex align-items-center">
+                <h5 class="fw-bold text-dark mb-0"><i class="fas fa-microchip text-gold me-2"></i>Key Engineering
+                  Features</h5>
+              </div>
+              <div class="card-body p-4 bg-white">
+                <div class="row g-3" id="innovations-grid">
+                  <!-- Dynamically populated features -->
                 </div>
               </div>
             </div>
 
-            <!-- Item 3: Key Engineering Features -->
-            <div class="accordion-item border rounded-4 overflow-hidden mb-3" id="tech-innovations-container">
-              <h2 class="accordion-header" id="headingFeatures">
-                <button class="accordion-button collapsed fw-bold py-3 text-dark bg-light-alt" type="button"
-                  data-bs-toggle="collapse" data-bs-target="#collapseFeatures" aria-expanded="false"
-                  aria-controls="collapseFeatures">
-                  <i class="fas fa-microchip text-gold me-2 fs-15"></i> Key Engineering Features
-                </button>
-              </h2>
-              <div id="collapseFeatures" class="accordion-collapse collapse" aria-labelledby="headingFeatures"
-                data-bs-parent="#specsAccordion">
-                <div class="accordion-body p-4 bg-white">
-                  <div class="row g-3" id="innovations-grid">
-                    <div class="col-md-6">
-                      <div class="p-4 bg-light rounded-4 border h-100 transition-hover">
-                        <div class="d-flex align-items-center mb-3">
-                          <div class="bg-gold rounded-3 p-2 text-dark me-3"
-                            style="width: 42px; height: 42px; display: flex; align-items: center; justify-content: center;">
-                            <i class="fas fa-wind fs-5"></i>
-                          </div>
-                          <h5 class="fw-bold mb-0" style="font-size: 1.05rem;">Convection Airflow</h5>
-                        </div>
-                        <p class="text-muted fs-13 mb-0" style="line-height: 1.6;">Dual alternating fan cycles adjust
-                          heat currents automatically to deliver absolute crust color uniformity.</p>
-                      </div>
-                    </div>
-                    <div class="col-md-6">
-                      <div class="p-4 bg-light rounded-4 border h-100 transition-hover">
-                        <div class="d-flex align-items-center mb-3">
-                          <div class="bg-gold rounded-3 p-2 text-dark me-3"
-                            style="width: 42px; height: 42px; display: flex; align-items: center; justify-content: center;">
-                            <i class="fas fa-cloud fs-5"></i>
-                          </div>
-                          <h5 class="fw-bold mb-0" style="font-size: 1.05rem;">Cast-Iron Steam</h5>
-                        </div>
-                        <p class="text-muted fs-13 mb-0" style="line-height: 1.6;">An abundant bed of iron spheres
-                          supplies thick, high-pressure steam on demand for glossy crusts.</p>
-                      </div>
-                    </div>
-                  </div>
+            <!-- Card 3: Technical Parameters (Moved to Bottom) -->
+            <div class="card border rounded-4 overflow-hidden mb-4 shadow-sm" id="tech-parameters-card">
+              <div class="card-header py-3 bg-light border-bottom d-flex align-items-center">
+                <h5 class="fw-bold text-dark mb-0"><i class="fas fa-cogs text-gold me-2"></i>Technical Parameters</h5>
+              </div>
+              <div class="card-body p-4 bg-white">
+                <div id="tech-specs-container">
+                  <!-- Dynamically populated parameters/selector -->
                 </div>
               </div>
             </div>
 
           </div>
-
         </div>
 
       </div>
 
     </div>
+
+    </div>
   </section>
 
+  <!-- Footer -->
   <!-- Footer -->
   <footer class="site-footer">
     <div class="container">
       <div class="row g-5">
-        <!-- Col 1 -->
-        <div class="col-lg-4 text-start">
+
+        <!-- Col 1: About & Info -->
+        <div class="col-lg-4 col-md-6 text-start">
           <a class="d-flex align-items-center mb-4 text-white" href="index.html">
             <img src="assets/images/logo-light.png" alt="Al Hazmi International Logo" class="logo-img">
           </a>
-          <p class="mb-4">Delivering industrial bakery machines, packaging lines, refrigeration, and material racking
-            storage solution systems globally for 20+ years.</p>
+          <p class="mb-4" style="line-height: 1.7;">Delivering industrial bakery machines, packaging lines, refrigeration, and material racking storage solution systems globally for 20+ years.</p>
           <div class="footer-social-icons">
-            <a href="#"><i class="fab fa-facebook-f"></i></a>
-            <a href="#"><i class="fab fa-twitter"></i></a>
-            <a href="#"><i class="fab fa-linkedin-in"></i></a>
-            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+            <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+            <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
           </div>
         </div>
-        <!-- Col 2 -->
-        <div class="col-lg-4 text-start">
+
+        <!-- Col 2: Quick Links -->
+        <div class="col-lg-2 col-md-6 text-start">
           <h4 class="footer-widget-title">Quick Links</h4>
           <ul class="footer-links">
-            <li><a href="index.html#home"><i class="fas fa-chevron-right fs-10"></i> Home</a></li>
-            <li><a href="about.html"><i class="fas fa-chevron-right fs-10"></i> About Us</a></li>
-            <li><a href="products.html"><i class="fas fa-chevron-right fs-10"></i> Products</a></li>
-            <li><a href="services.html"><i class="fas fa-chevron-right fs-10"></i> Services</a></li>
-            <li><a href="blog.html"><i class="fas fa-chevron-right fs-10"></i> Blog</a></li>
-            <li><a href="locations.html"><i class="fas fa-chevron-right fs-10"></i> Locations</a></li>
-            <li><a href="contact.html"><i class="fas fa-chevron-right fs-10"></i> Contact Us</a></li>
+            <li><a href="index.html#home"><i class="fas fa-chevron-right"></i> Home</a></li>
+            <li><a href="about.html"><i class="fas fa-chevron-right"></i> About Us</a></li>
+            <li><a href="products.html"><i class="fas fa-chevron-right"></i> Products</a></li>
+            <li><a href="used-equipment.html"><i class="fas fa-chevron-right"></i> Used Equipment</a></li>
+            <li><a href="services.html"><i class="fas fa-chevron-right"></i> Services</a></li>
+            <li><a href="contact.html"><i class="fas fa-chevron-right"></i> Contact Us</a></li>
           </ul>
         </div>
-        <!-- Col 3 -->
-        <div class="col-lg-4 text-start">
-          <h4 class="footer-widget-title">Contact Information</h4>
-          <ul class="footer-contact-info">
-            <li><i class="fas fa-map-marker-alt"></i> Head Office: Prince Sultan St, Al aziziya, Jeddah, KSA</li>
+
+        <!-- Col 3: Solutions -->
+        <div class="col-lg-3 col-md-6 text-start">
+          <h4 class="footer-widget-title">Solutions</h4>
+          <ul class="footer-links">
+            <li><a href="products.html?category=bakery"><i class="fas fa-chevron-right"></i> Bakery Systems</a></li>
+            <li><a href="products.html?category=pastry"><i class="fas fa-chevron-right"></i> Pastry Processing</a></li>
+            <li><a href="products.html?category=chocolate"><i class="fas fa-chevron-right"></i> Chocolate Tempering</a></li>
+            <li><a href="products.html?category=production"><i class="fas fa-chevron-right"></i> Production Lines</a></li>
+            <li><a href="products.html?category=packaging"><i class="fas fa-chevron-right"></i> Packaging Solutions</a></li>
+          </ul>
+        </div>
+
+        <!-- Col 4: Contact & Newsletter -->
+        <div class="col-lg-3 col-md-6 text-start">
+          <h4 class="footer-widget-title">Contact Us</h4>
+          <ul class="footer-contact-info mb-4">
+            <li><i class="fas fa-map-marker-alt"></i> Prince Sultan St, Al aziziya, Jeddah, KSA</li>
             <li><i class="fas fa-phone-alt"></i> +966 12 345 6789</li>
             <li><i class="fas fa-envelope"></i> info@alhazmi.com</li>
           </ul>
+          
+          <h5 class="text-white small fw-bold text-uppercase mb-2" style="letter-spacing: 0.5px;">Newsletter Signup</h5>
+          <form class="footer-newsletter-form">
+            <input type="email" placeholder="Your Email Address" required>
+            <button type="submit" aria-label="Subscribe"><i class="fas fa-paper-plane"></i></button>
+          </form>
         </div>
+
       </div>
-      <div class="footer-bottom text-center">
-        <p class="mb-0">&copy; 2026 Al Hazmi International. All Rights Reserved.</p>
+
+      <!-- Footer Bottom -->
+      <div class="footer-bottom">
+        <div class="row align-items-center">
+          <div class="col-md-6 text-md-start text-center mb-3 mb-md-0">
+            <p class="mb-0">&copy; 2026 Al Hazmi International. All Rights Reserved.</p>
+          </div>
+          <div class="col-md-6 text-md-end text-center">
+            <div class="d-flex justify-content-center justify-content-md-end gap-3 small">
+              <a href="#" class="text-decoration-none text-white-50 hover-text-gold">Privacy Policy</a>
+              <span class="text-white-50">|</span>
+              <a href="#" class="text-decoration-none text-white-50 hover-text-gold">Terms of Service</a>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </footer>
@@ -510,7 +567,8 @@
         <i class="fas fa-file-download"></i>
       </a>
       <!-- WhatsApp Floating Action -->
-      <a href="https://wa.me/966123456789" class="fab-btn fab-btn-whatsapp" target="_blank" rel="noopener noreferrer" title="Chat on WhatsApp">
+      <a href="https://wa.me/966123456789" class="fab-btn fab-btn-whatsapp" target="_blank" rel="noopener noreferrer"
+        title="Chat on WhatsApp">
         <i class="fab fa-whatsapp"></i>
       </a>
     </div>
@@ -668,11 +726,30 @@
         };
       }
 
+      // Automatically map product image to one of the 4 local images deterministically
+      function mapProductImage(product) {
+        if (!product) return;
+        let hash = 0;
+        for (let i = 0; i < product.name.length; i++) {
+          hash = product.name.charCodeAt(i) + ((hash << 5) - hash);
+        }
+        const imgIdx = Math.abs(hash) % 4;
+        const productImages = [
+          "assets/images/products/1.webp",
+          "assets/images/products/2.webp",
+          "assets/images/products/3.png",
+          "assets/images/products/4.jpg"
+        ];
+        product.img = productImages[imgIdx];
+      }
+
+      mapProductImage(productInfo);
+
       // Populate text details
       document.getElementById('detail-brand-badge').textContent = productInfo.brand;
       document.getElementById('detail-title').textContent = productInfo.name;
       document.getElementById('detail-crumb').textContent = productInfo.name;
-      
+
       let fallbackImg = 'assets/images/about_industrial.png';
       if (productInfo.category === 'bakery') fallbackImg = 'assets/images/bakery.png';
       else if (productInfo.category === 'pastry') fallbackImg = 'assets/images/pastry.png';
@@ -777,6 +854,31 @@
           </div>
         `;
         quickFactsList.appendChild(factCol);
+      });
+
+      // Initialize Interactive Drafting Blueprint tooltips
+      const hotspots = document.querySelectorAll('.blueprint-hotspot');
+      const tooltipBox = document.getElementById('blueprint-tooltip-box');
+      const tooltipTitle = document.getElementById('blueprint-tooltip-title');
+      const tooltipDesc = document.getElementById('blueprint-tooltip-desc');
+
+      hotspots.forEach(hotspot => {
+        const showTooltip = () => {
+          tooltipTitle.textContent = hotspot.getAttribute('data-title');
+          tooltipDesc.textContent = hotspot.getAttribute('data-desc');
+          tooltipBox.classList.add('active');
+        };
+
+        const hideTooltip = () => {
+          tooltipBox.classList.remove('active');
+        };
+
+        hotspot.addEventListener('mouseenter', showTooltip);
+        hotspot.addEventListener('mouseleave', hideTooltip);
+        hotspot.addEventListener('click', (e) => {
+          e.stopPropagation();
+          showTooltip();
+        });
       });
 
       if (extInfo) {
@@ -929,20 +1031,20 @@
     document.addEventListener('DOMContentLoaded', () => {
       const form = document.getElementById('modalQuoteForm');
       const successMsg = document.getElementById('modalSuccessMsg');
-      
+
       if (form) {
         form.addEventListener('submit', (e) => {
           e.preventDefault();
-          
+
           if (!form.checkValidity()) {
             e.stopPropagation();
             form.classList.add('was-validated');
             return;
           }
-          
+
           form.classList.add('d-none');
           successMsg.classList.remove('d-none');
-          
+
           const modalEl = document.getElementById('quoteModal');
           modalEl.addEventListener('hidden.bs.modal', () => {
             form.reset();
@@ -961,22 +1063,25 @@
       <div class="modal-content border-0 rounded-4 overflow-hidden shadow-lg bg-dark text-white">
         <div class="modal-header border-bottom border-secondary p-4" style="background: #1c1d1f;">
           <div class="d-flex align-items-center gap-3">
-            <div class="bg-gold p-2 rounded-3 text-dark d-flex align-items-center justify-content-center" style="width: 40px; height: 40px; background-color: var(--accent-gold);">
+            <div class="bg-gold p-2 rounded-3 text-dark d-flex align-items-center justify-content-center"
+              style="width: 40px; height: 40px; background-color: var(--accent-gold);">
               <i class="fas fa-file-invoice-dollar fs-5"></i>
             </div>
             <div>
-              <h5 class="modal-title fw-bold font-headings text-white mb-0" id="quoteModalLabel">Request a Custom Quote</h5>
+              <h5 class="modal-title fw-bold font-headings text-white mb-0" id="quoteModalLabel">Request a Custom Quote
+              </h5>
               <p class="text-white-50 mb-0 small">Tell us about your production requirements</p>
             </div>
           </div>
           <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
-        <div class="modal-body p-4 p-md-5" style="background: #151618;">
+        <div class="modal-body p-4 p-md-5" style="background: var(--primary-dark);">
           <form id="modalQuoteForm" novalidate>
             <div class="row g-4">
               <!-- Full Name -->
               <div class="col-md-6 text-start">
-                <label for="modalName" class="form-label small fw-semibold text-white-50 text-uppercase" style="letter-spacing: 0.5px;">Full Name *</label>
+                <label for="modalName" class="form-label small fw-semibold text-white-50 text-uppercase"
+                  style="letter-spacing: 0.5px;">Full Name *</label>
                 <div class="input-group">
                   <span class="input-group-text"><i class="fas fa-user"></i></span>
                   <input type="text" class="form-control" id="modalName" placeholder="John Doe" required>
@@ -984,7 +1089,8 @@
               </div>
               <!-- Business Email -->
               <div class="col-md-6 text-start">
-                <label for="modalName" class="form-label small fw-semibold text-white-50 text-uppercase" style="letter-spacing: 0.5px;">Business Email *</label>
+                <label for="modalName" class="form-label small fw-semibold text-white-50 text-uppercase"
+                  style="letter-spacing: 0.5px;">Business Email *</label>
                 <div class="input-group">
                   <span class="input-group-text"><i class="fas fa-envelope"></i></span>
                   <input type="email" class="form-control" id="modalEmail" placeholder="name@company.com" required>
@@ -992,7 +1098,8 @@
               </div>
               <!-- Phone -->
               <div class="col-md-6 text-start">
-                <label for="modalPhone" class="form-label small fw-semibold text-white-50 text-uppercase" style="letter-spacing: 0.5px;">Phone Number *</label>
+                <label for="modalPhone" class="form-label small fw-semibold text-white-50 text-uppercase"
+                  style="letter-spacing: 0.5px;">Phone Number *</label>
                 <div class="input-group">
                   <span class="input-group-text"><i class="fas fa-phone-alt"></i></span>
                   <input type="tel" class="form-control" id="modalPhone" placeholder="+966 50 000 0000" required>
@@ -1000,7 +1107,8 @@
               </div>
               <!-- Company Name -->
               <div class="col-md-6 text-start">
-                <label for="modalCompany" class="form-label small fw-semibold text-white-50 text-uppercase" style="letter-spacing: 0.5px;">Company Name</label>
+                <label for="modalCompany" class="form-label small fw-semibold text-white-50 text-uppercase"
+                  style="letter-spacing: 0.5px;">Company Name</label>
                 <div class="input-group">
                   <span class="input-group-text"><i class="fas fa-building"></i></span>
                   <input type="text" class="form-control" id="modalCompany" placeholder="Al Hazmi Co.">
@@ -1008,7 +1116,8 @@
               </div>
               <!-- Product Category -->
               <div class="col-md-12 text-start">
-                <label for="modalCategory" class="form-label small fw-semibold text-white-50 text-uppercase" style="letter-spacing: 0.5px;">Interest Category *</label>
+                <label for="modalCategory" class="form-label small fw-semibold text-white-50 text-uppercase"
+                  style="letter-spacing: 0.5px;">Interest Category *</label>
                 <div class="input-group">
                   <span class="input-group-text"><i class="fas fa-th-large"></i></span>
                   <select class="form-select" id="modalCategory" required>
@@ -1027,28 +1136,37 @@
               </div>
               <!-- Message -->
               <div class="col-md-12 text-start">
-                <label for="modalMessage" class="form-label small fw-semibold text-white-50 text-uppercase" style="letter-spacing: 0.5px;">Production Requirements / Message</label>
-                <textarea class="form-control" id="modalMessage" rows="4" placeholder="Please describe the machine capacity, target products, and electrical specs..."></textarea>
+                <label for="modalMessage" class="form-label small fw-semibold text-white-50 text-uppercase"
+                  style="letter-spacing: 0.5px;">Production Requirements / Message</label>
+                <textarea class="form-control" id="modalMessage" rows="4"
+                  placeholder="Please describe the machine capacity, target products, and electrical specs..."></textarea>
               </div>
             </div>
             <!-- Submit Button -->
             <div class="mt-4 pt-2 text-end">
-              <button type="button" class="btn btn-outline-secondary px-4 py-2 me-2 rounded-pill font-headings text-white-50 border-secondary" data-bs-dismiss="modal">Cancel</button>
-              <button type="submit" class="btn btn-header-cta px-4 py-2">Submit Request <i class="fas fa-paper-plane ms-2"></i></button>
+              <button type="button"
+                class="btn btn-outline-secondary px-4 py-2 me-2 rounded-pill font-headings text-white-50 border-secondary"
+                data-bs-dismiss="modal">Cancel</button>
+              <button type="submit" class="btn btn-header-cta px-4 py-2">Submit Request <i
+                  class="fas fa-paper-plane ms-2"></i></button>
             </div>
           </form>
           <!-- Success Message -->
           <div id="modalSuccessMsg" class="d-none py-5 text-center">
             <div class="mb-4">
-              <span class="bg-gold rounded-circle d-inline-flex align-items-center justify-content-center" style="width: 80px; height: 80px; box-shadow: 0 0 0 10px rgba(253, 183, 36, 0.15); background-color: var(--accent-gold);">
+              <span class="bg-gold rounded-circle d-inline-flex align-items-center justify-content-center"
+                style="width: 80px; height: 80px; box-shadow: 0 0 0 10px rgba(253, 183, 36, 0.15); background-color: var(--accent-gold);">
                 <i class="fas fa-check text-dark fs-1"></i>
               </span>
             </div>
             <h3 class="fw-bold font-headings text-white mb-2">Quote Request Received!</h3>
             <p class="text-white-50 mx-auto" style="max-width: 480px; line-height: 1.6;">
-              Thank you for requesting a quote. Our engineering sales team will review your requirements and get in touch with a customized proposal within 24 hours.
+              Thank you for requesting a quote. Our engineering sales team will review your requirements and get in
+              touch with a customized proposal within 24 hours.
             </p>
-            <button type="button" class="btn btn-outline-secondary px-4 py-2 mt-4 rounded-pill font-headings text-white-50 border-secondary" data-bs-dismiss="modal">Close Window</button>
+            <button type="button"
+              class="btn btn-outline-secondary px-4 py-2 mt-4 rounded-pill font-headings text-white-50 border-secondary"
+              data-bs-dismiss="modal">Close Window</button>
           </div>
         </div>
       </div>

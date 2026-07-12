@@ -123,169 +123,228 @@
   <!-- Certified Used Equipment Section -->
   <section id="used-products" class="section-padding bg-light-alt-section">
     <div class="container">
-      
-      <div class="text-center mb-5" data-aos="fade-up">
-        <span class="section-tag">• Pre-Owned Machinery •</span>
-        <h2 class="section-title-large">Certified Refurbished Machinery</h2>
-        <div class="accent-bar-gold mx-auto mt-3"></div>
-        <p class="text-muted mt-3 mx-auto" style="max-width: 600px;">
-          Fully inspected, serviced, and certified pre-owned industrial machinery backed by our expert engineering support and service warranty coverage.
-        </p>
+
+      <!-- Search Bar -->
+      <div class="row mb-5 justify-content-center">
+        <div class="col-lg-7">
+          <div class="catalog-filter-box p-2 rounded-5 shadow-sm bg-white" data-aos="fade-up">
+            <div class="search-input-group">
+              <i class="fas fa-search search-icon"></i>
+              <input type="text" id="used-search" class="form-control filter-search-input"
+                placeholder="Search pre-owned equipment or brand (e.g. Oven, Macpan)...">
+              <button class="search-btn btn" type="button"><i class="fas fa-arrow-right"></i></button>
+            </div>
+          </div>
+        </div>
       </div>
 
-      <!-- Filter Categories -->
-      <div class="used-filter-container" data-aos="fade-up">
-        <button class="used-filter-btn active" data-filter="all">All Equipment</button>
-        <button class="used-filter-btn" data-filter="ovens">Bakery Ovens</button>
-        <button class="used-filter-btn" data-filter="mixers">Dough Mixers</button>
-        <button class="used-filter-btn" data-filter="packaging">Packaging Solutions</button>
+      <!-- Mobile/Tablet Filters Toggle Button -->
+      <div class="d-lg-none text-center mb-4">
+        <button type="button" class="btn btn-primary-dark px-4 py-2.5 rounded-pill font-headings text-white d-inline-flex align-items-center gap-2" id="toggle-filter-drawer" style="background-color: var(--primary-dark); border-color: var(--primary-dark);">
+          <i class="fas fa-filter text-gold" style="color: var(--accent-gold);"></i> Filter & Categories
+        </button>
       </div>
 
-      <!-- Used Products Grid -->
-      <div class="row g-4" id="used-products-grid">
+      <!-- Main Layout with Category Sidebar & Cards -->
+      <div class="row g-4">
 
-        <!-- Product 1: Used Rotary Oven -->
-        <div class="col-lg-3 col-md-6 used-product-col" data-category="ovens" data-aos="fade-up" data-aos-delay="100">
-          <div class="used-product-card">
-            <div class="used-img-wrap">
-              <span class="used-badge-condition refurbished">Refurbished</span>
-              <span class="used-badge-warranty">6M Warranty</span>
-              <img src="https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=600&q=80"
-                alt="Used Rotary Rack Oven">
+        <!-- Sidebar Navigation (Desktop) / Drawer (Mobile/Tablet) -->
+        <div class="col-lg-3">
+          <div class="category-sidebar p-4 bg-white rounded-4 shadow-sm text-start" style="top: 120px; z-index: 10;"
+            data-aos="fade-right">
+            <!-- Mobile Close Button inside Sidebar -->
+            <div class="d-flex justify-content-between align-items-center mb-4 d-lg-none">
+              <h5 class="fw-bold mb-0 text-dark">Filters</h5>
+              <button type="button" class="btn text-dark p-0 fs-5" id="close-filter-drawer"><i class="fas fa-times"></i></button>
             </div>
-            <div class="used-card-body">
-              <span class="used-brand-tag">RM FORNI</span>
-              <h3 class="used-card-title">Used Rotary Rack Oven RMP8080</h3>
-              <ul class="used-specs-list">
-                <li class="used-spec-item">
-                  <span class="used-spec-label">Year:</span>
-                  <span class="used-spec-value">2021</span>
-                </li>
-                <li class="used-spec-item">
-                  <span class="used-spec-label">Capacity:</span>
-                  <span class="used-spec-value">18 Trays (80x80)</span>
-                </li>
-                <li class="used-spec-item">
-                  <span class="used-spec-label">Condition:</span>
-                  <span class="used-spec-value">Excellent</span>
-                </li>
-              </ul>
-              <div class="used-card-footer">
-                <a href="#" class="btn-used-inquire btn-primary-dark" data-bs-toggle="modal"
-                  data-bs-target="#quoteModal" onclick="setQuoteInterest('used_machine')">Request Quote</a>
-                <a href="https://wa.me/966123456789?text=Hello%2C%20I%20am%20interested%20in%20the%20Used%20Rotary%20Rack%20Oven%20RMP8080."
-                  target="_blank" class="btn-used-inquire btn-outline-gold"><i class="fab fa-whatsapp"></i> Chat</a>
+            <h4 class="sidebar-title mb-4">Categories</h4>
+            <div class="nav flex-column nav-pills category-nav-list" id="category-tabs" role="tablist">
+              <!-- All -->
+              <div class="category-group w-100">
+                <button class="nav-link active w-100 used-filter-btn" data-filter="all" type="button">
+                  <i class="fas fa-th-large me-2"></i>All Equipment
+                </button>
+              </div>
+
+              <!-- Ovens -->
+              <div class="category-group w-100">
+                <button class="nav-link w-100 used-filter-btn" data-filter="ovens" type="button">
+                  <i class="fas fa-bread-slice me-2"></i>Bakery Ovens
+                </button>
+              </div>
+
+              <!-- Mixers -->
+              <div class="category-group w-100">
+                <button class="nav-link w-100 used-filter-btn" data-filter="mixers" type="button">
+                  <i class="fas fa-blender me-2"></i>Dough Mixers
+                </button>
+              </div>
+
+              <!-- Packaging -->
+              <div class="category-group w-100">
+                <button class="nav-link w-100 used-filter-btn" data-filter="packaging" type="button">
+                  <i class="fas fa-box-open me-2"></i>Packaging Solutions
+                </button>
               </div>
             </div>
           </div>
         </div>
 
-        <!-- Product 2: Used Spiral Mixer -->
-        <div class="col-lg-3 col-md-6 used-product-col" data-category="mixers" data-aos="fade-up" data-aos-delay="200">
-          <div class="used-product-card">
-            <div class="used-img-wrap">
-              <span class="used-badge-condition excellent">Excellent</span>
-              <span class="used-badge-warranty">3M Warranty</span>
-              <img src="https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=600&q=80"
-                alt="Used Spiral Mixer 25">
-            </div>
-            <div class="used-card-body">
-              <span class="used-brand-tag">MACPAN</span>
-              <h3 class="used-card-title">Used Spiral Mixer 25 (Fixed Bowl)</h3>
-              <ul class="used-specs-list">
-                <li class="used-spec-item">
-                  <span class="used-spec-label">Year:</span>
-                  <span class="used-spec-value">2022</span>
-                </li>
-                <li class="used-spec-item">
-                  <span class="used-spec-label">Capacity:</span>
-                  <span class="used-spec-value">25kg Dry Flour</span>
-                </li>
-                <li class="used-spec-item">
-                  <span class="used-spec-label">Condition:</span>
-                  <span class="used-spec-value">Used - Cleaned</span>
-                </li>
-              </ul>
-              <div class="used-card-footer">
-                <a href="#" class="btn-used-inquire btn-primary-dark" data-bs-toggle="modal"
-                  data-bs-target="#quoteModal" onclick="setQuoteInterest('bakery')">Request Quote</a>
-                <a href="https://wa.me/966123456789?text=Hello%2C%20I%20am%20interested%20in%20the%20Used%20Spiral%20Mixer%2025."
-                  target="_blank" class="btn-used-inquire btn-outline-gold"><i class="fab fa-whatsapp"></i> Chat</a>
-              </div>
+        <!-- Product Cards Grid -->
+        <div class="col-lg-9 text-start">
+          <div class="d-flex justify-content-between align-items-center mb-4 flex-wrap gap-2" data-aos="fade-down">
+            <div>
+              <h3 id="active-category-title" class="fw-bold mb-0">All Equipment</h3>
+              <p class="text-muted mb-0 small" id="results-count">4 Products Found</p>
             </div>
           </div>
-        </div>
 
-        <!-- Product 3: Used Flow Wrap Machine -->
-        <div class="col-lg-3 col-md-6 used-product-col" data-category="packaging" data-aos="fade-up"
-          data-aos-delay="300">
-          <div class="used-product-card">
-            <div class="used-img-wrap">
-              <span class="used-badge-condition likenew">Like New</span>
-              <span class="used-badge-warranty">12M Warranty</span>
-              <img src="https://images.unsplash.com/photo-1616401784845-180882ba9ba8?auto=format&fit=crop&w=600&q=80"
-                alt="Used Flow Wrap Machine">
-            </div>
-            <div class="used-card-body">
-              <span class="used-brand-tag">ANKO</span>
-              <h3 class="used-card-title">Used Flow Wrap Packaging Machine</h3>
-              <ul class="used-specs-list">
-                <li class="used-spec-item">
-                  <span class="used-spec-label">Year:</span>
-                  <span class="used-spec-value">2023</span>
-                </li>
-                <li class="used-spec-item">
-                  <span class="used-spec-label">Speed:</span>
-                  <span class="used-spec-value">Up to 120 wraps/min</span>
-                </li>
-                <li class="used-spec-item">
-                  <span class="used-spec-label">Condition:</span>
-                  <span class="used-spec-value">Demo Unit - Like New</span>
-                </li>
-              </ul>
-              <div class="used-card-footer">
-                <a href="#" class="btn-used-inquire btn-primary-dark" data-bs-toggle="modal"
-                  data-bs-target="#quoteModal" onclick="setQuoteInterest('used_machine')">Request Quote</a>
-                <a href="https://wa.me/966123456789?text=Hello%2C%20I%20am%20interested%20in%20the%20Used%20Flow%20Wrap%20Packaging%20Machine."
-                  target="_blank" class="btn-used-inquire btn-outline-gold"><i class="fab fa-whatsapp"></i> Chat</a>
+          <div class="row g-4" id="used-products-grid">
+
+            <!-- Product 1: Used Rotary Oven -->
+            <div class="col-6 col-md-6 col-lg-4 used-product-col" data-category="ovens" data-aos="fade-up"
+              data-aos-delay="100">
+              <div class="used-product-card">
+                <div class="used-img-wrap">
+                  <span class="used-badge-condition refurbished">Refurbished</span>
+                  <span class="used-badge-warranty">6M Warranty</span>
+                  <img src="assets/images/products/1.webp" alt="Used Rotary Rack Oven">
+                </div>
+                <div class="used-card-body">
+                  <span class="used-brand-tag">RM FORNI</span>
+                  <h3 class="used-card-title">Used Rotary Rack Oven RMP8080</h3>
+                  <ul class="used-specs-list">
+                    <li class="used-spec-item">
+                      <span class="used-spec-label">Year:</span>
+                      <span class="used-spec-value">2021</span>
+                    </li>
+                    <li class="used-spec-item">
+                      <span class="used-spec-label">Capacity:</span>
+                      <span class="used-spec-value">18 Trays (80x80)</span>
+                    </li>
+                    <li class="used-spec-item">
+                      <span class="used-spec-label">Condition:</span>
+                      <span class="used-spec-value">Excellent</span>
+                    </li>
+                  </ul>
+                  <div class="used-card-footer">
+                    <a href="#" class="btn-used-inquire btn-primary-dark" data-bs-toggle="modal"
+                      data-bs-target="#quoteModal" onclick="setQuoteInterest('used_machine')">Request Quote</a>
+                    <a href="https://wa.me/966123456789?text=Hello%2C%20I%20am%20interested%20in%20the%20Used%20Rotary%20Rack%20Oven%20RMP8080."
+                      target="_blank" class="btn-used-inquire btn-outline-gold"><i class="fab fa-whatsapp"></i> Chat</a>
+                  </div>
+                </div>
               </div>
             </div>
-          </div>
-        </div>
 
-        <!-- Product 4: Used Modular Deck Oven -->
-        <div class="col-lg-3 col-md-6 used-product-col" data-category="ovens" data-aos="fade-up" data-aos-delay="400">
-          <div class="used-product-card">
-            <div class="used-img-wrap">
-              <span class="used-badge-condition refurbished">Refurbished</span>
-              <span class="used-badge-warranty">6M Warranty</span>
-              <img src="https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?auto=format&fit=crop&w=600&q=80"
-                alt="Used Modular Deck Oven">
-            </div>
-            <div class="used-card-body">
-              <span class="used-brand-tag">TAGLIAVINI</span>
-              <h3 class="used-card-title">Used Modular Deck Oven (3 Chambers)</h3>
-              <ul class="used-specs-list">
-                <li class="used-spec-item">
-                  <span class="used-spec-label">Year:</span>
-                  <span class="used-spec-value">2020</span>
-                </li>
-                <li class="used-spec-item">
-                  <span class="used-spec-label">Power:</span>
-                  <span class="used-spec-value">Electric - 18 kW</span>
-                </li>
-                <li class="used-spec-item">
-                  <span class="used-spec-label">Condition:</span>
-                  <span class="used-spec-value">Fully Refurbished</span>
-                </li>
-              </ul>
-              <div class="used-card-footer">
-                <a href="#" class="btn-used-inquire btn-primary-dark" data-bs-toggle="modal"
-                  data-bs-target="#quoteModal" onclick="setQuoteInterest('pastry')">Request Quote</a>
-                <a href="https://wa.me/966123456789?text=Hello%2C%20I%20am%20interested%20in%20the%20Used%20Modular%20Deck%20Oven."
-                  target="_blank" class="btn-used-inquire btn-outline-gold"><i class="fab fa-whatsapp"></i> Chat</a>
+            <!-- Product 2: Used Spiral Mixer -->
+            <div class="col-6 col-md-6 col-lg-4 used-product-col" data-category="mixers" data-aos="fade-up"
+              data-aos-delay="200">
+              <div class="used-product-card">
+                <div class="used-img-wrap">
+                  <span class="used-badge-condition excellent">Excellent</span>
+                  <span class="used-badge-warranty">3M Warranty</span>
+                  <img src="assets/images/products/2.webp" alt="Used Spiral Mixer 25">
+                </div>
+                <div class="used-card-body">
+                  <span class="used-brand-tag">MACPAN</span>
+                  <h3 class="used-card-title">Used Spiral Mixer 25 (Fixed Bowl)</h3>
+                  <ul class="used-specs-list">
+                    <li class="used-spec-item">
+                      <span class="used-spec-label">Year:</span>
+                      <span class="used-spec-value">2022</span>
+                    </li>
+                    <li class="used-spec-item">
+                      <span class="used-spec-label">Capacity:</span>
+                      <span class="used-spec-value">25kg Dry Flour</span>
+                    </li>
+                    <li class="used-spec-item">
+                      <span class="used-spec-label">Condition:</span>
+                      <span class="used-spec-value">Used - Cleaned</span>
+                    </li>
+                  </ul>
+                  <div class="used-card-footer">
+                    <a href="#" class="btn-used-inquire btn-primary-dark" data-bs-toggle="modal"
+                      data-bs-target="#quoteModal" onclick="setQuoteInterest('bakery')">Request Quote</a>
+                    <a href="https://wa.me/966123456789?text=Hello%2C%20I%20am%20interested%20in%20the%20Used%20Spiral%20Mixer%2025."
+                      target="_blank" class="btn-used-inquire btn-outline-gold"><i class="fab fa-whatsapp"></i> Chat</a>
+                  </div>
+                </div>
               </div>
             </div>
+
+            <!-- Product 3: Used Flow Wrap Machine -->
+            <div class="col-6 col-md-6 col-lg-4 used-product-col" data-category="packaging" data-aos="fade-up"
+              data-aos-delay="300">
+              <div class="used-product-card">
+                <div class="used-img-wrap">
+                  <span class="used-badge-condition likenew">Like New</span>
+                  <span class="used-badge-warranty">12M Warranty</span>
+                  <img src="assets/images/products/3.png" alt="Used Flow Wrap Machine">
+                </div>
+                <div class="used-card-body">
+                  <span class="used-brand-tag">ANKO</span>
+                  <h3 class="used-card-title">Used Flow Wrap Packaging Machine</h3>
+                  <ul class="used-specs-list">
+                    <li class="used-spec-item">
+                      <span class="used-spec-label">Year:</span>
+                      <span class="used-spec-value">2023</span>
+                    </li>
+                    <li class="used-spec-item">
+                      <span class="used-spec-label">Speed:</span>
+                      <span class="used-spec-value">Up to 120 wraps/min</span>
+                    </li>
+                    <li class="used-spec-item">
+                      <span class="used-spec-label">Condition:</span>
+                      <span class="used-spec-value">Demo Unit - Like New</span>
+                    </li>
+                  </ul>
+                  <div class="used-card-footer">
+                    <a href="#" class="btn-used-inquire btn-primary-dark" data-bs-toggle="modal"
+                      data-bs-target="#quoteModal" onclick="setQuoteInterest('used_machine')">Request Quote</a>
+                    <a href="https://wa.me/966123456789?text=Hello%2C%20I%20am%20interested%20in%20the%20Used%20Flow%20Wrap%20Packaging%20Machine."
+                      target="_blank" class="btn-used-inquire btn-outline-gold"><i class="fab fa-whatsapp"></i> Chat</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Product 4: Used Modular Deck Oven -->
+            <div class="col-6 col-md-6 col-lg-4 used-product-col" data-category="ovens" data-aos="fade-up"
+              data-aos-delay="400">
+              <div class="used-product-card">
+                <div class="used-img-wrap">
+                  <span class="used-badge-condition refurbished">Refurbished</span>
+                  <span class="used-badge-warranty">6M Warranty</span>
+                  <img src="assets/images/products/4.jpg" alt="Used Modular Deck Oven">
+                </div>
+                <div class="used-card-body">
+                  <span class="used-brand-tag">TAGLIAVINI</span>
+                  <h3 class="used-card-title">Used Modular Deck Oven (3 Chambers)</h3>
+                  <ul class="used-specs-list">
+                    <li class="used-spec-item">
+                      <span class="used-spec-label">Year:</span>
+                      <span class="used-spec-value">2020</span>
+                    </li>
+                    <li class="used-spec-item">
+                      <span class="used-spec-label">Power:</span>
+                      <span class="used-spec-value">Electric - 18 kW</span>
+                    </li>
+                    <li class="used-spec-item">
+                      <span class="used-spec-label">Condition:</span>
+                      <span class="used-spec-value">Fully Refurbished</span>
+                    </li>
+                  </ul>
+                  <div class="used-card-footer">
+                    <a href="#" class="btn-used-inquire btn-primary-dark" data-bs-toggle="modal"
+                      data-bs-target="#quoteModal" onclick="setQuoteInterest('pastry')">Request Quote</a>
+                    <a href="https://wa.me/966123456789?text=Hello%2C%20I%20am%20interested%20in%20the%20Used%20Modular%20Deck%20Oven."
+                      target="_blank" class="btn-used-inquire btn-outline-gold"><i class="fab fa-whatsapp"></i> Chat</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+
           </div>
         </div>
 
@@ -299,54 +358,74 @@
       <div class="row g-5">
 
         <!-- Col 1: About & Info -->
-        <div class="col-lg-4 text-start">
+        <div class="col-lg-4 col-md-6 text-start">
           <a class="d-flex align-items-center mb-4 text-white" href="index.html">
             <img src="assets/images/logo-light.png" alt="Al Hazmi International Logo" class="logo-img">
           </a>
-          <p class="mb-4">Delivering industrial bakery machines, packaging lines, refrigeration, and material racking
-            storage solution systems globally for 20+ years.</p>
+          <p class="mb-4" style="line-height: 1.7;">Delivering industrial bakery machines, packaging lines, refrigeration, and material racking storage solution systems globally for 20+ years.</p>
           <div class="footer-social-icons">
-            <a href="#"><i class="fab fa-facebook-f"></i></a>
-            <a href="#"><i class="fab fa-twitter"></i></a>
-            <a href="#"><i class="fab fa-linkedin-in"></i></a>
-            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+            <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+            <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
           </div>
         </div>
 
         <!-- Col 2: Quick Links -->
-        <div class="col-lg-4 text-start">
+        <div class="col-lg-2 col-md-6 text-start">
           <h4 class="footer-widget-title">Quick Links</h4>
           <ul class="footer-links">
-            <li><a href="index.html#home"><i class="fas fa-chevron-right fs-10"></i> Home</a></li>
-            <li><a href="about.html"><i class="fas fa-chevron-right fs-10"></i> About Us</a></li>
-            <li><a href="products.html"><i class="fas fa-chevron-right fs-10"></i> Products</a></li>
-            <li><a href="used-equipment.html"><i class="fas fa-chevron-right fs-10"></i> Used Equipment</a></li>
-            <li><a href="services.html"><i class="fas fa-chevron-right fs-10"></i> Services</a></li>
-            <li><a href="blog.html"><i class="fas fa-chevron-right fs-10"></i> Blog</a></li>
-            <li><a href="locations.html"><i class="fas fa-chevron-right fs-10"></i> Locations</a></li>
-            <li><a href="contact.html"><i class="fas fa-chevron-right fs-10"></i> Contact Us</a></li>
+            <li><a href="index.html#home"><i class="fas fa-chevron-right"></i> Home</a></li>
+            <li><a href="about.html"><i class="fas fa-chevron-right"></i> About Us</a></li>
+            <li><a href="products.html"><i class="fas fa-chevron-right"></i> Products</a></li>
+            <li><a href="used-equipment.html"><i class="fas fa-chevron-right"></i> Used Equipment</a></li>
+            <li><a href="services.html"><i class="fas fa-chevron-right"></i> Services</a></li>
+            <li><a href="contact.html"><i class="fas fa-chevron-right"></i> Contact Us</a></li>
           </ul>
         </div>
 
-        <!-- Col 3: Contact Info -->
-        <div class="col-lg-4 text-start">
-          <h4 class="footer-widget-title">Contact Information</h4>
-          <ul class="footer-contact-info">
-            <li><i class="fas fa-map-marker-alt"></i> Head Office: Prince Sultan St, Al aziziya, Jeddah, KSA</li>
+        <!-- Col 3: Solutions -->
+        <div class="col-lg-3 col-md-6 text-start">
+          <h4 class="footer-widget-title">Solutions</h4>
+          <ul class="footer-links">
+            <li><a href="products.html?category=bakery"><i class="fas fa-chevron-right"></i> Bakery Systems</a></li>
+            <li><a href="products.html?category=pastry"><i class="fas fa-chevron-right"></i> Pastry Processing</a></li>
+            <li><a href="products.html?category=chocolate"><i class="fas fa-chevron-right"></i> Chocolate Tempering</a></li>
+            <li><a href="products.html?category=production"><i class="fas fa-chevron-right"></i> Production Lines</a></li>
+            <li><a href="products.html?category=packaging"><i class="fas fa-chevron-right"></i> Packaging Solutions</a></li>
+          </ul>
+        </div>
+
+        <!-- Col 4: Contact & Newsletter -->
+        <div class="col-lg-3 col-md-6 text-start">
+          <h4 class="footer-widget-title">Contact Us</h4>
+          <ul class="footer-contact-info mb-4">
+            <li><i class="fas fa-map-marker-alt"></i> Prince Sultan St, Al aziziya, Jeddah, KSA</li>
             <li><i class="fas fa-phone-alt"></i> +966 12 345 6789</li>
             <li><i class="fas fa-envelope"></i> info@alhazmi.com</li>
           </ul>
+          
+          <h5 class="text-white small fw-bold text-uppercase mb-2" style="letter-spacing: 0.5px;">Newsletter Signup</h5>
+          <form class="footer-newsletter-form">
+            <input type="email" placeholder="Your Email Address" required>
+            <button type="submit" aria-label="Subscribe"><i class="fas fa-paper-plane"></i></button>
+          </form>
         </div>
 
       </div>
 
-      <div class="footer-bottom mt-5 pt-4 border-top border-secondary">
+      <!-- Footer Bottom -->
+      <div class="footer-bottom">
         <div class="row align-items-center">
           <div class="col-md-6 text-md-start text-center mb-3 mb-md-0">
             <p class="mb-0">&copy; 2026 Al Hazmi International. All Rights Reserved.</p>
           </div>
           <div class="col-md-6 text-md-end text-center">
-            <!-- <p class="mb-0">Designed in partnership with Antigravity AI.</p> -->
+            <div class="d-flex justify-content-center justify-content-md-end gap-3 small">
+              <a href="#" class="text-decoration-none text-white-50 hover-text-gold">Privacy Policy</a>
+              <span class="text-white-50">|</span>
+              <a href="#" class="text-decoration-none text-white-50 hover-text-gold">Terms of Service</a>
+            </div>
           </div>
         </div>
       </div>
@@ -364,13 +443,14 @@
               <i class="fas fa-file-invoice-dollar fs-5"></i>
             </div>
             <div>
-              <h5 class="modal-title fw-bold font-headings text-white mb-0" id="quoteModalLabel">Request a Custom Quote</h5>
+              <h5 class="modal-title fw-bold font-headings text-white mb-0" id="quoteModalLabel">Request a Custom Quote
+              </h5>
               <p class="text-white-50 mb-0 small">Tell us about your production requirements</p>
             </div>
           </div>
           <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
-        <div class="modal-body p-4 p-md-5" style="background: #151618;">
+        <div class="modal-body p-4 p-md-5" style="background: var(--primary-dark);">
           <form id="modalQuoteForm" novalidate>
             <div class="row g-4">
               <!-- Full Name -->
@@ -486,34 +566,95 @@
 
     // Initialize Scroll Reveal Animations (AOS) and Filtering
     document.addEventListener('DOMContentLoaded', () => {
-      // Used products interactive filtering
       const filterBtns = document.querySelectorAll('.used-filter-btn');
       const cols = document.querySelectorAll('.used-product-col');
+      const searchInput = document.getElementById('used-search');
+      const categoryTitle = document.getElementById('active-category-title');
+      const resultsCount = document.getElementById('results-count');
 
-      if (filterBtns.length > 0 && cols.length > 0) {
+      let activeFilter = 'all';
+      let searchKeyword = '';
+
+      function filterProducts() {
+        let visibleCount = 0;
+        cols.forEach(col => {
+          const category = col.getAttribute('data-category');
+          const title = col.querySelector('.used-card-title').textContent.toLowerCase();
+          const brand = col.querySelector('.used-brand-tag').textContent.toLowerCase();
+
+          const matchesCategory = (activeFilter === 'all' || category === activeFilter);
+          const matchesSearch = (!searchKeyword || title.includes(searchKeyword) || brand.includes(searchKeyword));
+
+          if (matchesCategory && matchesSearch) {
+            col.style.display = 'block';
+            col.classList.remove('fade-out');
+            visibleCount++;
+          } else {
+            col.classList.add('fade-out');
+            col.style.display = 'none';
+          }
+        });
+
+        if (resultsCount) {
+          resultsCount.textContent = `${visibleCount} Product${visibleCount === 1 ? '' : 's'} Found`;
+        }
+      }
+
+      if (filterBtns.length > 0) {
         filterBtns.forEach(btn => {
           btn.addEventListener('click', () => {
-            // Toggle active class on buttons
             filterBtns.forEach(b => b.classList.remove('active'));
             btn.classList.add('active');
 
-            const filterValue = btn.getAttribute('data-filter');
+            activeFilter = btn.getAttribute('data-filter');
+            if (categoryTitle) {
+              categoryTitle.textContent = btn.textContent.trim();
+            }
+            filterProducts();
+          });
+        });
+      }
+      if (searchInput) {
+        searchInput.addEventListener('input', (e) => {
+          searchKeyword = e.target.value.toLowerCase().trim();
+          filterProducts();
+        });
+      }
 
-            cols.forEach(col => {
-              const category = col.getAttribute('data-category');
+      // Mobile/Tablet Filter Drawer Toggle Logic
+      const toggleBtn = document.getElementById('toggle-filter-drawer');
+      const closeBtn = document.getElementById('close-filter-drawer');
+      const sidebar = document.querySelector('.category-sidebar');
+      
+      const backdrop = document.createElement('div');
+      backdrop.className = 'filter-drawer-backdrop';
+      document.body.appendChild(backdrop);
 
-              if (filterValue === 'all' || category === filterValue) {
-                col.style.display = 'block';
-                setTimeout(() => {
-                  col.classList.remove('fade-out');
-                }, 50);
-              } else {
-                col.classList.add('fade-out');
-                setTimeout(() => {
-                  col.style.display = 'none';
-                }, 400);
-              }
-            });
+      if (toggleBtn && sidebar) {
+        toggleBtn.addEventListener('click', () => {
+          sidebar.classList.add('active');
+          backdrop.classList.add('active');
+          document.body.style.overflow = 'hidden';
+        });
+      }
+
+      function closeDrawer() {
+        if (sidebar) sidebar.classList.remove('active');
+        backdrop.classList.remove('active');
+        document.body.style.overflow = '';
+      }
+
+      if (closeBtn) closeBtn.addEventListener('click', closeDrawer);
+      backdrop.addEventListener('click', closeDrawer);
+
+      // Close drawer when category links are clicked on mobile
+      if (sidebar) {
+        const filterActions = sidebar.querySelectorAll('button');
+        filterActions.forEach(btn => {
+          btn.addEventListener('click', () => {
+            if (window.innerWidth < 992) {
+              closeDrawer();
+            }
           });
         });
       }

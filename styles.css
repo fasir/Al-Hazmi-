@@ -4503,6 +4503,7 @@ select.custom-form-control {
   height: auto;
   object-fit: contain;
   transition: transform var(--transition-smooth) ease;
+  height: auto !important;
 }
 
 .product-detail-img-card:hover img {

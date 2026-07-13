@@ -2706,7 +2706,7 @@ select.custom-form-control {
   .site-footer {
     text-align: center !important;
   }
-  
+
   .site-footer .text-start,
   .site-footer .text-md-start,
   .site-footer .text-md-end {
@@ -2730,7 +2730,7 @@ select.custom-form-control {
     align-items: center;
     gap: 6px;
   }
-  
+
   .footer-contact-info i {
     margin-top: 0;
   }
@@ -2743,11 +2743,11 @@ select.custom-form-control {
     margin: 15px auto 0 !important;
     max-width: 320px;
   }
-  
+
   .site-footer .logo-img {
     margin: 0 auto !important;
   }
-  
+
   .site-footer a.d-flex {
     justify-content: center !important;
   }
@@ -4493,7 +4493,7 @@ select.custom-form-control {
   align-items: center;
   justify-content: center;
   padding: 30px;
-  height: 380px;
+  height: auto;
 }
 
 .product-detail-img-card img {
